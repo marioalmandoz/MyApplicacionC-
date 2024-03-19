@@ -1,4 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
+using MyApplicacion.Services;
+using MyApplicacion.Abstractions;
+using MyApplicacion.ViewModels;
+using CommunityToolkit.Maui;
+using Plugin.Maui.Audio;
+
 
 namespace MyApplicacion
 {
@@ -9,6 +15,7 @@ namespace MyApplicacion
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -18,6 +25,10 @@ namespace MyApplicacion
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            //Esto es para el contenedor de variables generales
+            builder.Services.AddSingleton<ITextProvider, TextProviderService>();
+            builder.Services.AddTransient<SecondViewModel>();
+            builder.Services.AddTransient<OkPage>();
 
             return builder.Build();
         }

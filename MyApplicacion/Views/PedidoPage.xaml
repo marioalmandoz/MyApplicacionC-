@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MyApplicacion.PedidoPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="PedidoPage">
+    <VerticalStackLayout>
+        <Label
+            HorizontalOptions="Center"
+            Text="Esta es la pagina de Pedidos"
+            VerticalOptions="Center" />
+
+        <Button
+            x:Name="BtnBack"
+            Clicked="Go_Back"
+            HorizontalOptions="Start"
+            Text="Back" />
+
+        <Label
+            Margin="0,20,0,10"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            Text="¡INTRODUCE EL NUMERO DE REFERENCIA DEL PEDIDO!" />
+
+        <Entry
+            x:Name="referenciaEntry"
+            HorizontalOptions="Center"
+            Keyboard="Numeric"
+            Placeholder="Número de referencia..." />
+
+        <Button
+            Margin="0,10,0,0"
+            Clicked="Validar_Clicked"
+            HorizontalOptions="Center"
+            Text="Validar" />
+    </VerticalStackLayout>
+</ContentPage>

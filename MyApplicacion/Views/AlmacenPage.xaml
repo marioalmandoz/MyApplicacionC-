@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MyApplicacion.AlmacenPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="AlmacenPage">
+    <VerticalStackLayout>
+        <Button
+            x:Name="BtnBack"
+            Margin="0,0,0,20"
+            Clicked="Go_Back"
+            HorizontalOptions="Start"
+            Text="Back" />
+        <Button
+            x:Name="BtnRecepcion"
+            Margin="20,0,0,20"
+            Clicked="Go_Recepcion"
+            FontSize="25"
+            HorizontalOptions="Center"
+            Text="RECEPCIONAR PALLET" />
+        <Button
+            x:Name="BtnUbicacion"
+            Margin="0,0,0,20"
+            Clicked="Go_ubicacion"
+            FontSize="25"
+            HorizontalOptions="Center"
+            Text="UBICAR PALLET" />
+        <Button
+            x:Name="BtnPedido"
+            Margin="0,0,0,20"
+            Clicked="Go_Pedido"
+            FontSize="25"
+            HorizontalOptions="Center"
+            Text="REALIZAR PEDIDO" />
+
+    </VerticalStackLayout>
+</ContentPage>

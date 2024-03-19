@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MyApplicacion.OkPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="OkPage">
+    <StackLayout Padding="10" VerticalOptions="StartAndExpand">
+        <Button
+            x:Name="BtnBack"
+            Margin="0,0,0,10"
+            Clicked="Go_Back"
+            FontSize="Small"
+            HorizontalOptions="Start"
+            Text="Back"
+            VerticalOptions="Start" />
+
+        <StackLayout BackgroundColor="LightGreen" HorizontalOptions="CenterAndExpand">
+            <!--  Label para "Name"  -->
+            <Label HorizontalOptions="Center" Text="{Binding Name}" />
+
+            <!--  Label para "Referencia"  -->
+            <Label
+                FontSize="25"
+                HorizontalOptions="Center"
+                Text="{Binding Referencia}" />
+
+            <!--  Label para "Cant"  -->
+            <Label
+                FontSize="25"
+                HorizontalOptions="Center"
+                Text="{Binding Cant}" />
+        </StackLayout>
+
+        <Label
+            Margin="0,20,0,10"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            Text="¡INTRODUCE EL NUMERO DE CAJAS QUE CONTIENE EL PALLET!" />
+
+        <Entry
+            x:Name="numeroCajasEntry"
+            HorizontalOptions="Center"
+            Keyboard="Numeric"
+            Placeholder="Número de cajas..." />
+
+        <Button
+            Margin="0,10,0,0"
+            Clicked="Validar_Clicked"
+            HorizontalOptions="Center"
+            Text="Validar" />
+    </StackLayout>
+</ContentPage>

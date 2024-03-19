@@ -1,25 +1,34 @@
-﻿namespace MyApplicacion
+﻿
+namespace MyApplicacion
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        public object NavigationService { get; private set; }
 
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void Produccion_click(object sender, EventArgs e)
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            // Acciones que quieres realizar cuando se hace clic en el botón 1
+            // Por ejemplo, mostrar un mensaje en la consola
+            System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón 1.2");
+            await Shell.Current.GoToAsync("///ProduccionPage");
+            System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón 1.3");
+            
         }
+
+
+        private async void Almacen_click(object sender, EventArgs e)
+        {
+            // Acciones que quieres realizar cuando se hace clic en el botón 2
+            // Por ejemplo, mostrar un mensaje en la consola
+            System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón 2!");
+            await Shell.Current.GoToAsync("///AlmacenPage");
+        }
+
     }
 
 }
