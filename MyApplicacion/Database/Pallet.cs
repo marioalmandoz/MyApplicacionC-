@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using SQLite;
 namespace MyApplicacion.Database
 {
+    [SQLite.Table("pallet")]
     public class Pallet
     {
-
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Type { get; set; }
-        public string Name2 { get; set; }
-
+        [SQLite.PrimaryKey, AutoIncrement] public int Id { get; set; }
+        public DateTime fecha_hora { get; set; }
+        public string referencia { get; set; }
+        public string cant { get; set; }
     }
 }

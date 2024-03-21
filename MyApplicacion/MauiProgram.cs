@@ -30,6 +30,15 @@ namespace MyApplicacion
             builder.Services.AddTransient<SecondViewModel>();
             builder.Services.AddTransient<OkPage>();
 
+            string dbPath = FileAccessHelper.GetLocalFilePath("app.db3");
+
+            // Crear una instancia de PalletRepository con la ruta de la base de datos
+            PalletRepository palletRepository = new PalletRepository(dbPath);
+
+            // Registrar la instancia de PalletRepository en el contenedor de servicios
+            builder.Services.AddSingleton<PalletRepository>(palletRepository);
+
+
             return builder.Build();
         }
     }

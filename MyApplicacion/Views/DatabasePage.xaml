@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MyApplicacion.Views.DatabasePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="DatabasePage">
+    <StackLayout>
+        <!--  Contenido para introducir datos  -->
+        <StackLayout Margin="10">
+            <Entry
+                x:Name="referencia"
+                Keyboard="Numeric"
+                Placeholder="Introduce la referencia" />
+            <Entry
+                x:Name="Baan"
+                Keyboard="Numeric"
+                Placeholder="Introduce el baan" />
+            <Button Clicked="AddPallet" Text="Añadir Pallet" />
+            <Label x:Name="statusMessage" />
+            <Button Clicked="MostrarPallets" Text="Mostrar Pallets" />
+        </StackLayout>
+
+        <!--  Botón para eliminar pallets  -->
+        <Button Clicked="EliminarPallet" Text="Eliminar Pallet" />
+
+        <!--  Tabla para mostrar los pallets  -->
+        <Grid Margin="10">
+            <!--  Encabezados de la tabla  -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="0"
+                BackgroundColor="Black"
+                HeightRequest="1"
+                VerticalOptions="End" />
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="1"
+                BackgroundColor="Black"
+                HeightRequest="1"
+                VerticalOptions="End" />
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="2"
+                BackgroundColor="Black"
+                HeightRequest="1"
+                VerticalOptions="End" />
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="0"
+                BackgroundColor="Black"
+                HorizontalOptions="End"
+                WidthRequest="1" />
+            <BoxView
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColor="Black"
+                HorizontalOptions="End"
+                WidthRequest="1" />
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="1"
+                BackgroundColor="Black"
+                HorizontalOptions="End"
+                WidthRequest="1" />
+            <BoxView
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="Black"
+                HorizontalOptions="End"
+                WidthRequest="1" />
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="2"
+                BackgroundColor="Black"
+                HorizontalOptions="End"
+                WidthRequest="1" />
+            <BoxView
+                Grid.Row="1"
+                Grid.Column="2"
+                BackgroundColor="Black"
+                HorizontalOptions="End"
+                WidthRequest="1" />
+
+            <Frame
+                Grid.Row="0"
+                Grid.Column="0"
+                Padding="5"
+                BackgroundColor="LightGray">
+                <Label Text="ID" />
+            </Frame>
+            <Frame
+                Grid.Row="0"
+                Grid.Column="1"
+                Padding="5"
+                BackgroundColor="LightGray">
+                <Label Text="Fecha y Hora" />
+            </Frame>
+            <Frame
+                Grid.Row="0"
+                Grid.Column="2"
+                Padding="5"
+                BackgroundColor="LightGray">
+                <Label Text="Referencia" />
+            </Frame>
+
+            <!--  Datos de la tabla  -->
+            <CollectionView
+                x:Name="palletList"
+                Grid.Row="1"
+                Grid.ColumnSpan="3"
+                Margin="5">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Frame Grid.Column="0" Padding="5">
+                                <Label Text="{Binding Id}" />
+                            </Frame>
+                            <Frame Grid.Column="1" Padding="5">
+                                <Label Text="{Binding fecha_hora}" />
+                            </Frame>
+                            <Frame Grid.Column="2" Padding="5">
+                                <Label Text="{Binding referencia}" />
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <Button
+            x:Name="BtnBack"
+            Clicked="Go_Back"
+            HorizontalOptions="End"
+            Text="Volver"
+            VerticalOptions="End" />
+
+    </StackLayout>
+</ContentPage>

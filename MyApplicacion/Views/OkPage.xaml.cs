@@ -21,25 +21,33 @@ public partial class OkPage : ContentPage
         // Aquí puedes acceder al valor introducido en el Entry
         string numeroCajas = numeroCajasEntry.Text;
         numeroCajasEntry.Text = "";
+        if (numeroCajas !="") {
+            // Aquí puedes realizar la validación y cualquier otra lógica necesaria
+            // Mostrar una alerta para confirmar si el usuario está seguro
+            bool respuesta = await DisplayAlert("Confirmación", $"¿Estás seguro de querer introducir {numeroCajas} cajas?", "Sí", "No");
+
+            // Verificar la respuesta del usuario
+            if (respuesta)
+            {
+                // TODO: Aquí habrá un método que insertará los datos en la base de datos
+                //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
 
 
-        // Aquí puedes realizar la validación y cualquier otra lógica necesaria
-        // Mostrar una alerta para confirmar si el usuario está seguro
-        bool respuesta = await DisplayAlert("Confirmación", $"¿Estás seguro de querer introducir {numeroCajas} cajas?", "Sí", "No");
 
-        // Verificar la respuesta del usuario
-        if (respuesta)
-        {
-            //  aqui habra un metodo que metera los datos a una base de datos
-            //De momento llevamos a la clase ProduccionPage
+                //De momento llevamos a la clase ProduccionPage
 
-            await Shell.Current.GoToAsync("///ProduccionPage");
+                await Shell.Current.GoToAsync("///ProduccionPage");
 
+            }
+            else
+            {
+                //Si el usuario pulsa no
+            }
         }
-        else
-        {
-            //Si el usuario pulsa no
-        }
+
+
+
+        
     }
 
 

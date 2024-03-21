@@ -18,7 +18,7 @@
             <!--  Label para "Name"  -->
             <Label HorizontalOptions="Center" Text="{Binding Name}" />
 
-            <!--  Label para "Referencia"  -->
+            <!--  Label para "Referencia" Quiero poner un texto delante del numero de referencia  -->
             <Label
                 FontSize="25"
                 HorizontalOptions="Center"

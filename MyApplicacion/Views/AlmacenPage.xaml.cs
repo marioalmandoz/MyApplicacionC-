@@ -27,5 +27,9 @@ public partial class AlmacenPage : ContentPage
     {
         await Shell.Current.GoToAsync("///PedidoPage");
     }
+    private async void Db_click(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("///Views.DatabasePage");
+    }
 
 }

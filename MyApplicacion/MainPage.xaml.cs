@@ -1,4 +1,5 @@
 ﻿
+
 namespace MyApplicacion
 {
     public partial class MainPage : ContentPage
@@ -27,6 +28,14 @@ namespace MyApplicacion
             // Por ejemplo, mostrar un mensaje en la consola
             System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón 2!");
             await Shell.Current.GoToAsync("///AlmacenPage");
+        }
+        private async void Db_click(object sender, EventArgs e)
+        {
+            // Acciones que quieres realizar cuando se hace clic en el botón 2
+            // Por ejemplo, mostrar un mensaje en la consola
+            await Shell.Current.GoToAsync("///Views.DatabasePage");
+            System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón 2!");
+           
         }
 
     }

@@ -15,7 +15,7 @@ namespace MyApplicacion.Services
         }
         public string GetReferencia()
         {
-            return "LA REFERENCIA ESCANEADA ES: 78978";
+            return "78978";
         }
 
         public string GetCant()

@@ -16,4 +16,8 @@ public partial class UbicacionPage : ContentPage
         System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón Back");
 
     }
+
+    //TODO: Aqui Tiene que haber un boton en el que se tenga que poner una ubicacion por lo que se accedera a la Base de datos
+
+
 }

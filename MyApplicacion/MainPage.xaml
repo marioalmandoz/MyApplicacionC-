@@ -23,6 +23,13 @@
                 Clicked="Almacen_click"
                 HorizontalOptions="Center"
                 Text="Almacen" />
+            <Button
+                x:Name=" BtnDb"
+                Clicked="Db_click"
+                HorizontalOptions="End"
+                Text="Database"
+                VerticalOptions="End" />
+
 
         </VerticalStackLayout>
     </ScrollView>

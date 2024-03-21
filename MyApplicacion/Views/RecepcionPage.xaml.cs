@@ -16,4 +16,8 @@ public partial class RecepcionPage : ContentPage
 
     }
 
+    //TODO: Aqui habra un metodo donde se realizara la comprobacion
+    //de esa recepcion y donde se mostrar una tabla con los datos necesarios
+    //y donde se haran modificaciones en la Base de datos
+
 }

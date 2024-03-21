@@ -35,6 +35,17 @@
         Title="Pedido"
         ContentTemplate="{DataTemplate local:PedidoPage}"
         Route="PedidoPage" />
+    <ShellContent
+        Title="Database"
+        ContentTemplate="{DataTemplate local:Views.DatabasePage}"
+        Route="Views.DatabasePage" />
+    <ShellContent
+        Title="ReferenciasPedido"
+        ContentTemplate="{DataTemplate local:Views.ReferenciasPedidoPage}"
+        Route="Views.ReferenciasPedidoPage" />
 
 
 </Shell>
+
+
+

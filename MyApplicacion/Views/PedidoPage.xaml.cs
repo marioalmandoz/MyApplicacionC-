@@ -1,4 +1,5 @@
 
+using MyApplicacion.Database;
 using Plugin.Maui.Audio;
 
 namespace MyApplicacion;
@@ -21,18 +22,22 @@ public partial class PedidoPage : ContentPage
     private async void Validar_Clicked(object sender, EventArgs e)
     {
         // Aquí puedes acceder al valor introducido en el Entry
+
         string referencia = referenciaEntry.Text;
         referenciaEntry.Text = "";
+        
+        //
+
 
         // Verificar la respuesta del usuario
-        if (referencia=="1")
+        if (await App.PalletRepo.ComprobarReferencia(referencia))
         {
             //  aqui habra un metodo que metera los datos a una base de datos
             //De momento llevamos a la clase ProduccionPage
 
             //MostrarPallets();
 
-            await Shell.Current.GoToAsync("///AlmacenPage");
+            await Shell.Current.GoToAsync("///Views.ReferenciasPedidoPage");
 
         }
         else
