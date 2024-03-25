@@ -101,6 +101,9 @@
 	  <MauiXaml Update="Views\DatabasePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\IncidenciasPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\OkPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

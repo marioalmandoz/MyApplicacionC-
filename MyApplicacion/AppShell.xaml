@@ -13,28 +13,28 @@
         Route="MainPage" />
     <ShellContent
         Title="Produccion"
-        ContentTemplate="{DataTemplate local:ProduccionPage}"
-        Route="ProduccionPage" />
+        ContentTemplate="{DataTemplate local:Views.ProduccionPage}"
+        Route="Views.ProduccionPage" />
     <ShellContent
         Title="Almacen"
-        ContentTemplate="{DataTemplate local:AlmacenPage}"
-        Route="AlmacenPage" />
+        ContentTemplate="{DataTemplate local:Views.AlmacenPage}"
+        Route="Views.AlmacenPage" />
     <ShellContent
         Title="Ok"
-        ContentTemplate="{DataTemplate local:OkPage}"
-        Route="OkPage" />
+        ContentTemplate="{DataTemplate local:Views.OkPage}"
+        Route="Views.OkPage" />
     <ShellContent
         Title="Recepcion"
-        ContentTemplate="{DataTemplate local:RecepcionPage}"
-        Route="RecepcionPage" />
+        ContentTemplate="{DataTemplate local:Views.RecepcionPage}"
+        Route="Views.RecepcionPage" />
     <ShellContent
         Title="Ubicacion"
-        ContentTemplate="{DataTemplate local:UbicacionPage}"
-        Route="UbicacionPage" />
+        ContentTemplate="{DataTemplate local:Views.UbicacionPage}"
+        Route="Views.UbicacionPage" />
     <ShellContent
         Title="Pedido"
-        ContentTemplate="{DataTemplate local:PedidoPage}"
-        Route="PedidoPage" />
+        ContentTemplate="{DataTemplate local:Views.PedidoPage}"
+        Route="Views.PedidoPage" />
     <ShellContent
         Title="Database"
         ContentTemplate="{DataTemplate local:Views.DatabasePage}"
@@ -43,6 +43,10 @@
         Title="ReferenciasPedido"
         ContentTemplate="{DataTemplate local:Views.ReferenciasPedidoPage}"
         Route="Views.ReferenciasPedidoPage" />
+    <ShellContent
+        Title="IncidenciasPage"
+        ContentTemplate="{DataTemplate local:Views.IncidenciasPage}"
+        Route="Views.IncidenciasPage" />
 
 
 </Shell>

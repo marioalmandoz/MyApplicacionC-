@@ -7,6 +7,6 @@ namespace MyApplicacion.Database
         [SQLite.PrimaryKey, AutoIncrement] public int Id { get; set; }
         public DateTime fecha_hora { get; set; }
         public string referencia { get; set; }
-        public string cant { get; set; }
+        public string ubicacion { get; set; }
     }
 }

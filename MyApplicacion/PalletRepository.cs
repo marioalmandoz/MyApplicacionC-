@@ -30,7 +30,7 @@ namespace MyApplicacion
                     throw new Exception("Valid reference required");
                 if (string.IsNullOrEmpty(pCant))
                     throw new Exception("Valid reference required");
-                MyApplicacion.Database.Pallet pallet = new() { fecha_hora = dateTime, referencia = pReferencia, cant=pCant };
+                MyApplicacion.Database.Pallet pallet = new() { fecha_hora = dateTime, referencia = pReferencia, ubicacion=pCant };
                 result = await conn.InsertAsync(pallet);
 
                 StatusMessage = string.Format("{0} record(S) added (Name: {1})", result, pReferencia, pCant);

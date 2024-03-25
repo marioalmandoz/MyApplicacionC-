@@ -1,7 +1,7 @@
 
 using Plugin.Maui.Audio;
 
-namespace MyApplicacion;
+namespace MyApplicacion.Views;
 
 public partial class ProduccionPage: ContentPage   
 {
@@ -26,7 +26,7 @@ public partial class ProduccionPage: ContentPage
             // https://www.youtube.com/watch?v=oIYnEuZ9oew&t=97s Esto es el link del video de donde he sacado la parte del audio
             AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
 
-            await Shell.Current.GoToAsync("///OkPage");
+            await Shell.Current.GoToAsync("///Views.OkPage");
         }
         else
         {

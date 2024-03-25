@@ -1,4 +1,4 @@
-namespace MyApplicacion;
+namespace MyApplicacion.Views;
 
 public partial class AlmacenPage : ContentPage
 {
@@ -17,15 +17,15 @@ public partial class AlmacenPage : ContentPage
     }
     private async void Go_Recepcion(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///RecepcionPage");
+        await Shell.Current.GoToAsync("///Views.RecepcionPage");
     }
     private async void Go_ubicacion(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///UbicacionPage");
+        await Shell.Current.GoToAsync("///Views.UbicacionPage");
     }
     private async void Go_Pedido(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///PedidoPage");
+        await Shell.Current.GoToAsync("///Views.PedidoPage");
     }
     private async void Db_click(object sender, EventArgs e)
     {

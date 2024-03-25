@@ -28,7 +28,7 @@ namespace MyApplicacion
             //Esto es para el contenedor de variables generales
             builder.Services.AddSingleton<ITextProvider, TextProviderService>();
             builder.Services.AddTransient<SecondViewModel>();
-            builder.Services.AddTransient<OkPage>();
+            builder.Services.AddTransient<Views.OkPage>();
 
             string dbPath = FileAccessHelper.GetLocalFilePath("app.db3");
 

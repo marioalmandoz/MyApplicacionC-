@@ -12,22 +12,34 @@
                 SemanticProperties.Description="dot net bot in a race car number eight"
                 Source="dotnet_bot.png" />
 
-            <Button
-                x:Name="BtnProduccion"
-                Clicked="Produccion_click"
-                HorizontalOptions="Center"
-                Text="Produccion" />
+            <Grid VerticalOptions="EndAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Button
+                    x:Name="BtnProduccion"
+                    Grid.Row="0"
+                    Margin="20,0,20,20"
+                    Clicked="Produccion_click"
+                    FontSize="30"
+                    HorizontalOptions="FillAndExpand"
+                    Text="PRODUCCION" />
+                <Button
+                    x:Name="BtnAlmacen"
+                    Grid.Row="1"
+                    Margin="20,50,20,20"
+                    Clicked="Almacen_click"
+                    FontSize="30"
+                    HorizontalOptions="FillAndExpand"
+                    Text="ALMACEN" />
+            </Grid>
 
-            <Button
-                x:Name="BtnAlmacen"
-                Clicked="Almacen_click"
-                HorizontalOptions="Center"
-                Text="Almacen" />
             <Button
                 x:Name=" BtnDb"
                 Clicked="Db_click"
                 HorizontalOptions="End"
-                Text="Database"
+                Text="DATABASE"
                 VerticalOptions="End" />
 
 

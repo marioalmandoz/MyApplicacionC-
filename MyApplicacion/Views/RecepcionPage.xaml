@@ -1,19 +1,166 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="MyApplicacion.RecepcionPage"
+    x:Class="MyApplicacion.Views.RecepcionPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="RecepcionPage">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Esto es la pagina de recepcion de pallets"
-            VerticalOptions="Center" />
-
+    <StackLayout>
         <Button
             x:Name="BtnBack"
             Clicked="Go_Back"
             HorizontalOptions="Start"
-            Text="Back" />
-    </VerticalStackLayout>
+            Text="Volver"
+            VerticalOptions="Start" />
+
+        <StackLayout BackgroundColor="LightGreen" HorizontalOptions="Start">
+            <!--  Label para "Name"  -->
+            <Label HorizontalOptions="Center" Text="{Binding Name}" />
+
+            <!--  Label para "Referencia" Quiero poner un texto delante del numero de referencia  -->
+            <Label
+                FontSize="25"
+                HorizontalOptions="Center"
+                Text="{Binding Referencia}" />
+
+            <!--  Label para "Cant"  -->
+            <Label
+                FontSize="25"
+                HorizontalOptions="Center"
+                Text="{Binding Cant}" />
+        </StackLayout>
+        <Grid Margin="10" VerticalOptions="StartAndExpand">
+            <!--  Encabezados de la tabla  -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="0"
+                BackgroundColor="Black"
+                HeightRequest="1"
+                VerticalOptions="End" />
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="1"
+                BackgroundColor="Black"
+                HeightRequest="1"
+                VerticalOptions="End" />
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="2"
+                BackgroundColor="Black"
+                HeightRequest="1"
+                VerticalOptions="End" />
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="0"
+                BackgroundColor="Black"
+                HorizontalOptions="End"
+                WidthRequest="1" />
+            <BoxView
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColor="Black"
+                HorizontalOptions="End"
+                WidthRequest="1" />
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="1"
+                BackgroundColor="Black"
+                HorizontalOptions="End"
+                WidthRequest="1" />
+            <BoxView
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="Black"
+                HorizontalOptions="End"
+                WidthRequest="1" />
+            <BoxView
+                Grid.Row="0"
+                Grid.Column="2"
+                BackgroundColor="Black"
+                HorizontalOptions="End"
+                WidthRequest="1" />
+            <BoxView
+                Grid.Row="1"
+                Grid.Column="2"
+                BackgroundColor="Black"
+                HorizontalOptions="End"
+                WidthRequest="1" />
+
+            <Frame
+                Grid.Row="0"
+                Grid.Column="0"
+                Padding="5"
+                BackgroundColor="LightGray">
+                <Label Text="ID" />
+            </Frame>
+            <Frame
+                Grid.Row="0"
+                Grid.Column="1"
+                Padding="5"
+                BackgroundColor="LightGray">
+                <Label Text="Fecha y Hora" />
+            </Frame>
+            <Frame
+                Grid.Row="0"
+                Grid.Column="2"
+                Padding="5"
+                BackgroundColor="LightGray">
+                <Label Text="Referencia" />
+            </Frame>
+
+            <!--  Datos de la tabla  -->
+            <CollectionView
+                x:Name="palletList"
+                Grid.Row="1"
+                Grid.ColumnSpan="3"
+                Margin="5"
+                SelectionChanged="PalletList_SelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding Id}" />
+                            <Label Grid.Column="1" Text="{Binding fecha_hora}" />
+                            <Label Grid.Column="2" Text="{Binding referencia}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+
+        <HorizontalStackLayout
+            Padding="5"
+            HorizontalOptions="Center"
+            Spacing="10"
+            VerticalOptions="CenterAndExpand">
+            <Button
+                x:Name="BtnIncidecias"
+                Padding="5"
+                Clicked="BtnIncidecias_Clicked"
+                HorizontalOptions="Center"
+                Text="INCIDENCIAS"
+                VerticalOptions="End" />
+            <Button
+                x:Name="BtnConfirmar"
+                Padding="5"
+                Clicked="BtnConfirmar_Clicked"
+                HorizontalOptions="End"
+                Text="VALIDAR"
+                VerticalOptions="End" />
+        </HorizontalStackLayout>
+
+    </StackLayout>
 </ContentPage>

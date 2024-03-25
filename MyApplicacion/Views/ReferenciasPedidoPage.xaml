@@ -5,11 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="ReferenciasPedidoPage">
     <StackLayout>
-        <!--  Contenido para introducir datos  -->
-        <StackLayout Margin="10">
-            <Button Clicked="MostrarPallets" Text="Mostrar Pallets" />
-        </StackLayout>
-        <!--  Tabla para mostrar los pallets  -->
         <Grid Margin="10">
             <!--  Encabezados de la tabla  -->
             <Grid.RowDefinitions>
@@ -103,28 +98,25 @@
                 x:Name="palletList"
                 Grid.Row="1"
                 Grid.ColumnSpan="3"
-                Margin="5">
+                Margin="5"
+                SelectionChanged="PalletList_SelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid BackgroundColor="White">
+                        <Grid Padding="5" BackgroundColor="White">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Frame Grid.Column="0" Padding="5">
-                                <Label Text="{Binding Id}" />
-                            </Frame>
-                            <Frame Grid.Column="1" Padding="5">
-                                <Label Text="{Binding fecha_hora}" />
-                            </Frame>
-                            <Frame Grid.Column="2" Padding="5">
-                                <Label Text="{Binding referencia}" />
-                            </Frame>
+                            <Label Grid.Column="0" Text="{Binding Id}" />
+                            <Label Grid.Column="1" Text="{Binding fecha_hora}" />
+                            <Label Grid.Column="2" Text="{Binding referencia}" />
+                            <Label Grid.Column="3" Text="{Binding ubicacion}" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
         </Grid>
         <Button
             x:Name="BtnBack"

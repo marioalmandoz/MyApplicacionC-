@@ -1,4 +1,4 @@
-namespace MyApplicacion;
+namespace MyApplicacion.Views;
 
 public partial class UbicacionPage : ContentPage
 {
@@ -11,7 +11,7 @@ public partial class UbicacionPage : ContentPage
     {
         // Acciones que quieres realizar cuando se hace clic en el botón 1
         // Por ejemplo, mostrar un mensaje en la consola
-        await Shell.Current.GoToAsync("///AlmacenPage");
+        await Shell.Current.GoToAsync("///Views.AlmacenPage");
 
         System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón Back");
 
