@@ -2,10 +2,10 @@ namespace MyApplicacion.Views;
 
 public partial class AlmacenPage : ContentPage
 {
-	public AlmacenPage()
-	{
-		InitializeComponent();
-	}
+    public AlmacenPage()
+    {
+        InitializeComponent();
+    }
 
     private async void Go_Back(object sender, EventArgs e)
     {

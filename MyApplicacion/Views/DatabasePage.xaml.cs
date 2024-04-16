@@ -1,5 +1,6 @@
 using MyApplicacion.Database;
 
+
 namespace MyApplicacion.Views;
 
 public partial class DatabasePage : ContentPage
@@ -13,7 +14,7 @@ public partial class DatabasePage : ContentPage
 
     public async void AddPallet(object sender, EventArgs e)
     {
-       
+
         statusMessage.Text = "";
         await App.PalletRepo.AddNewPallet(referencia.Text, Baan.Text);
         statusMessage.Text = App.PalletRepo.StatusMessage;
@@ -25,7 +26,6 @@ public partial class DatabasePage : ContentPage
         List<Pallet> pallet = await App.PalletRepo.GetAll();
         palletList.ItemsSource = pallet;
     }
-
     public async void EliminarPallet(object sender, EventArgs e)
     {
         statusMessage.Text = "";
@@ -37,5 +37,9 @@ public partial class DatabasePage : ContentPage
         await Shell.Current.GoToAsync("///MainPage");
         System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón Back");
 
+    }
+    private async void descargarDatos(object sender, EventArgs e)
+    {
+        Peticiones.DownloadDate();
     }
 }

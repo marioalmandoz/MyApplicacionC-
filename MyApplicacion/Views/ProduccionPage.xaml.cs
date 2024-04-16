@@ -3,12 +3,12 @@ using Plugin.Maui.Audio;
 
 namespace MyApplicacion.Views;
 
-public partial class ProduccionPage: ContentPage   
+public partial class ProduccionPage : ContentPage
 {
     public ProduccionPage()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
 
     private async void Go_Back(object sender, EventArgs e)
     {

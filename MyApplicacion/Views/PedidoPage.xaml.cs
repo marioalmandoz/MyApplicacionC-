@@ -1,15 +1,13 @@
-
-using MyApplicacion.Database;
 using Plugin.Maui.Audio;
 
 namespace MyApplicacion.Views;
 
 public partial class PedidoPage : ContentPage
 {
-	public PedidoPage()
-	{
-		InitializeComponent();
-	}
+    public PedidoPage()
+    {
+        InitializeComponent();
+    }
 
     private async void Go_Back(object sender, EventArgs e)
     {
@@ -25,7 +23,7 @@ public partial class PedidoPage : ContentPage
 
         string referencia = referenciaEntry.Text;
         referenciaEntry.Text = "";
-        
+
         //
 
 

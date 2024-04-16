@@ -1,6 +1,5 @@
 ﻿using MyApplicacion.Database;
 using SQLite;
-using System.Data;
 
 
 
@@ -8,7 +7,7 @@ namespace MyApplicacion
 {
     public class PalletRepository(string path)
     {
-        string _dbPath= path;
+        string _dbPath = path;
         public string StatusMessage { get; set; }
         private SQLiteAsyncConnection conn;
         private async Task Init()
@@ -19,7 +18,7 @@ namespace MyApplicacion
             await conn.CreateTableAsync<MyApplicacion.Database.Pallet>();
 
         }
-        public async Task AddNewPallet(string pReferencia, string pCant) 
+        public async Task AddNewPallet(string pReferencia, string pCant)
         {
             int result = 0;
             try
@@ -30,13 +29,116 @@ namespace MyApplicacion
                     throw new Exception("Valid reference required");
                 if (string.IsNullOrEmpty(pCant))
                     throw new Exception("Valid reference required");
-                MyApplicacion.Database.Pallet pallet = new() { fecha_hora = dateTime, referencia = pReferencia, ubicacion=pCant };
+
+                MyApplicacion.Database.Pallet pallet = new() { fecha_hora = dateTime, referencia = pReferencia, cant = pCant, produccion = true };
                 result = await conn.InsertAsync(pallet);
 
                 StatusMessage = string.Format("{0} record(S) added (Name: {1})", result, pReferencia, pCant);
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                
+
+            }
+        }
+
+        public async Task tickAlmacen(DateTime pFecha)
+        {
+            // Realizar una consulta para verificar si existe algún pallet con la referencia dada
+            var palletExistente = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.fecha_hora == pFecha);
+            if (palletExistente != null)
+            {
+                // Si se encuentra un pallet con la referencia dada, mostrar un mensaje indicando que existe
+                StatusMessage = $"La fecha '{pFecha}' existe en la base de datos";
+                palletExistente.almacen = true;
+                await conn.UpdateAsync(palletExistente);
+
+                // Consultar el pallet actualizado de la base de datos
+                var palletActualizado = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.fecha_hora == pFecha);
+
+                // Verificar si el pallet se ha actualizado correctamente
+                if (palletActualizado != null && palletActualizado.almacen)
+                {
+                    // Si el pallet se ha actualizado correctamente, mostrar un mensaje indicando que se ha introducido el nuevo valor correctamente
+                    StatusMessage = $"El valor del almacen se ha introducido correctamente para la propiedad 'PropiedadAModificar' del pallet con fecha '{pFecha}'";
+                }
+                else
+                {
+                    // Si no se ha actualizado correctamente, mostrar un mensaje de error
+                    StatusMessage = "Error al actualizar el pallet en la base de datos";
+                }
+            }
+            else
+            {
+                // Si no se encuentra ningún pallet con la fecha dada, Indicar que ese palet no existe en la base de datos
+                StatusMessage = $"La Fecha '{pFecha}' no existe en la base de datos";
+            }
+        }
+
+        public async Task tickRecambio(DateTime pFecha)
+        {
+            // Realizar una consulta para verificar si existe algún pallet con la referencia dada
+            var palletExistente = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.fecha_hora == pFecha);
+            if (palletExistente != null)
+            {
+                // Si se encuentra un pallet con la referencia dada, mostrar un mensaje indicando que existe
+                StatusMessage = $"La fecha '{pFecha}' existe en la base de datos";
+                palletExistente.rec = true;
+                await conn.UpdateAsync(palletExistente);
+
+                // Consultar el pallet actualizado de la base de datos
+                var palletActualizado = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.fecha_hora == pFecha);
+
+                // Verificar si el pallet se ha actualizado correctamente
+                if (palletActualizado != null && palletActualizado.rec)
+                {
+                    // Si el pallet se ha actualizado correctamente, mostrar un mensaje indicando que se ha introducido el nuevo valor correctamente
+                    StatusMessage = $"El valor del recambio se ha introducido correctamente para la propiedad 'PropiedadAModificar' del pallet con fecha '{pFecha}'";
+                }
+                else
+                {
+                    // Si no se ha actualizado correctamente, mostrar un mensaje de error
+                    StatusMessage = "Error al actualizar el pallet en la base de datos";
+                }
+            }
+            else
+            {
+                // Si no se encuentra ningún pallet con la fecha dada, Indicar que ese palet no existe en la base de datos
+                StatusMessage = $"La Fecha '{pFecha}' no existe en la base de datos";
+            }
+        }
+
+        public async Task AddUbicacion(DateTime pFecha, string pUbicacion)
+        {
+            // Realizar una consulta para verificar si existe algún pallet con la referencia dada
+            var palletExistente = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.fecha_hora == pFecha);
+
+            if (palletExistente != null)
+            {
+                // Si se encuentra un pallet con la referencia dada, mostrar un mensaje indicando que existe
+                StatusMessage = $"La fecha '{pFecha}' existe en la base de datos";
+
+                palletExistente.ubicacion = pUbicacion;
+                await conn.UpdateAsync(palletExistente);
+
+                // Consultar el pallet actualizado de la base de datos
+                var palletActualizado = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.fecha_hora == pFecha);
+
+                // Verificar si el pallet se ha actualizado correctamente
+                if (palletActualizado != null && palletActualizado.ubicacion == pUbicacion)
+                {
+                    // Si el pallet se ha actualizado correctamente, mostrar un mensaje indicando que se ha introducido el nuevo valor correctamente
+                    StatusMessage = $"El valor '{pUbicacion}' se ha introducido correctamente para la propiedad 'PropiedadAModificar' del pallet con fecha '{pFecha}'";
+                }
+                else
+                {
+                    // Si no se ha actualizado correctamente, mostrar un mensaje de error
+                    StatusMessage = "Error al actualizar el pallet en la base de datos";
+                }
+            }
+            else
+            {
+                // Si no se encuentra ningún pallet con la fecha dada, Indicar que ese palet no existe en la base de datos
+                StatusMessage = $"La Fecha '{pFecha}' no existe en la base de datos";
             }
         }
 
@@ -47,7 +149,8 @@ namespace MyApplicacion
                 await Init();
                 return await conn.Table<MyApplicacion.Database.Pallet>().ToListAsync();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 StatusMessage = string.Format("Error para mostar los datos. {0}", ex.Message);
             }
             return new List<MyApplicacion.Database.Pallet>();
@@ -81,7 +184,7 @@ namespace MyApplicacion
         }
         public async Task<bool> ComprobarReferencia(string pReferencia)
         {
-            Boolean existe= false;
+            Boolean existe = false;
             try
             {
                 // Inicializar la conexión con la base de datos

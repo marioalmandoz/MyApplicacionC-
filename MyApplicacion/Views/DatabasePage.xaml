@@ -146,6 +146,12 @@
             HorizontalOptions="End"
             Text="Volver"
             VerticalOptions="End" />
+        <Button
+            x:Name="descargar"
+            Clicked="descargarDatos"
+            HorizontalOptions="Center"
+            Text="Descargar Datos"
+            VerticalOptions="End" />
 
     </StackLayout>
 </ContentPage>

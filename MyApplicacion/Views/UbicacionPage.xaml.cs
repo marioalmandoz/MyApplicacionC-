@@ -2,10 +2,10 @@ namespace MyApplicacion.Views;
 
 public partial class UbicacionPage : ContentPage
 {
-	public UbicacionPage()
-	{
-		InitializeComponent();
-	}
+    public UbicacionPage()
+    {
+        InitializeComponent();
+    }
 
     private async void Go_Back(object sender, EventArgs e)
     {

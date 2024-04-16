@@ -2,20 +2,29 @@ namespace MyApplicacion.Views;
 
 public partial class IncidenciasPage : ContentPage
 {
-	public IncidenciasPage()
-	{
-		InitializeComponent();
+    public IncidenciasPage()
+    {
+        InitializeComponent();
         CargarElementos();
-	}
+    }
 
     private void CargarElementos()
     {
-        List<string> elementos = new List<string> { "Incidencia 1", "Incidencia 2", "Incidencia 3","Incidencia 4", "Incidencia 5", "Varios" };
+        List<string> elementos = new List<string> { "Pallets y cajas rotas", "Ref en pallet que no corresponde", "Ref mezclada en mismo pallet", "Pallet incompletos", "Pallet con mas KLT´s o cajas que la instrucción de trabajo.", "Varios" };
         foreach (var elemento in elementos)
         {
             ddlIncidencias.Items.Add(elemento);
         }
     }
+
+    /*
+     * •	Pallets y cajas rotas
+•	Ref en pallet que no corresponde
+•	Ref mezclada en mismo pallet
+•	Pallet incompletos 
+•	Pallet con mas KLT´s o cajas que la instrucción de trabajo.
+
+     */
 
     private async void BtnBack_Clicked(object sender, EventArgs e)
     {
@@ -30,7 +39,7 @@ public partial class IncidenciasPage : ContentPage
         //Aqui se Volvera a la pagina de recepcionarPallet
         await Shell.Current.GoToAsync("///Views.RecepcionPage");
     }
-    
+
     private async void BtnCancelar_Clicked(object sender, EventArgs e)
     {
         //Aqui se Volvera a la pagina de recepcionarPallet

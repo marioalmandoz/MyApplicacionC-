@@ -1,12 +1,15 @@
-﻿using SQLite;
-namespace MyApplicacion.Database
+﻿namespace MyApplicacion.Database
 {
     [SQLite.Table("pallet")]
     public class Pallet
     {
-        [SQLite.PrimaryKey, AutoIncrement] public int Id { get; set; }
         public DateTime fecha_hora { get; set; }
         public string referencia { get; set; }
+        public string cant { get; set; }
         public string ubicacion { get; set; }
+        public bool almacen { get; set; }
+        public bool produccion { get; set; }
+        public bool rec { get; set; }
+
     }
 }

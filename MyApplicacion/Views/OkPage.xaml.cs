@@ -4,11 +4,11 @@ using System.Text.RegularExpressions;
 namespace MyApplicacion.Views;
 public partial class OkPage : ContentPage
 {
-	public OkPage(SecondViewModel viewModel)
-	{
-		InitializeComponent();
+    public OkPage(SecondViewModel viewModel)
+    {
+        InitializeComponent();
         BindingContext = viewModel;
-	}
+    }
 
     private async void Go_Back(object sender, EventArgs e)
     {
@@ -40,6 +40,8 @@ public partial class OkPage : ContentPage
                     //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
 
 
+                    await App.PalletRepo.AddNewPallet("564", numeroCajas);
+
 
                     //De momento llevamos a la clase ProduccionPage
 
@@ -47,7 +49,8 @@ public partial class OkPage : ContentPage
 
                 }
             }
-        }catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             await DisplayAlert("Error", $"Introduce el numero de cajas", "Ok");
         }

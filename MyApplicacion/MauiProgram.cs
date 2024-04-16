@@ -1,9 +1,16 @@
-﻿using Microsoft.Extensions.Logging;
-using MyApplicacion.Services;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 using MyApplicacion.Abstractions;
+using MyApplicacion.Services;
 using MyApplicacion.ViewModels;
+/* Cambio no fusionado mediante combinación del proyecto 'MyApplicacion (net8.0-android)'
+Antes:
 using CommunityToolkit.Maui;
 using Plugin.Maui.Audio;
+Después:
+using Plugin.Maui.Audio;
+*/
+
 
 
 namespace MyApplicacion
@@ -23,7 +30,7 @@ namespace MyApplicacion
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
             //Esto es para el contenedor de variables generales
             builder.Services.AddSingleton<ITextProvider, TextProviderService>();

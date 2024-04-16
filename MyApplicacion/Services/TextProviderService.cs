@@ -1,9 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
+/* Cambio no fusionado mediante combinación del proyecto 'MyApplicacion (net8.0-android)'
+Antes:
+using System;
+Después:
+using MyApplicacion.Abstractions;
+using System;
+*/
+using
+/* Cambio no fusionado mediante combinación del proyecto 'MyApplicacion (net8.0-android)'
+Antes:
 using System.Threading.Tasks;
 using MyApplicacion.Abstractions;
+Después:
+using System.Threading.Tasks;
+*/
+MyApplicacion.Abstractions;
 
 namespace MyApplicacion.Services
 {
@@ -22,6 +33,6 @@ namespace MyApplicacion.Services
         {
             return "LA CANTIDAD DE PIEZAS POR CAJA ES: 255";
         }
-        
+
     }
 }

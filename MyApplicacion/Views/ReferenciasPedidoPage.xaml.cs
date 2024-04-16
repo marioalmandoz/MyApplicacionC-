@@ -1,22 +1,21 @@
 using MyApplicacion.Database;
-using MyApplicacion.Services;
 
 namespace MyApplicacion.Views;
 
 public partial class ReferenciasPedidoPage : ContentPage
 {
-	public ReferenciasPedidoPage()
-	{
-		InitializeComponent();
+    public ReferenciasPedidoPage()
+    {
+        InitializeComponent();
         mostrarPallets();
-	}
+    }
 
     private async Task mostrarPallets()
     {
         List<Pallet> pallet = await App.PalletRepo.MostrarReferencias("555");
         palletList.ItemsSource = pallet;
     }
-  
+
     private async void Go_Back(object sender, EventArgs e)
     {
         // Acciones a realizar al pulsar este boton
@@ -29,7 +28,7 @@ public partial class ReferenciasPedidoPage : ContentPage
     {
         // Obtener el elemento seleccionado del CollectionView
         var selectedPallet = e.CurrentSelection.FirstOrDefault() as MyApplicacion.Database.Pallet;
-        
+
 
         if (selectedPallet != null)
         {
@@ -39,7 +38,7 @@ public partial class ReferenciasPedidoPage : ContentPage
             //await Shell.Current.GoToAsync("///");
 
             // Desmarcar la selección para permitir futuras selecciones
-           // ((CollectionView)sender).SelectedItem = null;
+            // ((CollectionView)sender).SelectedItem = null;
         }
         await Shell.Current.GoToAsync("///Views.IncidenciasPage");
     }

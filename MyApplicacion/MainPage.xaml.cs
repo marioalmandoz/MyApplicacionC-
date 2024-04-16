@@ -18,7 +18,7 @@ namespace MyApplicacion
             System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón 1.2");
             await Shell.Current.GoToAsync("///Views.ProduccionPage");
             System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón 1.3");
-            
+
         }
 
 
@@ -35,7 +35,7 @@ namespace MyApplicacion
             // Por ejemplo, mostrar un mensaje en la consola
             await Shell.Current.GoToAsync("///Views.DatabasePage");
             System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón 2!");
-           
+
         }
 
     }
