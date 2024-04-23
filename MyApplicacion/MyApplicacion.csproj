@@ -64,7 +64,7 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="3.1.0" />
 		<PackageReference Include="Dapper" Version="2.1.35" />
-		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.3" />
+		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
@@ -79,6 +79,15 @@
 		<PackageReference Include="Xam.Plugin.Media" Version="6.0.2" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
 		<PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.8.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Interop.CoreScanner">
+	    <HintPath>..\..\..\..\..\..\Program Files\Zebra Technologies\Barcode Scanners\Scanner SDK\Scanner SDK\Sample Applications\bin\Interop.CoreScanner.dll</HintPath>
+	  </Reference>
+	  <Reference Include="ScannerSDK_SampleAPP_CSharp">
+	    <HintPath>..\..\..\..\..\..\Program Files\Zebra Technologies\Barcode Scanners\Scanner SDK\Scanner SDK\Sample Applications\bin\ScannerSDK_SampleAPP_CSharp.exe</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 	<ItemGroup>

@@ -45,7 +45,36 @@ namespace MyApplicacion
             // Registrar la instancia de PalletRepository en el contenedor de servicios
             builder.Services.AddSingleton<PalletRepository>(palletRepository);
 
+            /*// Main bundle
+            Bundle mainBundle = new Bundle();
+            mainBundle.PutString("PROFILE_NAME", "<Profile Name>");
+            mainBundle.PutString("PROFILE_ENABLED", "false");
+            mainBundle.PutString("CONFIG_MODE", "CREATE_IF_NOT_EXIST");
 
+            //PlugingConfig Bundle
+            Bundle pluginConfigBundle = new Bundle();
+            pluginConfigBundle.PutString("PLUGIN_NAME", "BARCODE");
+            pluginConfigBundle.PutString("RESET_CONFIG", "true");
+
+            //ParamList Bundle 
+            Bundle paramListBundle = new Bundle();
+            paramListBundle.PutString("scanner_selection0", "auto");
+            paramListBundle.PutString("scanner_input_enabled", "true");
+            paramListBundle.PutString("decoder_code128", "true");
+            paramListBundle.PutString("decoder_code39", "true");
+            paramListBundle.PutString("decoder_ean8", "true");
+            paramListBundle.PutString("decoder_ean13", "true");
+            paramListBundle.PutString("decoder_qrcode", "true");
+
+            // Add paramlist Bundle to plugingConfigBundle
+            pluginConfigBundle.PutBundle("PARAM_LIST", paramListBundle);
+
+            //Add pluging config bundle to Main bundle
+            mainBundle.PutBundle("PLUGIN_CONFIG", pluginConfigBundle);
+
+            // Saved intent with Main Bundle as extra
+           //ff sendDataWedgeIntent(mainBundle);
+            */
             return builder.Build();
         }
     }
