@@ -21,33 +21,22 @@ public class Peticiones
        //var url = "http://datacapturews.dur300.bruss-group.com/api/MaterialQuantities?MaterialRef=44772";
        using( HttpClient client = new HttpClient())
        {
-            String url = "https://jsonplaceholder.typicode.com/posts/1";
-            String url2 = "http://datacapturews.dur300.bruss-group.com/api/MaterialQuantities?MaterialRef=44772";
-            client.DefaultRequestHeaders.Clear();
-            var response = client.GetAsync(url2).Result;
-
-            var res = response.Content.ReadAsStringAsync().Result;
-            dynamic r= JObject.Parse(res);
-            Console.WriteLine(response.StatusCode);
-            Console.WriteLine(r);
-           /* try
+            
+            try
             {
-                /*
-                    Console.WriteLine("----paso1");
-                    var url = "http://datacapturews.dur300.bruss-group.com/api/MaterialQuantities?MaterialRef=44772";
-                    var client = new RestClient(url);
-                    var request = new RestRequest("GET");
-                    var response = client.Execute(request);
-                    Console.WriteLine("----paso2");
-                    Console.WriteLine(response.StatusCode);
-                    Console.WriteLine(response.StatusDescription);
-                    Console.WriteLine(response.ResponseStatus);
-                    Console.WriteLine(response.Content);
+                String url = "https://jsonplaceholder.typicode.com/posts/1";
+                String url2 = "http://datacapturews.dur300.bruss-group.com/api/MaterialQuantities?MaterialRef=44772";
+                String url3 = "http://datacapturews.dur300.bruss-group.com/api/MaterialQuantities";
+                Console.WriteLine("------------Se ha iniciado la peticion-------------");
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip,deflate");
+                client.DefaultRequestHeaders.Add("Connection", "keep-alive");
 
-                    Console.WriteLine("----Terminado----");
-                // Realizar la solicitud GET al servicio web
-
-                HttpResponseMessage response = await client.GetAsync(url);
+                var response = client.GetAsync(url3).Result;
+                Console.WriteLine(response.StatusCode);
+                var res = response.Content.ReadAsStringAsync().Result;
+                Console.WriteLine(res);
+                Console.WriteLine("------------Se ha acabado la peticion-------------");
 
                 // Verificar si la solicitud fue exitosa
                 if (response.IsSuccessStatusCode)
@@ -68,7 +57,7 @@ public class Peticiones
             catch (Exception ex)
             {
                 Console.WriteLine($"Ocurrió un error al realizar la petición: {ex.Message}");
-            }*/
+            }
         
         }
 

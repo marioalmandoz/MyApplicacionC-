@@ -47,6 +47,10 @@
         Title="IncidenciasPage"
         ContentTemplate="{DataTemplate local:Views.IncidenciasPage}"
         Route="Views.IncidenciasPage" />
+    <ShellContent
+        Title="Peticiones"
+        ContentTemplate="{DataTemplate local:Database.Peticiones}"
+        Route="Database.Peticiones" />
 
 
 </Shell>

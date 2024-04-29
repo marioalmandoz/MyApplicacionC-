@@ -1,5 +1,7 @@
 ﻿
 
+using CommunityToolkit.Mvvm.Messaging;
+
 namespace MyApplicacion
 {
     public partial class MainPage : ContentPage
@@ -36,6 +38,18 @@ namespace MyApplicacion
             await Shell.Current.GoToAsync("///Views.DatabasePage");
             System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón 2!");
 
+        }
+
+        private void OnDWOFFClicked(object sender, EventArgs e)
+        {
+            WeakReferenceMessenger.Default.Send("11");
+            WeakReferenceMessenger.Default.Send("SWITCHING OFF DW");
+        }
+
+        private void OnDWONClicked(object sender, EventArgs e)
+        {
+            WeakReferenceMessenger.Default.Send("22");
+            WeakReferenceMessenger.Default.Send("SWITCHING ON DW");
         }
 
     }
