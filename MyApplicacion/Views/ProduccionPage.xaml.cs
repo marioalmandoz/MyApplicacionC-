@@ -1,13 +1,24 @@
 
+using CommunityToolkit.Mvvm.Messaging;
 using Plugin.Maui.Audio;
 
 namespace MyApplicacion.Views;
 
 public partial class ProduccionPage : ContentPage
 {
+    
     public ProduccionPage()
     {
         InitializeComponent();
+        WeakReferenceMessenger.Default.Register<String>(this, OnDataReceived);
+        
+    }
+    private void OnDataReceived(object recipient, string message)
+    {
+        if (message != null)
+        {
+            ScanResultLabel.Text = message;
+        }
     }
 
     private async void Go_Back(object sender, EventArgs e)
@@ -35,4 +46,16 @@ public partial class ProduccionPage : ContentPage
         }
 
     }
+
+    // Este método es solo un ejemplo de cómo podrías usar HandleScannerData
+    private void ScanBtnClicked(object sender, EventArgs e)
+    {
+        // Supongamos que has recibido algún tipo de datos del escáner y quieres procesarlos
+        WeakReferenceMessenger.Default.Send("22");
+        WeakReferenceMessenger.Default.Send("SWITCHING ON DW");
+
+    }
+
+
+
 }

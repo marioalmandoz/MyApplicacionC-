@@ -9,12 +9,14 @@ using System.Diagnostics.Metrics;
 using System.Security.AccessControl;
 using System.Xml.Linq;
 using ProduccionAlmacen.Platforms.Android;
+using Com.Google.Android.Exoplayer2.Metadata.Scte35;
 
 namespace MyApplicacion;
 //WITH CONFIGCHANGES! //[Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
 [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true)]
 public class MainActivity : MauiAppCompatActivity
 {
+    private BroadcastReceiver myBroadcastReceiver;
     //protected override void OnCreate(Bundle savedInstanceState) {
     protected override void OnPostCreate(Bundle savedInstanceState)
     {
@@ -67,15 +69,26 @@ public class MainActivity : MauiAppCompatActivity
         string currentDatetime = DateTime.Now.ToString();
         outState.PutString("time", currentDatetime);
         base.OnSaveInstanceState(outState);
+
+        Console.WriteLine("Entra en OnSavedInstanceState");
     }
 
     void RegisterReceivers()
     {
         IntentFilter filter = new IntentFilter();
         filter.AddCategory("android.intent.category.DEFAULT");
-        filter.AddAction("com.ndzl.DW");
+        filter.AddAction("com.symbol.datawedge.api.ACTION");
         filter.AddAction("com.zebra.sensors");
 
-        Intent regres = RegisterReceiver(new DWIntentReceiver(), filter);
+        Console.WriteLine("Entra en RegisterReceiver");
+
+        myBroadcastReceiver = new DWIntentReceiver();
+        RegisterReceiver(myBroadcastReceiver, filter);
     }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        UnregisterReceiver(myBroadcastReceiver);
+    }
+
 }

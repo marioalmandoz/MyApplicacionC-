@@ -5,8 +5,6 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using Newtonsoft.Json.Linq;
-
-
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -16,23 +14,24 @@ namespace MyApplicacion.Database;
 public class Peticiones
 {
 
-    public static async Task DownloadDate()
+    public static async Task DownloadDate(Label DataDownload)
     {
-       //var url = "http://datacapturews.dur300.bruss-group.com/api/MaterialQuantities?MaterialRef=44772";
+       
        using( HttpClient client = new HttpClient())
        {
             
             try
             {
                 String url = "https://jsonplaceholder.typicode.com/posts/1";
-                String url2 = "http://datacapturews.dur300.bruss-group.com/api/MaterialQuantities?MaterialRef=44772";
+                String url2 = "http://datacapturews.dur300.bruss-group.com/api/Referencias";
                 String url3 = "http://datacapturews.dur300.bruss-group.com/api/MaterialQuantities";
                 Console.WriteLine("------------Se ha iniciado la peticion-------------");
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip,deflate");
                 client.DefaultRequestHeaders.Add("Connection", "keep-alive");
 
-                var response = client.GetAsync(url3).Result;
+                var response = client.GetAsync(url).Result;
+                DataDownload.Text = response.StatusCode.ToString();
                 Console.WriteLine(response.StatusCode);
                 var res = response.Content.ReadAsStringAsync().Result;
                 Console.WriteLine(res);

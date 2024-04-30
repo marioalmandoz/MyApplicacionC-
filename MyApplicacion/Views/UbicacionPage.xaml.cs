@@ -1,3 +1,4 @@
+using MyApplicacion.Database;
 namespace MyApplicacion.Views;
 
 public partial class UbicacionPage : ContentPage
@@ -19,5 +20,9 @@ public partial class UbicacionPage : ContentPage
 
     //TODO: Aqui Tiene que haber un boton en el que se tenga que poner una ubicacion por lo que se accedera a la Base de datos
 
+    private async void descargarDatos(object sender, EventArgs e)
+    {
+        Peticiones.DownloadDate(DataDownload);
+    }
 
 }

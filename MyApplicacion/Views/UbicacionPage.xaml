@@ -15,5 +15,20 @@
             Clicked="Go_Back"
             HorizontalOptions="Start"
             Text="Back" />
+        <Button
+            x:Name="descargar"
+            Clicked="descargarDatos"
+            HorizontalOptions="Center"
+            Text="Descargar Datos"
+            VerticalOptions="End" />
+        <Label
+            x:Name="DataDownload"
+            Margin="20"
+            BackgroundColor="LightGray"
+            FontSize="18"
+            HorizontalOptions="FillAndExpand"
+            Text=""
+            TextColor="Black"
+            VerticalOptions="FillAndExpand" />
     </VerticalStackLayout>
 </ContentPage>

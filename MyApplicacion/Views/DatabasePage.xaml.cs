@@ -38,8 +38,5 @@ public partial class DatabasePage : ContentPage
         System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón Back");
 
     }
-    private async void descargarDatos(object sender, EventArgs e)
-    {
-        Peticiones.DownloadDate();
-    }
+    
 }

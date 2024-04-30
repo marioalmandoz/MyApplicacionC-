@@ -22,7 +22,7 @@
                     Grid.Row="0"
                     Margin="20,0,20,20"
                     Clicked="Produccion_click"
-                    FontSize="30"
+                    FontSize="20"
                     HorizontalOptions="FillAndExpand"
                     Text="PRODUCCION" />
                 <Button
@@ -30,7 +30,7 @@
                     Grid.Row="1"
                     Margin="20,50,20,20"
                     Clicked="Almacen_click"
-                    FontSize="30"
+                    FontSize="20"
                     HorizontalOptions="FillAndExpand"
                     Text="ALMACEN" />
             </Grid>
