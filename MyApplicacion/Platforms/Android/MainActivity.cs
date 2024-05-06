@@ -16,51 +16,38 @@ namespace MyApplicacion;
 [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true)]
 public class MainActivity : MauiAppCompatActivity
 {
+
     private BroadcastReceiver myBroadcastReceiver;
-    //protected override void OnCreate(Bundle savedInstanceState) {
+
     protected override void OnPostCreate(Bundle savedInstanceState)
     {
         base.OnPostCreate(savedInstanceState);
         RegisterReceivers();
 
-        WeakReferenceMessenger.Default.Register<string>(this, (r, li) =>
-        {
-            MainThread.BeginInvokeOnMainThread(() => {
-                if (li == "11")
-                {
-                    Intent i = new Intent();
-                    i.SetAction("com.symbol.datawedge.api.ACTION");
-                    i.PutExtra("com.symbol.datawedge.api.SCANNER_INPUT_PLUGIN", "DISABLE_PLUGIN");
-                    i.PutExtra("SEND_RESULT", "true");
-                    i.PutExtra("COMMAND_IDENTIFIER", "MY_DISABLE_SCANNER");  //Unique identifier
-                    this.SendBroadcast(i);
-                }
-                else if (li == "22")
-                {
-                    Intent i = new Intent();
-                    i.SetAction("com.symbol.datawedge.api.ACTION");
-                    i.PutExtra("com.symbol.datawedge.api.SCANNER_INPUT_PLUGIN", "ENABLE_PLUGIN");
-                    i.PutExtra("SEND_RESULT", "true");
-                    i.PutExtra("COMMAND_IDENTIFIER", "MY_ENABLE_SCANNER");  //Unique identifier
-                    this.SendBroadcast(i);
-                }
+        //WeakReferenceMessenger.Default.Register<string>(this, (r, li) =>
+        //{
+        //    MainThread.BeginInvokeOnMainThread(() => {
+        //        Intent i = new Intent();
+        //        i.SetAction("com.symbol.datawedge.materials");
+        //    });
+        //});
+        ////showing saved states 
+        //try
+        //{
+        //    string savedDatetime = savedInstanceState.GetString("time");
+        //    Console.WriteLine("Estado guardado: " + savedInstanceState);
 
-            });
-        });
-        //showing saved states 
-        try
-        {
-            string savedDatetime = savedInstanceState.GetString("time");
-            Console.WriteLine("Estado guardado: " + savedInstanceState);
+        //    if (savedDatetime is not null)
+        //        WeakReferenceMessenger.Default.Send("Saved DateTime=" + savedDatetime);
 
-            if (savedDatetime is not null)
-                WeakReferenceMessenger.Default.Send("Saved DateTime=" + savedDatetime);
+        //}
+        //catch (System.Exception ex)
+        //{
+        //    WeakReferenceMessenger.Default.Send("No previously saved instance available");
+        //}
 
-        }
-        catch (System.Exception ex)
-        {
-            WeakReferenceMessenger.Default.Send("No previously saved instance available");
-        }
+       // myBroadcastReceiver = new DWIntentReceiver();
+        Console.WriteLine("Aqui");
     }
 
 
@@ -75,15 +62,14 @@ public class MainActivity : MauiAppCompatActivity
 
     void RegisterReceivers()
     {
-        IntentFilter filter = new IntentFilter();
-        filter.AddCategory("android.intent.category.DEFAULT");
-        filter.AddAction("com.symbol.datawedge.api.ACTION");
-        filter.AddAction("com.zebra.sensors");
+        Console.WriteLine("En RegisterReceiver");
 
-        Console.WriteLine("Entra en RegisterReceiver");
+        IntentFilter filter = new IntentFilter();
+        filter.AddAction("com.symbol.datawedge.materials");
 
         myBroadcastReceiver = new DWIntentReceiver();
         RegisterReceiver(myBroadcastReceiver, filter);
+        Console.WriteLine("salir de RegisterReceiver");
     }
     protected override void OnDestroy()
     {

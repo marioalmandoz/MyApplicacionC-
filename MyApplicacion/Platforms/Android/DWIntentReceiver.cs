@@ -15,7 +15,7 @@ namespace ProduccionAlmacen.Platforms.Android
 {
 
     [BroadcastReceiver(Enabled = true, Exported = true)]
-    [IntentFilter(new[] { "com.symbol.datawedge.api.ACTION" })]
+//    [IntentFilter(new[] { "com.symbol.datawedge.materials" })]
     public class DWIntentReceiver : BroadcastReceiver
     {
         public override void OnReceive(Context context, Intent intent)
