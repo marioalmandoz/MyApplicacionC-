@@ -1,19 +1,32 @@
+using CommunityToolkit.Mvvm.Messaging;
 using MyApplicacion.Database;
 
 namespace MyApplicacion.Views;
 
 public partial class ReferenciasPedidoPage : ContentPage
 {
+    string referencia;
+    DateTime fecha;
     public ReferenciasPedidoPage()
     {
         InitializeComponent();
-        mostrarPallets();
+        WeakReferenceMessenger.Default.Register<String>(this, getReferencia);
+        
+        
     }
 
-    private async Task mostrarPallets()
+    private async void mostrarPallets()
     {
-        List<Pallet> pallet = await App.PalletRepo.MostrarReferencias("555");
+        List<Pallet> pallet = await App.PalletRepo.MostrarReferencias(referencia);
         palletList.ItemsSource = pallet;
+    }
+    private void getReferencia(object recipient, string message) 
+    {
+        if (message != null)
+        {
+            referencia = message;
+            mostrarPallets();
+        }
     }
 
     private async void Go_Back(object sender, EventArgs e)
@@ -24,22 +37,38 @@ public partial class ReferenciasPedidoPage : ContentPage
 
     }
 
-    private async void PalletList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void ItemButton_Clicked(object sender, EventArgs e)
     {
-        // Obtener el elemento seleccionado del CollectionView
-        var selectedPallet = e.CurrentSelection.FirstOrDefault() as MyApplicacion.Database.Pallet;
+        // Obtener el objeto de datos asociado a la fila seleccionada
+        var item = (Pallet)((Button)sender).BindingContext;
 
+        // Realizar alguna acción con el objeto de datos, por ejemplo:
+        bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.ubicacion}?", "Sí", "No");
 
-        if (selectedPallet != null)
+        // Verificar la respuesta del usuario
+        if (respuesta)
         {
-            // Hacer lo que necesites con el pallet seleccionado, por ejemplo, navegar a otra página
-            // Pasar el pallet seleccionado como parámetro a la siguiente página
-            await DisplayAlert("Alert", $"Ve a la ubicacion {selectedPallet.ubicacion} y retira material", "VALE");
-            //await Shell.Current.GoToAsync("///");
+            // TODO: Aquí habrá un método que insertará los datos en la base de datos
+            //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
 
-            // Desmarcar la selección para permitir futuras selecciones
-            // ((CollectionView)sender).SelectedItem = null;
+            if (referencia != null)
+            {
+                await App.PalletRepo.EliminarPalletPorFecha(item.fecha_hora);
+                string statusMessage = App.PalletRepo.StatusMessage;
+                Console.WriteLine(statusMessage);
+                
+                WeakReferenceMessenger.Default.Send(item.referencia);
+            }
+
+            //De momento llevamos a la clase ProduccionPage
+
+            await Shell.Current.GoToAsync("///Views.PedidoPage");
+
         }
-        await Shell.Current.GoToAsync("///Views.IncidenciasPage");
+        else
+        {
+            await Shell.Current.GoToAsync("///Views.CajasPedidoPage");
+
+        }
     }
 }

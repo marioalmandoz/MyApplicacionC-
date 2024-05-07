@@ -121,8 +121,7 @@
                 x:Name="palletList"
                 Grid.Row="1"
                 Grid.ColumnSpan="3"
-                Margin="5"
-                SelectionChanged="PalletList_SelectionChanged">
+                Margin="5">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="5" BackgroundColor="White">
@@ -131,9 +130,18 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="{Binding Id}" />
-                            <Label Grid.Column="1" Text="{Binding fecha_hora}" />
-                            <Label Grid.Column="2" Text="{Binding referencia}" />
+                            <Button
+                                Grid.Column="0"
+                                Clicked="ItemButton_Clicked"
+                                Text="{Binding Id}" />
+                            <Button
+                                Grid.Column="1"
+                                Clicked="ItemButton_Clicked"
+                                Text="{Binding fecha_hora}" />
+                            <Button
+                                Grid.Column="2"
+                                Clicked="ItemButton_Clicked"
+                                Text="{Binding referencia}" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -152,13 +160,6 @@
                 Clicked="BtnIncidecias_Clicked"
                 HorizontalOptions="Center"
                 Text="INCIDENCIAS"
-                VerticalOptions="End" />
-            <Button
-                x:Name="BtnConfirmar"
-                Padding="5"
-                Clicked="BtnConfirmar_Clicked"
-                HorizontalOptions="End"
-                Text="VALIDAR"
                 VerticalOptions="End" />
         </HorizontalStackLayout>
 

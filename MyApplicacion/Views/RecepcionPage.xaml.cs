@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.Messaging;
 using MyApplicacion.Database;
 
 namespace MyApplicacion.Views;
@@ -5,17 +6,24 @@ namespace MyApplicacion.Views;
 public partial class RecepcionPage : ContentPage
 {
 
-    //TODO aqui no me deja cuando le pongo un parametro a la clase 
-    //Pero habria que poner SecondViewModel viewModel
-    // y esto dentro del metodo  BindingContext = viewModel;
+    string referencia;
     public RecepcionPage()
     {
         InitializeComponent();
-        mostrarPallets();
+        WeakReferenceMessenger.Default.Register<String>(this, getReferencia);
     }
-    private async Task mostrarPallets()
+
+    private void getReferencia(object recipient, string message)
     {
-        List<Pallet> pallet = await App.PalletRepo.MostrarReferencias("555");
+        Console.WriteLine(message);
+        if(message!=null) {
+            referencia = message;
+            mostrarPallets();
+        }
+    }
+    private async void mostrarPallets()
+    {
+        List<Pallet> pallet = await App.PalletRepo.MostrarReferencias(referencia);
         palletList.ItemsSource = pallet;
     }
     private async void Go_Back(object sender, EventArgs e)
@@ -36,37 +44,20 @@ public partial class RecepcionPage : ContentPage
 
     }
 
-    public async void MostrarPallets(object sender, EventArgs e)
+    private async void ItemButton_Clicked(object sender, EventArgs e)
     {
-        //TODO: Como puedo recoger el numero de referencia que quiero
-        List<Pallet> pallet = await App.PalletRepo.MostrarReferencias("555");
-        palletList.ItemsSource = pallet;
-    }
+        // Obtener el objeto de datos asociado a la fila seleccionada
+        var item = (Pallet)((Button)sender).BindingContext;
 
-    private async void PalletList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        // Obtener el elemento seleccionado del CollectionView
-        var selectedPallet = e.CurrentSelection.FirstOrDefault() as MyApplicacion.Database.Pallet;
-
-
-        if (selectedPallet != null)
-        {
-            // Hacer lo que necesites con el pallet seleccionado, por ejemplo, navegar a otra página
-            // Pasar el pallet seleccionado como parámetro a la siguiente página
-            await DisplayAlert("Alert", $"Ve a la ubicacion {selectedPallet.ubicacion} y retira material", "VALE");
-            //await Shell.Current.GoToAsync("///");
-
-            // Desmarcar la selección para permitir futuras selecciones
-            // ((CollectionView)sender).SelectedItem = null;
-        }
-        await Shell.Current.GoToAsync("///Views.IncidenciasPage");
-    }
-
-    private async void BtnConfirmar_Clicked(object sender, EventArgs e)
-    {
-        bool respuesta = await DisplayAlert("Alerta", $"¿ESTAS SEGURO DE QUE QUIERES VALIDAR EL PALLET DE FECHA 27/02/24-08:14? ", "VALIDAR", "CANCELAR");
+        // Realizar alguna acción con el objeto de datos, por ejemplo:
+        
+        bool respuesta = await DisplayAlert("Alerta", $"¿ESTAS SEGURO DE QUE QUIERES VALIDAR EL PALLET DE FECHA: {item.fecha_hora}? ", "VALIDAR", "CANCELAR");
         if (respuesta)
         {
+            await App.PalletRepo.tickAlmacen(item.fecha_hora);
+            string statusMessage = App.PalletRepo.StatusMessage;
+            Console.WriteLine(statusMessage);
+
             await Shell.Current.GoToAsync("///Views.AlmacenPage");
         }
     }

@@ -16,7 +16,7 @@ public partial class DatabasePage : ContentPage
     {
 
         statusMessage.Text = "";
-        await App.PalletRepo.AddNewPallet(referencia.Text, Baan.Text);
+        await App.PalletRepo.AddNewPallet(referencia.Text, Ubicacion.Text);
         statusMessage.Text = App.PalletRepo.StatusMessage;
     }
 
@@ -29,7 +29,7 @@ public partial class DatabasePage : ContentPage
     public async void EliminarPallet(object sender, EventArgs e)
     {
         statusMessage.Text = "";
-        App.PalletRepo.EliminarPallet();
+        App.PalletRepo.EliminarPallets();
     }
     private async void Go_Back(object sender, EventArgs e)
     {

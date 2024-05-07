@@ -76,21 +76,21 @@
                 Grid.Column="0"
                 Padding="5"
                 BackgroundColor="LightGray">
-                <Label Text="ID" />
+                <Label Text="Fecha y Hora" />
             </Frame>
             <Frame
                 Grid.Row="0"
                 Grid.Column="1"
                 Padding="5"
                 BackgroundColor="LightGray">
-                <Label Text="Fecha y Hora" />
+                <Label Text="Referencia" />
             </Frame>
             <Frame
                 Grid.Row="0"
                 Grid.Column="2"
                 Padding="5"
                 BackgroundColor="LightGray">
-                <Label Text="Referencia" />
+                <Label Text="Ubicacion" />
             </Frame>
 
             <!--  Datos de la tabla  -->
@@ -98,8 +98,7 @@
                 x:Name="palletList"
                 Grid.Row="1"
                 Grid.ColumnSpan="3"
-                Margin="5"
-                SelectionChanged="PalletList_SelectionChanged">
+                Margin="5">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="5" BackgroundColor="White">
@@ -108,10 +107,19 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="{Binding Id}" />
-                            <Label Grid.Column="1" Text="{Binding fecha_hora}" />
-                            <Label Grid.Column="2" Text="{Binding referencia}" />
-                            <Label Grid.Column="3" Text="{Binding ubicacion}" />
+
+                            <Button
+                                Grid.Column="0"
+                                Clicked="ItemButton_Clicked"
+                                Text="{Binding fecha_hora}" />
+                            <Button
+                                Grid.Column="1"
+                                Clicked="ItemButton_Clicked"
+                                Text="{Binding referencia}" />
+                            <Button
+                                Grid.Column="2"
+                                Clicked="ItemButton_Clicked"
+                                Text="{Binding ubicacion}" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

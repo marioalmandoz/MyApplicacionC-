@@ -51,8 +51,7 @@ public partial class ProduccionPage : ContentPage
     private void ScanBtnClicked(object sender, EventArgs e)
     {
         // Supongamos que has recibido algún tipo de datos del escáner y quieres procesarlos
-        WeakReferenceMessenger.Default.Send("22");
-        WeakReferenceMessenger.Default.Send("SWITCHING ON DW");
+        WeakReferenceMessenger.Default.Send("78654");
 
     }
 

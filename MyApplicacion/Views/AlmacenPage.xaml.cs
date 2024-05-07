@@ -1,3 +1,5 @@
+using CommunityToolkit.Mvvm.Messaging;
+
 namespace MyApplicacion.Views;
 
 public partial class AlmacenPage : ContentPage
@@ -17,6 +19,7 @@ public partial class AlmacenPage : ContentPage
     }
     private async void Go_Recepcion(object sender, EventArgs e)
     {
+        WeakReferenceMessenger.Default.Send("1");
         await Shell.Current.GoToAsync("///Views.RecepcionPage");
     }
     private async void Go_ubicacion(object sender, EventArgs e)

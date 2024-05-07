@@ -18,22 +18,25 @@ namespace MyApplicacion
             await conn.CreateTableAsync<MyApplicacion.Database.Pallet>();
 
         }
-        public async Task AddNewPallet(string pReferencia, string pCant)
+        
+        public async Task AddNewPallet(string pReferencia, string pUbicacion)
         {
-            int result = 0;
+ 
             try
             {
                 await Init();
                 DateTime dateTime = DateTime.Now;
+                string fechaHoraString = dateTime.ToString("yyyy-MM-dd HH:mm:ss"); // Formato personalizado para la fecha y hora
+
                 if (string.IsNullOrEmpty(pReferencia))
                     throw new Exception("Valid reference required");
-                if (string.IsNullOrEmpty(pCant))
+                if (string.IsNullOrEmpty(pUbicacion))
                     throw new Exception("Valid reference required");
 
-                MyApplicacion.Database.Pallet pallet = new() { fecha_hora = dateTime, referencia = pReferencia, cant = pCant, produccion = true };
-                result = await conn.InsertAsync(pallet);
+                MyApplicacion.Database.Pallet pallet = new() { fecha_hora = fechaHoraString, referencia = pReferencia, ubicacion = pUbicacion, produccion = true };
+                await conn.InsertAsync(pallet);
 
-                StatusMessage = string.Format("{0} record(S) added (Name: {1})", result, pReferencia, pCant);
+                StatusMessage = string.Format("{0} record(S) added (Name: {1})",  pReferencia, pUbicacion);
             }
             catch (Exception ex)
             {
@@ -41,7 +44,7 @@ namespace MyApplicacion
             }
         }
 
-        public async Task tickAlmacen(DateTime pFecha)
+        public async Task tickAlmacen(string pFecha)
         {
             // Realizar una consulta para verificar si existe algún pallet con la referencia dada
             var palletExistente = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.fecha_hora == pFecha);
@@ -74,7 +77,7 @@ namespace MyApplicacion
             }
         }
 
-        public async Task tickRecambio(DateTime pFecha)
+        public async Task tickRecambio(string pFecha)
         {
             // Realizar una consulta para verificar si existe algún pallet con la referencia dada
             var palletExistente = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.fecha_hora == pFecha);
@@ -107,7 +110,8 @@ namespace MyApplicacion
             }
         }
 
-        public async Task AddUbicacion(DateTime pFecha, string pUbicacion)
+        
+        public async Task AddUbicacion(string pFecha, string pUbicacion)
         {
             // Realizar una consulta para verificar si existe algún pallet con la referencia dada
             var palletExistente = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.fecha_hora == pFecha);
@@ -155,7 +159,7 @@ namespace MyApplicacion
             }
             return new List<MyApplicacion.Database.Pallet>();
         }
-        public async Task EliminarPallet()
+        public async Task EliminarPallets()
         {
             try
             {
@@ -175,6 +179,33 @@ namespace MyApplicacion
                 {
                     // Si no se encontró ningún pallet con el ID dado, mostrar un mensaje de error
                     StatusMessage = "No se encontró ningún pallet con el ID especificado";
+                }
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error al eliminar el pallet: {ex.Message}";
+            }
+        }
+        public async Task EliminarPalletPorFecha(string fecha)
+        {
+            try
+            {
+                await Init();
+
+                Console.WriteLine(fecha);
+                var palletAEliminar = await conn.FindAsync<Pallet>(p => p.fecha_hora == fecha);
+
+                if (palletAEliminar!=null)
+                {
+                    // Si se encontró un pallet con el ID dado, eliminarlo
+                    await conn.DeleteAsync(palletAEliminar);
+                    StatusMessage = $"Pallet eliminado correctamente";
+                    
+                }
+                else
+                {
+                    // Si no se encontró ningún pallet con el ID dado, mostrar un mensaje de error
+                    StatusMessage = "No se encontró ningún pallet con elid  especificada";
                 }
             }
             catch (Exception ex)
@@ -246,6 +277,48 @@ namespace MyApplicacion
                 // Capturar cualquier excepción y mostrar un mensaje de error
                 StatusMessage = $"Error al mostrar las referencias: {ex.Message}";
                 return new List<Pallet>();
+            }
+        }
+
+        public async Task RetirarPiezas(string cant, string fecha)
+        {
+            try
+            {
+                await Init();
+                int cantidad = int.Parse(cant);
+
+                var pallet = await conn.Table<Pallet>()
+                                .Where(p => p.fecha_hora == fecha)
+                                .FirstOrDefaultAsync();
+
+                if (pallet != null)
+                {
+                    // Convertir la cantidad del pallet de string a int
+                    int cantidadPallet = int.Parse(pallet.cant);
+
+                    // Restar la cantidad proporcionada a la cantidad del pallet
+                    cantidadPallet -= cantidad;
+
+                    // Convertir la nueva cantidad de int a string
+                    pallet.cant = cantidadPallet.ToString();
+
+                    // Actualizar el pallet en la base de datos
+                    await conn.UpdateAsync(pallet);
+
+                    // Mensaje de éxito
+                    StatusMessage = $"Cantidad retirada del pallet con fecha {fecha}: {cantidad}";
+                }
+                else
+                {
+                    // Mensaje de error si no se encuentra el pallet
+                    StatusMessage = $"No se encontró ningún pallet con la fecha especificada: {fecha}";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                StatusMessage = $"Error al retirar la cantidad del pallet: {ex.Message}";
             }
         }
 

@@ -101,6 +101,9 @@
 	  <Compile Update="Almacen.xaml.cs">
 	    <DependentUpon>Almacen.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\CajasPedidoPage.xaml.cs">
+	    <DependentUpon>CajasPedidoPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\ProduccionPage.xaml.cs">
 	    <DependentUpon>ProduccionPage.xaml</DependentUpon>
 	  </Compile>
@@ -123,6 +126,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\OkPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CajasPedidoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\PedidoPage.xaml">

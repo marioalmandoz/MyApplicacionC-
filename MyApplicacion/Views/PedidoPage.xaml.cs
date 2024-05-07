@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.Messaging;
 using Plugin.Maui.Audio;
 
 namespace MyApplicacion.Views;
@@ -22,6 +23,7 @@ public partial class PedidoPage : ContentPage
         // Aquí puedes acceder al valor introducido en el Entry
 
         string referencia = referenciaEntry.Text;
+        
         referenciaEntry.Text = "";
 
         //
@@ -34,7 +36,7 @@ public partial class PedidoPage : ContentPage
             //De momento llevamos a la clase ProduccionPage
 
             //MostrarPallets();
-
+            WeakReferenceMessenger.Default.Send(referencia);
             await Shell.Current.GoToAsync("///Views.ReferenciasPedidoPage");
 
         }
