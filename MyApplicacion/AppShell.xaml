@@ -47,10 +47,10 @@
         Title="IncidenciasPage"
         ContentTemplate="{DataTemplate local:Views.IncidenciasPage}"
         Route="Views.IncidenciasPage" />
-    <ShellContent
+    <!--<ShellContent
         Title="CajasPedidoPage"
         ContentTemplate="{DataTemplate local:Views.CajasPedidoPage}"
-        Route="Views.CajasPedidoPage" />
+        Route="Views.CajasPedidoPage" />-->
     <ShellContent
         Title="Peticiones"
         ContentTemplate="{DataTemplate local:Database.Peticiones}"

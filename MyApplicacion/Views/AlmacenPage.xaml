@@ -3,15 +3,36 @@
     x:Class="MyApplicacion.Views.AlmacenPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="AlmacenPage">
+    Title="ALMACEN">
     <VerticalStackLayout VerticalOptions="StartAndExpand">
-        <Button
-            x:Name="BtnBack"
-            Margin="0,0,0,20"
-            Clicked="Go_Back"
-            HorizontalOptions="Start"
-            Text="Volver"
-            VerticalOptions="StartAndExpand" />
+        <HorizontalStackLayout>
+
+            <!--<Button
+    x:Name="BtnBack"
+    Margin="5,0,0,20"
+    BackgroundColor="LightGray"
+    Clicked="Go_Back"
+    FontAttributes="Bold"
+    FontSize="20"
+    HorizontalOptions="Start"
+    Text="Volver"
+    TextColor="Black"
+    VerticalOptions="StartAndExpand" />-->
+            <ImageButton
+                BackgroundColor="Transparent"
+                Clicked="Go_Back"
+                HeightRequest="30"
+                HorizontalOptions="Start"
+                Source="flecha_atras.png"
+                WidthRequest="30" />
+            <Image
+                Margin="100,0,0,0"
+                BackgroundColor="Transparent"
+                HeightRequest="50"
+                Source="logo_bruss_blanco" />
+        </HorizontalStackLayout>
+
+
         <Grid VerticalOptions="EndAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -21,36 +42,53 @@
             <Button
                 x:Name="BtnRecepcion"
                 Grid.Row="0"
-                Margin="20,20,20,50"
+                Margin="20,20,20,10"
+                BackgroundColor="LightGray"
                 Clicked="Go_Recepcion"
-                FontSize="25"
+                CornerRadius="30"
+                FontAttributes="Bold"
+                FontSize="30"
                 HorizontalOptions="FillAndExpand"
-                Text="RECEPCIONAR PALLET" />
+                Text="RECEPCIONAR PALLET"
+                TextColor="Black" />
             <Button
                 x:Name="BtnUbicacion"
                 Grid.Row="1"
-                Margin="20,20,20,50"
+                Margin="20,20,20,10"
+                BackgroundColor="LightGray"
                 Clicked="Go_ubicacion"
-                FontSize="25"
+                CornerRadius="30"
+                FontAttributes="Bold"
+                FontSize="30"
                 HorizontalOptions="FillAndExpand"
-                Text="UBICAR PALLET" />
+                Text="UBICAR PALLET"
+                TextColor="Black" />
             <Button
                 x:Name="BtnPedido"
                 Grid.Row="2"
                 Margin="20,20,20,50"
+                BackgroundColor="LightGray"
                 Clicked="Go_Pedido"
-                FontSize="25"
+                CornerRadius="30"
+                FontAttributes="Bold"
+                FontSize="30"
                 HorizontalOptions="FillAndExpand"
-                Text="REALIZAR PEDIDO" />
+                Text="REALIZAR PEDIDO"
+                TextColor="Black" />
+
         </Grid>
 
         <Button
             x:Name="BtnBd"
-            Margin="0,0,0,20"
+            Margin="20,250,20,20"
+            BackgroundColor="LightGray"
             Clicked="Db_click"
-            FontSize="25"
-            HorizontalOptions="End"
-            Text="Database"
+            CornerRadius="30"
+            FontAttributes="Bold"
+            FontSize="30"
+            HorizontalOptions="FillAndExpand"
+            Text="DATABASE"
+            TextColor="Black"
             VerticalOptions="End" />
 
     </VerticalStackLayout>

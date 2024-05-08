@@ -3,14 +3,34 @@
     x:Class="MyApplicacion.Views.RecepcionPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="RecepcionPage">
+    Title="RECEPCION">
     <StackLayout>
-        <Button
-            x:Name="BtnBack"
-            Clicked="Go_Back"
-            HorizontalOptions="Start"
-            Text="Volver"
-            VerticalOptions="Start" />
+        <HorizontalStackLayout>
+
+            <!--<Button
+x:Name="BtnBack"
+Margin="5,0,0,20"
+BackgroundColor="LightGray"
+Clicked="Go_Back"
+FontAttributes="Bold"
+FontSize="20"
+HorizontalOptions="Start"
+Text="Volver"
+TextColor="Black"
+VerticalOptions="StartAndExpand" />-->
+            <ImageButton
+                BackgroundColor="Transparent"
+                Clicked="Go_Back"
+                HeightRequest="30"
+                HorizontalOptions="Start"
+                Source="flecha_atras.png"
+                WidthRequest="30" />
+            <Image
+                Margin="100,0,0,0"
+                BackgroundColor="Transparent"
+                HeightRequest="50"
+                Source="logo_bruss_blanco" />
+        </HorizontalStackLayout>
 
         <StackLayout BackgroundColor="LightGreen" HorizontalOptions="Start">
             <!--  Label para "Name"  -->
@@ -157,9 +177,13 @@
             <Button
                 x:Name="BtnIncidecias"
                 Padding="5"
+                BackgroundColor="LightGray"
+                BorderColor="Black"
+                BorderWidth="1"
                 Clicked="BtnIncidecias_Clicked"
                 HorizontalOptions="Center"
                 Text="INCIDENCIAS"
+                TextColor="Black"
                 VerticalOptions="End" />
         </HorizontalStackLayout>
 

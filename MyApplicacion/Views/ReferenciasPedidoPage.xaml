@@ -3,8 +3,40 @@
     x:Class="MyApplicacion.Views.ReferenciasPedidoPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="ReferenciasPedidoPage">
+    Title="REFERENCIAS-PEDIDO">
     <StackLayout>
+        <HorizontalStackLayout>
+
+            <!--<Button
+x:Name="BtnBack"
+Margin="5,0,0,20"
+BackgroundColor="LightGray"
+Clicked="Go_Back"
+FontAttributes="Bold"
+FontSize="20"
+HorizontalOptions="Start"
+Text="Volver"
+TextColor="Black"
+VerticalOptions="StartAndExpand" />-->
+            <ImageButton
+                BackgroundColor="Transparent"
+                Clicked="Go_Back"
+                HeightRequest="30"
+                HorizontalOptions="Start"
+                Source="flecha_atras.png"
+                WidthRequest="30" />
+            <Image
+                Margin="95,0,0,0"
+                BackgroundColor="Transparent"
+                HeightRequest="50"
+                Source="logo_bruss_blanco" />
+        </HorizontalStackLayout>
+        <Label
+            x:Name="Texto"
+            Margin="0,10,0,10"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            Text="¡SELECCIONA EL PALLET A RETIRAR!" />
         <Grid Margin="10">
             <!--  Encabezados de la tabla  -->
             <Grid.RowDefinitions>
@@ -78,19 +110,26 @@
                 BackgroundColor="LightGray">
                 <Label Text="Fecha y Hora" />
             </Frame>
+            <!--<Frame
+                Grid.Row="0"
+                Grid.Column="2"
+                Padding="5"
+                BackgroundColor="LightGray">
+                <Label Text="Referencia" />
+            </Frame>-->
             <Frame
                 Grid.Row="0"
                 Grid.Column="1"
                 Padding="5"
                 BackgroundColor="LightGray">
-                <Label Text="Referencia" />
+                <Label Text="Ubicacion" />
             </Frame>
             <Frame
                 Grid.Row="0"
                 Grid.Column="2"
                 Padding="5"
                 BackgroundColor="LightGray">
-                <Label Text="Ubicacion" />
+                <Label Text="Cant" />
             </Frame>
 
             <!--  Datos de la tabla  -->
@@ -98,39 +137,48 @@
                 x:Name="palletList"
                 Grid.Row="1"
                 Grid.ColumnSpan="3"
-                Margin="5">
+                Margin="4">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="5" BackgroundColor="White">
+                        <Grid Padding="4" BackgroundColor="White">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
+
                             <Button
                                 Grid.Column="0"
+                                BackgroundColor="LightGray"
+                                BorderColor="Black"
+                                BorderWidth="1"
                                 Clicked="ItemButton_Clicked"
-                                Text="{Binding fecha_hora}" />
+                                Text="{Binding fecha_hora}"
+                                TextColor="Black" />
+
                             <Button
                                 Grid.Column="1"
+                                BackgroundColor="LightGray"
+                                BorderColor="Black"
+                                BorderWidth="1"
                                 Clicked="ItemButton_Clicked"
-                                Text="{Binding referencia}" />
+                                Text="{Binding ubicacion}"
+                                TextColor="Black" />
                             <Button
                                 Grid.Column="2"
+                                BackgroundColor="LightGray"
+                                BorderColor="Black"
+                                BorderWidth="1"
                                 Clicked="ItemButton_Clicked"
-                                Text="{Binding ubicacion}" />
+                                Text="{Binding cantidad}"
+                                TextColor="Black" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
         </Grid>
-        <Button
-            x:Name="BtnBack"
-            Clicked="Go_Back"
-            HorizontalOptions="End"
-            Text="Volver"
-            VerticalOptions="End" />
+
     </StackLayout>
 </ContentPage>

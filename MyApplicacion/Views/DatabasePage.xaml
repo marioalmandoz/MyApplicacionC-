@@ -3,7 +3,7 @@
     x:Class="MyApplicacion.Views.DatabasePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="DatabasePage">
+    Title="DATABASE">
     <StackLayout>
         <!--  Contenido para introducir datos  -->
         <StackLayout Margin="10">
@@ -15,6 +15,10 @@
                 x:Name="Ubicacion"
                 Keyboard="Text"
                 Placeholder="Introduce la ubicacion" />
+            <Entry
+                x:Name="Cantidad"
+                Keyboard="Numeric"
+                Placeholder="Introduce la cantidad" />
             <Button Clicked="AddPallet" Text="Añadir Pallet" />
             <Label x:Name="statusMessage" />
             <Button Clicked="MostrarPallets" Text="Mostrar Pallets" />

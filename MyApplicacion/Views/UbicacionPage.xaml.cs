@@ -24,12 +24,6 @@ public partial class UbicacionPage : ContentPage
     {
         Peticiones.DownloadDate(DataDownload);
     }
-    private void ubicarPallet()
-    {
-        //Esta funcion es algo parecido a esto.
-        string ubicacion="";
-        string fecha="";
-        App.PalletRepo.AddUbicacion(fecha, ubicacion);
-    }
+    
 
 }

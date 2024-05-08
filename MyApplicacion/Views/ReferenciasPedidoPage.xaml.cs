@@ -43,7 +43,7 @@ public partial class ReferenciasPedidoPage : ContentPage
         var item = (Pallet)((Button)sender).BindingContext;
 
         // Realizar alguna acción con el objeto de datos, por ejemplo:
-        bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.ubicacion}?", "Sí", "No");
+        bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET {item.Id}ENTERO DE {item.cant}?", "Sí", "No");
 
         // Verificar la respuesta del usuario
         if (respuesta)
@@ -53,7 +53,7 @@ public partial class ReferenciasPedidoPage : ContentPage
 
             if (referencia != null)
             {
-                await App.PalletRepo.EliminarPalletPorFecha(item.fecha_hora);
+                await App.PalletRepo.EliminarPalletPorId(item.Id);
                 string statusMessage = App.PalletRepo.StatusMessage;
                 Console.WriteLine(statusMessage);
                 
@@ -67,7 +67,7 @@ public partial class ReferenciasPedidoPage : ContentPage
         }
         else
         {
-            await Shell.Current.GoToAsync("///Views.CajasPedidoPage");
+            await Shell.Current.GoToAsync("///Views.ReferenciasPedidoPage");
 
         }
     }

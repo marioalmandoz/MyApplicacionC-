@@ -16,7 +16,7 @@ public partial class DatabasePage : ContentPage
     {
 
         statusMessage.Text = "";
-        await App.PalletRepo.AddNewPallet(referencia.Text, Ubicacion.Text);
+        await App.PalletRepo.AddNewPallet(referencia.Text, Ubicacion.Text, Cantidad.Text);
         statusMessage.Text = App.PalletRepo.StatusMessage;
     }
 

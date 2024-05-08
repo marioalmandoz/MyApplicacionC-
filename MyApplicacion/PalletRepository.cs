@@ -8,6 +8,7 @@ namespace MyApplicacion
     public class PalletRepository(string path)
     {
         string _dbPath = path;
+        int cant; 
         public string StatusMessage { get; set; }
         private SQLiteAsyncConnection conn;
         private async Task Init()
@@ -18,33 +19,58 @@ namespace MyApplicacion
             await conn.CreateTableAsync<MyApplicacion.Database.Pallet>();
 
         }
-        
-        public async Task AddNewPallet(string pReferencia, string pUbicacion)
+        public async Task<int> GetNumberOfPallets()
         {
- 
             try
             {
                 await Init();
-                DateTime dateTime = DateTime.Now;
-                string fechaHoraString = dateTime.ToString("yyyy-MM-dd HH:mm:ss"); // Formato personalizado para la fecha y hora
 
-                if (string.IsNullOrEmpty(pReferencia))
-                    throw new Exception("Valid reference required");
-                if (string.IsNullOrEmpty(pUbicacion))
-                    throw new Exception("Valid reference required");
+                // Realizar la consulta para contar el número de registros en la tabla de pallets
+                var count = await conn.Table<Pallet>().CountAsync();
 
-                MyApplicacion.Database.Pallet pallet = new() { fecha_hora = fechaHoraString, referencia = pReferencia, ubicacion = pUbicacion, produccion = true };
-                await conn.InsertAsync(pallet);
-
-                StatusMessage = string.Format("{0} record(S) added (Name: {1})",  pReferencia, pUbicacion);
+                return count;
             }
             catch (Exception ex)
             {
-
+                // Manejo de errores
+                StatusMessage = $"Error al obtener el número de pallets: {ex.Message}";
+                return -1; // Valor de error
             }
         }
 
-        public async Task tickAlmacen(string pFecha)
+        public async Task AddNewPallet(string pReferencia, string pUbicacion, String pCant)
+        {
+            //Numero de pallets en la case de datos
+            cant = await GetNumberOfPallets();
+            if (cant >= 0)
+            {
+                Console.WriteLine(cant);
+
+
+                try
+                {
+                    await Init();
+                    DateTime dateTime = DateTime.Now;
+                    
+
+                    if (string.IsNullOrEmpty(pReferencia))
+                        throw new Exception("Valid reference required");
+                    if (string.IsNullOrEmpty(pUbicacion))
+                        throw new Exception("Valid reference required");
+
+                    MyApplicacion.Database.Pallet pallet = new() { Id = cant + 1, fecha_hora = dateTime, referencia = pReferencia, ubicacion = pUbicacion, produccion = true, cant= pCant };
+                    await conn.InsertAsync(pallet);
+
+                    StatusMessage = string.Format("{0} record(S) added (Name: {1})", pReferencia, pUbicacion);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+
+        public async Task tickAlmacen(DateTime pFecha)
         {
             // Realizar una consulta para verificar si existe algún pallet con la referencia dada
             var palletExistente = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.fecha_hora == pFecha);
@@ -77,7 +103,7 @@ namespace MyApplicacion
             }
         }
 
-        public async Task tickRecambio(string pFecha)
+        public async Task tickRecambio(DateTime pFecha)
         {
             // Realizar una consulta para verificar si existe algún pallet con la referencia dada
             var palletExistente = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.fecha_hora == pFecha);
@@ -111,7 +137,7 @@ namespace MyApplicacion
         }
 
         
-        public async Task AddUbicacion(string pFecha, string pUbicacion)
+        public async Task AddUbicacion(DateTime pFecha, string pUbicacion)
         {
             // Realizar una consulta para verificar si existe algún pallet con la referencia dada
             var palletExistente = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.fecha_hora == pFecha);
@@ -186,14 +212,15 @@ namespace MyApplicacion
                 StatusMessage = $"Error al eliminar el pallet: {ex.Message}";
             }
         }
-        public async Task EliminarPalletPorFecha(string fecha)
+        public async Task EliminarPalletPorId(int pId)
         {
             try
             {
                 await Init();
 
-                Console.WriteLine(fecha);
-                var palletAEliminar = await conn.FindAsync<Pallet>(p => p.fecha_hora == fecha);
+                Console.WriteLine(pId);
+                var palletAEliminar = await conn.FindAsync<Pallet>(p => p.Id == pId);
+                Console.WriteLine(palletAEliminar);
 
                 if (palletAEliminar!=null)
                 {
@@ -205,7 +232,7 @@ namespace MyApplicacion
                 else
                 {
                     // Si no se encontró ningún pallet con el ID dado, mostrar un mensaje de error
-                    StatusMessage = "No se encontró ningún pallet con elid  especificada";
+                    StatusMessage = "No se encontró ningún pallet con el Id especificada";
                 }
             }
             catch (Exception ex)
@@ -280,7 +307,7 @@ namespace MyApplicacion
             }
         }
 
-        public async Task RetirarPiezas(string cant, string fecha)
+        public async Task RetirarPiezas(string cant, DateTime fecha)
         {
             try
             {

@@ -39,8 +39,8 @@ public partial class OkPage : ContentPage
                     // TODO: Aquí habrá un método que insertará los datos en la base de datos
                     //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
 
-
-                    await App.PalletRepo.AddNewPallet("564", numeroCajas);
+                    string total = (int.Parse(numeroCajas) * 3).ToString();
+                    await App.PalletRepo.AddNewPallet("564", numeroCajas, total);
 
 
                     //De momento llevamos a la clase ProduccionPage

@@ -3,16 +3,22 @@
     x:Class="ProduccionAlmacen.Views.PedidoCajasPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="PedidoCajasPage">
+    Title="PEDIDO-CAJAS">
     <StackLayout Padding="10" VerticalOptions="StartAndExpand">
-        <Button
-            x:Name="BtnBack"
-            Margin="0,0,0,10"
-            Clicked="Go_Back"
-            FontSize="Small"
-            HorizontalOptions="Start"
-            Text="Back"
-            VerticalOptions="Start" />
+        <HorizontalStackLayout>
+            <ImageButton
+                BackgroundColor="Transparent"
+                Clicked="Go_Back"
+                HeightRequest="30"
+                HorizontalOptions="Start"
+                Source="flecha_atras.png"
+                WidthRequest="30" />
+            <Image
+                Margin="100,0,0,0"
+                BackgroundColor="Transparent"
+                HeightRequest="50"
+                Source="logo_bruss_blanco" />
+        </HorizontalStackLayout>
         <Label
             Margin="0,20,0,10"
             FontSize="Large"

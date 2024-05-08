@@ -42,7 +42,11 @@ public partial class PedidoCajasPage : ContentPage
                     // TODO: Aquí habrá un método que insertará los datos en la base de datos
                     //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
 
-                    await App.PalletRepo.RetirarPiezas(numeroPiezas,referencia);
+
+                    //TODO: Esto hay que modificarlo
+                    DateTime fecha = DateTime.Now;
+
+                    await App.PalletRepo.RetirarPiezas(numeroPiezas,fecha);
 
 
                     //De momento llevamos a la clase ProduccionPage

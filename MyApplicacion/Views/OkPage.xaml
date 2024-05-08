@@ -3,16 +3,35 @@
     x:Class="MyApplicacion.Views.OkPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="OkPage">
+    Title="OK">
     <StackLayout Padding="10" VerticalOptions="StartAndExpand">
-        <Button
-            x:Name="BtnBack"
-            Margin="0,0,0,10"
-            Clicked="Go_Back"
-            FontSize="Small"
-            HorizontalOptions="Start"
-            Text="Back"
-            VerticalOptions="Start" />
+        <HorizontalStackLayout>
+
+            <!--<Button
+x:Name="BtnBack"
+Margin="5,0,0,20"
+BackgroundColor="LightGray"
+Clicked="Go_Back"
+FontAttributes="Bold"
+FontSize="20"
+HorizontalOptions="Start"
+Text="Volver"
+TextColor="Black"
+VerticalOptions="StartAndExpand" />-->
+            <ImageButton
+                BackgroundColor="Transparent"
+                Clicked="Go_Back"
+                HeightRequest="30"
+                HorizontalOptions="Start"
+                Source="flecha_atras.png"
+                WidthRequest="30" />
+            <Image
+                Margin="100,0,0,0"
+                BackgroundColor="Transparent"
+                HeightRequest="50"
+                Source="logo_bruss_blanco" />
+        </HorizontalStackLayout>
+
 
         <StackLayout BackgroundColor="LightGreen" HorizontalOptions="CenterAndExpand">
             <!--  Label para "Name"  -->
@@ -32,21 +51,27 @@
         </StackLayout>
 
         <Label
-            Margin="0,20,0,10"
+            Margin="5,20,0,10"
             FontSize="Large"
             HorizontalOptions="Center"
             Text="¡INTRODUCE EL NUMERO DE CAJAS QUE CONTIENE EL PALLET!" />
 
         <Entry
             x:Name="numeroCajasEntry"
+            FontSize="30"
             HorizontalOptions="Center"
             Keyboard="Numeric"
             Placeholder="Número de cajas..." />
 
         <Button
             Margin="0,10,0,0"
+            BackgroundColor="LightGray"
             Clicked="Validar_Clicked"
+            CornerRadius="25"
+            FontAttributes="Bold"
+            FontSize="30"
             HorizontalOptions="Center"
-            Text="Validar" />
+            Text="Validar"
+            TextColor="Black" />
     </StackLayout>
 </ContentPage>

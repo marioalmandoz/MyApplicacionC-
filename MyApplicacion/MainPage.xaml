@@ -7,10 +7,11 @@
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
             <Image
+                Margin="10,0,10,0"
                 Aspect="AspectFit"
-                HeightRequest="185"
+                HeightRequest="150"
                 SemanticProperties.Description="dot net bot in a race car number eight"
-                Source="dotnet_bot.png" />
+                Source="logo_bruss_blanco.png" />
 
             <Grid VerticalOptions="EndAndExpand">
                 <Grid.RowDefinitions>
@@ -20,26 +21,45 @@
                 <Button
                     x:Name="BtnProduccion"
                     Grid.Row="0"
-                    Margin="20,0,20,20"
+                    Margin="10,0,10,0"
+                    BackgroundColor="LightGray"
+                    BorderColor="Black"
+                    BorderWidth="0"
                     Clicked="Produccion_click"
-                    FontSize="20"
+                    CornerRadius="30"
+                    FontAttributes="Bold"
+                    FontSize="40"
                     HorizontalOptions="FillAndExpand"
-                    Text="PRODUCCION" />
+                    Text="PRODUCCION"
+                    TextColor="Black" />
                 <Button
                     x:Name="BtnAlmacen"
                     Grid.Row="1"
-                    Margin="20,50,20,20"
+                    Margin="10,20,10,20"
+                    BackgroundColor="LightGray"
+                    BorderColor="Black"
+                    BorderWidth="0"
                     Clicked="Almacen_click"
-                    FontSize="20"
+                    CornerRadius="30"
+                    FontAttributes="Bold"
+                    FontSize="40"
                     HorizontalOptions="FillAndExpand"
-                    Text="ALMACEN" />
+                    Text="ALMACEN"
+                    TextColor="Black" />
             </Grid>
 
             <Button
                 x:Name=" BtnDb"
+                Margin="0,170,0,0"
+                BackgroundColor="LightGray"
+                BorderWidth="0"
                 Clicked="Db_click"
+                CornerRadius="30"
+                FontAttributes="Bold"
+                FontSize="30"
                 HorizontalOptions="End"
                 Text="DATABASE"
+                TextColor="Black"
                 VerticalOptions="End" />
 
 
