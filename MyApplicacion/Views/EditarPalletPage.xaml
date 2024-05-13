@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MyApplicacion.Views.EditarPalletPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="EditarPalletPage">
+    <StackLayout>
+        <HorizontalStackLayout>
+            <ImageButton
+                BackgroundColor="Transparent"
+                Clicked="Go_Back"
+                HeightRequest="30"
+                HorizontalOptions="Start"
+                Source="flecha_atras.png"
+                WidthRequest="30" />
+            <Image
+                Margin="100,0,0,0"
+                BackgroundColor="Transparent"
+                HeightRequest="50"
+                Source="logo_bruss_blanco" />
+        </HorizontalStackLayout>
+        <Frame>
+            <VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <Label x:Name="refLabel" Text="Referencia: " />
+                    <Entry x:Name="refEntry" Keyboard="Numeric" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label x:Name="piezasLabel" Text="Nº piezas: " />
+                    <Entry x:Name="piezasEntry" Keyboard="Numeric" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label x:Name="cajasLabel" Text="Nº cajas: " />
+                    <Entry x:Name="cajasEntry" Keyboard="Numeric" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label x:Name="ubicaLabel" Text="Ubicacion: " />
+                    <Entry x:Name="ubicaEntry" Keyboard="Numeric" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label x:Name="producLabel" Text="Produccion: " />
+                    <CheckBox x:Name="producEntry" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label x:Name="almLabel" Text="Almacen: " />
+                    <CheckBox x:Name="almEntry" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label x:Name="recLabel" Text="rec: " />
+                    <CheckBox x:Name="recEntry" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label x:Name="inciLabel" Text="Incidencia: " />
+                    <Entry x:Name="inciEntry" Keyboard="Numeric" />
+                </HorizontalStackLayout>
+
+                <Button Text="EDITAR" />
+            </VerticalStackLayout>
+        </Frame>
+    </StackLayout>
+
+</ContentPage>

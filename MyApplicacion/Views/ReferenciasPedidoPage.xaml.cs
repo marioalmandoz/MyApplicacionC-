@@ -7,17 +7,19 @@ public partial class ReferenciasPedidoPage : ContentPage
 {
     string referencia;
     DateTime fecha;
-    public ReferenciasPedidoPage()
+    public ReferenciasPedidoPage(string referencia)
     {
         InitializeComponent();
-        WeakReferenceMessenger.Default.Register<String>(this, getReferencia);
+        this.referencia = referencia;
+        mostrarPallets();
+       // WeakReferenceMessenger.Default.Register<String>(this, getReferencia);
         
         
     }
 
     private async void mostrarPallets()
     {
-        List<Pallet> pallet = await App.PalletRepo.MostrarReferencias(referencia);
+        List<Pallet> pallet = await App.PalletRepo.MostrarAlmacenados(referencia);
         palletList.ItemsSource = pallet;
     }
     private void getReferencia(object recipient, string message) 
@@ -67,7 +69,9 @@ public partial class ReferenciasPedidoPage : ContentPage
         }
         else
         {
-            await Shell.Current.GoToAsync("///Views.ReferenciasPedidoPage");
+            //WeakReferenceMessenger.Default.Send(item.Id.ToString());
+            await Shell.Current.Navigation.PushAsync(new CajasPedidoPage(item.Id));
+            //await Shell.Current.GoToAsync("///Views.CajasPedidoPage");
 
         }
     }

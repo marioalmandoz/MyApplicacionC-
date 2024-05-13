@@ -6,18 +6,6 @@
     Title="OK">
     <StackLayout Padding="10" VerticalOptions="StartAndExpand">
         <HorizontalStackLayout>
-
-            <!--<Button
-x:Name="BtnBack"
-Margin="5,0,0,20"
-BackgroundColor="LightGray"
-Clicked="Go_Back"
-FontAttributes="Bold"
-FontSize="20"
-HorizontalOptions="Start"
-Text="Volver"
-TextColor="Black"
-VerticalOptions="StartAndExpand" />-->
             <ImageButton
                 BackgroundColor="Transparent"
                 Clicked="Go_Back"
@@ -26,52 +14,93 @@ VerticalOptions="StartAndExpand" />-->
                 Source="flecha_atras.png"
                 WidthRequest="30" />
             <Image
-                Margin="100,0,0,0"
+                Margin="95,0,0,0"
                 BackgroundColor="Transparent"
                 HeightRequest="50"
                 Source="logo_bruss_blanco" />
         </HorizontalStackLayout>
 
+        <Frame
+            Margin="10"
+            Padding="0"
+            BackgroundColor="LightGreen"
+            CornerRadius="10">
 
-        <StackLayout BackgroundColor="LightGreen" HorizontalOptions="CenterAndExpand">
-            <!--  Label para "Name"  -->
-            <Label HorizontalOptions="Center" Text="{Binding Name}" />
 
-            <!--  Label para "Referencia" Quiero poner un texto delante del numero de referencia  -->
-            <Label
-                FontSize="25"
-                HorizontalOptions="Center"
-                Text="{Binding Referencia}" />
+            <HorizontalStackLayout Margin="10,10" Spacing="20">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    Text="Ref:"
+                    TextColor="Black" />
+                <Label
+                    x:Name="refLabel"
+                    Margin="65,0,0,0"
+                    BackgroundColor="LightGreen"
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Text="78541"
+                    TextColor="Black" />
 
-            <!--  Label para "Cant"  -->
-            <Label
-                FontSize="25"
-                HorizontalOptions="Center"
-                Text="{Binding Cant}" />
-        </StackLayout>
+            </HorizontalStackLayout>
+        </Frame>
+        <Frame
+            Margin="10"
+            Padding="0"
+            BackgroundColor="LightGreen"
+            CornerRadius="10">
+            <HorizontalStackLayout
+                Margin="10,10"
+                BackgroundColor="LightGreen"
+                Spacing="20">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    Text="Piezas: "
+                    TextColor="Black" />
+                <Label
+                    Margin="50,5,0,0"
+                    x:Name="cantLabel"
+                    BackgroundColor="LightGreen"
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    Text="255"
+                    TextColor="Black" 
+                    HorizontalOptions="Center"/>
 
-        <Label
-            Margin="5,20,0,10"
-            FontSize="Large"
-            HorizontalOptions="Center"
-            Text="¡INTRODUCE EL NUMERO DE CAJAS QUE CONTIENE EL PALLET!" />
+            </HorizontalStackLayout>
+        </Frame>
+        <Frame
+            Margin="10"
+            BorderColor="Black"
+            CornerRadius="10">
+            <VerticalStackLayout>
+                <Label
+                    Margin="5,20,0,10"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    Text="¡INTRODUCE EL NUMERO DE CAJAS QUE CONTIENE EL PALLET!" />
 
-        <Entry
-            x:Name="numeroCajasEntry"
-            FontSize="30"
-            HorizontalOptions="Center"
-            Keyboard="Numeric"
-            Placeholder="Número de cajas..." />
+                <Entry
+                    x:Name="numeroCajasEntry"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Keyboard="Numeric"
+                    Placeholder="Número de cajas..." />
 
-        <Button
-            Margin="0,10,0,0"
-            BackgroundColor="LightGray"
-            Clicked="Validar_Clicked"
-            CornerRadius="25"
-            FontAttributes="Bold"
-            FontSize="30"
-            HorizontalOptions="Center"
-            Text="Validar"
-            TextColor="Black" />
+                <Button
+                    Margin="0,40,0,10"
+                    BackgroundColor="LightGray"
+                    Clicked="Validar_Clicked"
+                    CornerRadius="25"
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Text="Validar"
+                    TextColor="Black" />
+            </VerticalStackLayout>
+        </Frame>
     </StackLayout>
 </ContentPage>

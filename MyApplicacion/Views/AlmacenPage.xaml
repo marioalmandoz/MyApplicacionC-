@@ -6,18 +6,6 @@
     Title="ALMACEN">
     <VerticalStackLayout VerticalOptions="StartAndExpand">
         <HorizontalStackLayout>
-
-            <!--<Button
-    x:Name="BtnBack"
-    Margin="5,0,0,20"
-    BackgroundColor="LightGray"
-    Clicked="Go_Back"
-    FontAttributes="Bold"
-    FontSize="20"
-    HorizontalOptions="Start"
-    Text="Volver"
-    TextColor="Black"
-    VerticalOptions="StartAndExpand" />-->
             <ImageButton
                 BackgroundColor="Transparent"
                 Clicked="Go_Back"

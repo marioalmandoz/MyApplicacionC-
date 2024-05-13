@@ -35,7 +35,7 @@ namespace MyApplicacion
         {
             // Acciones que quieres realizar cuando se hace clic en el botón 2
             // Por ejemplo, mostrar un mensaje en la consola
-            await Shell.Current.GoToAsync("///Views.DatabasePage");
+            await Shell.Current.GoToAsync("///Views.DatabaseShow");
             System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón 2!");
 
         }

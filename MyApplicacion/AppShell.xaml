@@ -40,6 +40,10 @@
         ContentTemplate="{DataTemplate local:Views.DatabasePage}"
         Route="Views.DatabasePage" />
     <ShellContent
+        Title="Database"
+        ContentTemplate="{DataTemplate local:Views.DatabaseShow}"
+        Route="Views.DatabaseShow" />
+    <ShellContent
         Title="ReferenciasPedido"
         ContentTemplate="{DataTemplate local:Views.ReferenciasPedidoPage}"
         Route="Views.ReferenciasPedidoPage" />
@@ -47,10 +51,15 @@
         Title="IncidenciasPage"
         ContentTemplate="{DataTemplate local:Views.IncidenciasPage}"
         Route="Views.IncidenciasPage" />
-    <!--<ShellContent
+    <ShellContent
         Title="CajasPedidoPage"
         ContentTemplate="{DataTemplate local:Views.CajasPedidoPage}"
-        Route="Views.CajasPedidoPage" />-->
+        Route="Views.CajasPedidoPage" />
+    <ShellContent
+        Title="CajasPedidoPage"
+        ContentTemplate="{DataTemplate local:Views.EditarPalletPage}"
+        Route="Views.EditarPalletPage" />
+
     <ShellContent
         Title="Peticiones"
         ContentTemplate="{DataTemplate local:Database.Peticiones}"

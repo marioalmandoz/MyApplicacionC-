@@ -16,6 +16,7 @@ namespace MyApplicacion.Database
         public bool almacen { get; set; }
         public bool produccion { get; set; }
         public bool rec { get; set; }
+        public string incidencia { get; set; } 
 
         
        

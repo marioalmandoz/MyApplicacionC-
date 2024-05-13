@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="ProduccionAlmacen.Views.PedidoCajasPage"
+    x:Class="MyApplicacion.Views.CajasPedidoPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="PEDIDO-CAJAS">
@@ -19,22 +19,36 @@
                 HeightRequest="50"
                 Source="logo_bruss_blanco" />
         </HorizontalStackLayout>
-        <Label
-            Margin="0,20,0,10"
-            FontSize="Large"
-            HorizontalOptions="Center"
-            Text="¡INTRODUCE EL NUMERO TOTAL DE PIEZAS A RETIRAR!" />
+        <Frame
+            Margin="10"
+            BorderColor="Black"
+            CornerRadius="10">
+            <VerticalStackLayout>
+                <Label
+                    Margin="5,20,0,10"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    Text="¡INTRODUCE EL NUMERO TOTAL DE PIEZAS A RETIRAR!" />
 
-        <Entry
-            x:Name="numeroPiezasEntry"
-            HorizontalOptions="Center"
-            Keyboard="Numeric"
-            Placeholder="Número de piezas..." />
+                <Entry
+                    x:Name="numeroPiezasEntry"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Keyboard="Numeric"
+                    Placeholder="Número de piezas..." />
 
-        <Button
-            Margin="0,10,0,0"
-            Clicked="Validar_Clicked"
-            HorizontalOptions="Center"
-            Text="Validar" />
+                <Button
+                    Margin="0,40,0,10"
+                    BackgroundColor="LightGray"
+                    Clicked="Validar_Clicked"
+                    CornerRadius="25"
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    HorizontalOptions="Center"
+                    Text="Validar"
+                    TextColor="Black" />
+            </VerticalStackLayout>
+        </Frame>
     </StackLayout>
 </ContentPage>

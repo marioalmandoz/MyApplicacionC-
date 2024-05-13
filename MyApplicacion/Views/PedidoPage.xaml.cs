@@ -36,8 +36,9 @@ public partial class PedidoPage : ContentPage
             //De momento llevamos a la clase ProduccionPage
 
             //MostrarPallets();
-            WeakReferenceMessenger.Default.Send(referencia);
-            await Shell.Current.GoToAsync("///Views.ReferenciasPedidoPage");
+            //WeakReferenceMessenger.Default.Send(referencia);
+            await Shell.Current.Navigation.PushAsync(new ReferenciasPedidoPage(referencia));
+           // await Shell.Current.GoToAsync("///Views.ReferenciasPedidoPage");
 
         }
         else

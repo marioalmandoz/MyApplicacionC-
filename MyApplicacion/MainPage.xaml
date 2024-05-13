@@ -57,7 +57,7 @@
                 CornerRadius="30"
                 FontAttributes="Bold"
                 FontSize="30"
-                HorizontalOptions="End"
+                HorizontalOptions="FillAndExpand"
                 Text="DATABASE"
                 TextColor="Black"
                 VerticalOptions="End" />

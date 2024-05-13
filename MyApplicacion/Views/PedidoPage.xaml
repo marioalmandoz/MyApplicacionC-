@@ -6,18 +6,6 @@
     Title="PEDIDOS">
     <VerticalStackLayout HorizontalOptions="Center">
         <HorizontalStackLayout>
-
-            <!--<Button
-x:Name="BtnBack"
-Margin="5,0,0,20"
-BackgroundColor="LightGray"
-Clicked="Go_Back"
-FontAttributes="Bold"
-FontSize="20"
-HorizontalOptions="Start"
-Text="Volver"
-TextColor="Black"
-VerticalOptions="StartAndExpand" />-->
             <ImageButton
                 BackgroundColor="Transparent"
                 Clicked="Go_Back"
@@ -45,7 +33,7 @@ VerticalOptions="StartAndExpand" />-->
             Placeholder="Número de referencia..." />
 
         <Button
-            Margin="0,10,0,0"
+            Margin="0,90,0,0"
             BackgroundColor="LightGray"
             Clicked="Validar_Clicked"
             CornerRadius="20"

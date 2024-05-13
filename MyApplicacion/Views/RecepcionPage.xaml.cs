@@ -7,23 +7,18 @@ public partial class RecepcionPage : ContentPage
 {
 
     string referencia;
-    public RecepcionPage()
+    public RecepcionPage(string pReferencia)
     {
         InitializeComponent();
-        WeakReferenceMessenger.Default.Register<String>(this, getReferencia);
+        referencia = pReferencia;
+        mostrarPallets();
+        // WeakReferenceMessenger.Default.Register<String>(this, getReferencia);
     }
 
-    private void getReferencia(object recipient, string message)
-    {
-        Console.WriteLine(message);
-        if(message!=null) {
-            referencia = message;
-            mostrarPallets();
-        }
-    }
+   
     private async void mostrarPallets()
     {
-        List<Pallet> pallet = await App.PalletRepo.MostrarReferencias(referencia);
+        List<Pallet> pallet = await App.PalletRepo.MostrarProducciones(referencia);
         palletList.ItemsSource = pallet;
     }
     private async void Go_Back(object sender, EventArgs e)
@@ -36,14 +31,6 @@ public partial class RecepcionPage : ContentPage
 
     }
 
-    private async void BtnIncidecias_Clicked(object sender, EventArgs e)
-    {
-        // Acciones que quieres realizar cuando se hace clic en el botón 1
-        // Por ejemplo, mostrar un mensaje en la consola
-        await Shell.Current.GoToAsync("///Views.IncidenciasPage");
-
-    }
-
     private async void ItemButton_Clicked(object sender, EventArgs e)
     {
         // Obtener el objeto de datos asociado a la fila seleccionada
@@ -51,7 +38,7 @@ public partial class RecepcionPage : ContentPage
 
         // Realizar alguna acción con el objeto de datos, por ejemplo:
         
-        bool respuesta = await DisplayAlert("Alerta", $"¿ESTAS SEGURO DE QUE QUIERES VALIDAR EL PALLET DE FECHA: {item.fecha_hora}? ", "VALIDAR", "CANCELAR");
+        bool respuesta = await DisplayAlert("Alerta", $"¿ESTAS SEGURO DE QUE QUIERES VALIDAR EL PALLET DE FECHA: {item.fecha_hora}? ", "VALIDAR", "INCIDENCIA");
         if (respuesta)
         {
             await App.PalletRepo.tickAlmacen(item.fecha_hora);
@@ -59,6 +46,13 @@ public partial class RecepcionPage : ContentPage
             Console.WriteLine(statusMessage);
 
             await Shell.Current.GoToAsync("///Views.AlmacenPage");
+        }
+        else
+        {
+            //WeakReferenceMessenger.Default.Send(item.Id.ToString());
+            Console.WriteLine(item.Id);
+            await Shell.Current.Navigation.PushAsync(new IncidenciasPage(item.Id));
+            //await Shell.Current.GoToAsync("///Views.IncidenciasPage");
         }
     }
 

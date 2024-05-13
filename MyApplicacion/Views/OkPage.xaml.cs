@@ -1,15 +1,27 @@
+using CommunityToolkit.Mvvm.Messaging;
 using MyApplicacion.ViewModels;
 using System.Text.RegularExpressions;
+
 
 namespace MyApplicacion.Views;
 public partial class OkPage : ContentPage
 {
+    string referenciaPallet;
     public OkPage(SecondViewModel viewModel)
     {
+        
         InitializeComponent();
         BindingContext = viewModel;
+        WeakReferenceMessenger.Default.Register<String>(this, getReferencia);
     }
-
+    private void getReferencia(object receiver,  string message)
+    {
+        if(message != null) {
+           referenciaPallet = message;
+           refLabel.Text = referenciaPallet;
+           cantLabel.Text = "255";
+        }
+    }
     private async void Go_Back(object sender, EventArgs e)
     {
         // Acciones a realizar al pulsar este boton

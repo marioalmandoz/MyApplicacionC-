@@ -1,23 +1,27 @@
 
 using CommunityToolkit.Mvvm.Messaging;
-using MyApplicacion;
 using System.Text.RegularExpressions;
 
-namespace ProduccionAlmacen.Views;
+namespace MyApplicacion.Views;
 
-public partial class PedidoCajasPage : ContentPage
+public partial class CajasPedidoPage : ContentPage
 {
-    string referencia;
-	public PedidoCajasPage()
+    int id;
+	public CajasPedidoPage(int pId)
 	{
 		InitializeComponent();
-        WeakReferenceMessenger.Default.Register<String>(this, getReferencia);
+        id = pId;
+       // WeakReferenceMessenger.Default.Register<String>(this, getId);
     }
-    private void getReferencia(object recipient, string message)
+    private void getId(object recipient, string message)
     {
         if(message != null)
         {
-            referencia = message;
+            int noId =int.Parse(message);
+            if(noId > 0)
+            {
+                id = noId;
+            }
         }
     }
     private async void Validar_Clicked(object sender, EventArgs e)
@@ -39,19 +43,15 @@ public partial class PedidoCajasPage : ContentPage
                 // Verificar la respuesta del usuario
                 if (respuesta)
                 {
-                    // TODO: Aquí habrá un método que insertará los datos en la base de datos
-                    //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
+                    
 
 
-                    //TODO: Esto hay que modificarlo
-                    DateTime fecha = DateTime.Now;
-
-                    await App.PalletRepo.RetirarPiezas(numeroPiezas,fecha);
-
+                    await App.PalletRepo.RetirarPiezas(numeroPiezas,id);
+                    Console.WriteLine(App.PalletRepo.StatusMessage);
 
                     //De momento llevamos a la clase ProduccionPage
 
-                    await Shell.Current.GoToAsync("///Views.ReferenciasPedidoPage");
+                    await Shell.Current.GoToAsync("///Views.PedidoPage");
 
                 }
             }
@@ -63,6 +63,11 @@ public partial class PedidoCajasPage : ContentPage
     }
     private async void Go_Back(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///Views.ReferenciasPedidoPage");
+        // Acciones a realizar al pulsar este boton
+        string referencia = await App.PalletRepo.getReferencia(id);
+        if (referencia != null)
+        {
+            await Shell.Current.Navigation.PushAsync(new ReferenciasPedidoPage(referencia));
+        }
     }
 }

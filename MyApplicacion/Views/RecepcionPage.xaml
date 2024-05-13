@@ -6,18 +6,6 @@
     Title="RECEPCION">
     <StackLayout>
         <HorizontalStackLayout>
-
-            <!--<Button
-x:Name="BtnBack"
-Margin="5,0,0,20"
-BackgroundColor="LightGray"
-Clicked="Go_Back"
-FontAttributes="Bold"
-FontSize="20"
-HorizontalOptions="Start"
-Text="Volver"
-TextColor="Black"
-VerticalOptions="StartAndExpand" />-->
             <ImageButton
                 BackgroundColor="Transparent"
                 Clicked="Go_Back"
@@ -119,21 +107,21 @@ VerticalOptions="StartAndExpand" />-->
                 Grid.Column="0"
                 Padding="5"
                 BackgroundColor="LightGray">
-                <Label Text="ID" />
+                <Label Text="Fecha" />
             </Frame>
             <Frame
                 Grid.Row="0"
                 Grid.Column="1"
                 Padding="5"
                 BackgroundColor="LightGray">
-                <Label Text="Fecha y Hora" />
+                <Label Text="Ref" />
             </Frame>
             <Frame
                 Grid.Row="0"
                 Grid.Column="2"
                 Padding="5"
                 BackgroundColor="LightGray">
-                <Label Text="Referencia" />
+                <Label Text="Cant" />
             </Frame>
 
             <!--  Datos de la tabla  -->
@@ -152,40 +140,30 @@ VerticalOptions="StartAndExpand" />-->
                             </Grid.ColumnDefinitions>
                             <Button
                                 Grid.Column="0"
+                                BackgroundColor="LightGray"
+                                BorderColor="Black"
                                 Clicked="ItemButton_Clicked"
-                                Text="{Binding Id}" />
+                                Text="{Binding fecha_hora}"
+                                TextColor="Black" />
                             <Button
                                 Grid.Column="1"
+                                BackgroundColor="LightGray"
+                                BorderColor="Black"
                                 Clicked="ItemButton_Clicked"
-                                Text="{Binding fecha_hora}" />
+                                Text="{Binding referencia}"
+                                TextColor="Black" />
                             <Button
                                 Grid.Column="2"
+                                BackgroundColor="LightGray"
+                                BorderColor="Black"
                                 Clicked="ItemButton_Clicked"
-                                Text="{Binding referencia}" />
+                                Text="{Binding cant}"
+                                TextColor="Black" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
         </Grid>
-
-        <HorizontalStackLayout
-            Padding="5"
-            HorizontalOptions="Center"
-            Spacing="10"
-            VerticalOptions="CenterAndExpand">
-            <Button
-                x:Name="BtnIncidecias"
-                Padding="5"
-                BackgroundColor="LightGray"
-                BorderColor="Black"
-                BorderWidth="1"
-                Clicked="BtnIncidecias_Clicked"
-                HorizontalOptions="Center"
-                Text="INCIDENCIAS"
-                TextColor="Black"
-                VerticalOptions="End" />
-        </HorizontalStackLayout>
-
     </StackLayout>
 </ContentPage>
