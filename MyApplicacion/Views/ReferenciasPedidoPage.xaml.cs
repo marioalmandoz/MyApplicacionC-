@@ -45,7 +45,7 @@ public partial class ReferenciasPedidoPage : ContentPage
         var item = (Pallet)((Button)sender).BindingContext;
 
         // Realizar alguna acción con el objeto de datos, por ejemplo:
-        bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET {item.Id}ENTERO DE {item.cant}?", "Sí", "No");
+        bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.nPiezas} piezas?", "Sí", "No");
 
         // Verificar la respuesta del usuario
         if (respuesta)

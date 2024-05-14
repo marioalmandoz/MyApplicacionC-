@@ -4,103 +4,105 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="OK">
-    <StackLayout Padding="10" VerticalOptions="StartAndExpand">
-        <HorizontalStackLayout>
-            <ImageButton
-                BackgroundColor="Transparent"
-                Clicked="Go_Back"
-                HeightRequest="30"
-                HorizontalOptions="Start"
-                Source="flecha_atras.png"
-                WidthRequest="30" />
-            <Image
-                Margin="95,0,0,0"
-                BackgroundColor="Transparent"
-                HeightRequest="50"
-                Source="logo_bruss_blanco" />
-        </HorizontalStackLayout>
-
-        <Frame
-            Margin="10"
-            Padding="0"
-            BackgroundColor="LightGreen"
-            CornerRadius="10">
-
-
-            <HorizontalStackLayout Margin="10,10" Spacing="20">
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="20"
-                    Text="Ref:"
-                    TextColor="Black" />
-                <Label
-                    x:Name="refLabel"
-                    Margin="65,0,0,0"
-                    BackgroundColor="LightGreen"
-                    FontAttributes="Bold"
-                    FontSize="30"
-                    HorizontalOptions="Center"
-                    Text="78541"
-                    TextColor="Black" />
-
+    <ScrollView>
+        <StackLayout Padding="5" VerticalOptions="StartAndExpand">
+            <HorizontalStackLayout>
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Clicked="Go_Back"
+                    HeightRequest="30"
+                    HorizontalOptions="Start"
+                    Source="flecha_atras.png"
+                    WidthRequest="30" />
+                <Image
+                    Margin="60,0,0,0"
+                    BackgroundColor="Transparent"
+                    HeightRequest="50"
+                    Source="logo_bruss_blanco" />
             </HorizontalStackLayout>
-        </Frame>
-        <Frame
-            Margin="10"
-            Padding="0"
-            BackgroundColor="LightGreen"
-            CornerRadius="10">
-            <HorizontalStackLayout
-                Margin="10,10"
+
+            <Frame
+                Margin="10"
+                Padding="0"
                 BackgroundColor="LightGreen"
-                Spacing="20">
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="20"
-                    Text="Piezas: "
-                    TextColor="Black" />
-                <Label
-                    Margin="50,5,0,0"
-                    x:Name="cantLabel"
+                CornerRadius="10">
+
+
+                <HorizontalStackLayout Margin="10,5" Spacing="20">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="Ref:"
+                        TextColor="Black" />
+                    <Label
+                        x:Name="refLabel"
+                        Margin="65,0,0,0"
+                        BackgroundColor="LightGreen"
+                        FontAttributes="Bold"
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Text="78541"
+                        TextColor="Black" />
+
+                </HorizontalStackLayout>
+            </Frame>
+            <Frame
+                Margin="10"
+                Padding="0"
+                BackgroundColor="LightGreen"
+                CornerRadius="10">
+                <HorizontalStackLayout
+                    Margin="10,0"
                     BackgroundColor="LightGreen"
-                    FontAttributes="Bold"
-                    FontSize="30"
-                    Text="255"
-                    TextColor="Black" 
-                    HorizontalOptions="Center"/>
+                    Spacing="20">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="Piezas: "
+                        TextColor="Black" />
+                    <Label
+                        x:Name="cantLabel"
+                        Margin="50,5,0,0"
+                        BackgroundColor="LightGreen"
+                        FontAttributes="Bold"
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Text="255"
+                        TextColor="Black" />
 
-            </HorizontalStackLayout>
-        </Frame>
-        <Frame
-            Margin="10"
-            BorderColor="Black"
-            CornerRadius="10">
-            <VerticalStackLayout>
-                <Label
-                    Margin="5,20,0,10"
-                    FontAttributes="Bold"
-                    FontSize="Large"
-                    HorizontalOptions="Center"
-                    Text="¡INTRODUCE EL NUMERO DE CAJAS QUE CONTIENE EL PALLET!" />
+                </HorizontalStackLayout>
+            </Frame>
+            <Frame
+                Margin="10"
+                BorderColor="Black"
+                CornerRadius="10">
+                <VerticalStackLayout>
+                    <Label
+                        Margin="5,20,0,10"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="¡INTRODUCE EL NUMERO DE CAJAS QUE CONTIENE EL PALLET!" />
 
-                <Entry
-                    x:Name="numeroCajasEntry"
-                    FontSize="30"
-                    HorizontalOptions="Center"
-                    Keyboard="Numeric"
-                    Placeholder="Número de cajas..." />
+                    <Entry
+                        x:Name="numeroCajasEntry"
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Keyboard="Numeric"
+                        Placeholder="Número de cajas..." />
 
-                <Button
-                    Margin="0,40,0,10"
-                    BackgroundColor="LightGray"
-                    Clicked="Validar_Clicked"
-                    CornerRadius="25"
-                    FontAttributes="Bold"
-                    FontSize="30"
-                    HorizontalOptions="Center"
-                    Text="Validar"
-                    TextColor="Black" />
-            </VerticalStackLayout>
-        </Frame>
-    </StackLayout>
+                    <Button
+                        Margin="0,40,0,10"
+                        BackgroundColor="LightGray"
+                        Clicked="Validar_Clicked"
+                        CornerRadius="25"
+                        FontAttributes="Bold"
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Text="Validar"
+                        TextColor="Black" />
+                </VerticalStackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

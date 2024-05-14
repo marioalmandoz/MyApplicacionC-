@@ -7,7 +7,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
             <Image
-                Margin="10,0,10,0"
+                Margin="10,0,0,0"
                 Aspect="AspectFit"
                 HeightRequest="150"
                 SemanticProperties.Description="dot net bot in a race car number eight"
@@ -28,7 +28,7 @@
                     Clicked="Produccion_click"
                     CornerRadius="30"
                     FontAttributes="Bold"
-                    FontSize="40"
+                    FontSize="30"
                     HorizontalOptions="FillAndExpand"
                     Text="PRODUCCION"
                     TextColor="Black" />
@@ -42,7 +42,7 @@
                     Clicked="Almacen_click"
                     CornerRadius="30"
                     FontAttributes="Bold"
-                    FontSize="40"
+                    FontSize="30"
                     HorizontalOptions="FillAndExpand"
                     Text="ALMACEN"
                     TextColor="Black" />
@@ -50,14 +50,14 @@
 
             <Button
                 x:Name=" BtnDb"
-                Margin="0,170,0,0"
+                Margin="0,10,0,0"
                 BackgroundColor="LightGray"
                 BorderWidth="0"
                 Clicked="Db_click"
                 CornerRadius="30"
                 FontAttributes="Bold"
                 FontSize="30"
-                HorizontalOptions="FillAndExpand"
+                HorizontalOptions="Center"
                 Text="DATABASE"
                 TextColor="Black"
                 VerticalOptions="End" />

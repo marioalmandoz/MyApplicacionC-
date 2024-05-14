@@ -22,7 +22,7 @@ public class Peticiones
             
             try
             {
-                String url = "https://jsonplaceholder.typicode.com/posts/1";
+                //String url = "https://jsonplaceholder.typicode.com/posts/1";
                 String url2 = "http://datacapturews.dur300.bruss-group.com/api/Referencias";
                 String url3 = "http://datacapturews.dur300.bruss-group.com/api/MaterialQuantities";
                 Console.WriteLine("------------Se ha iniciado la peticion-------------");
@@ -30,12 +30,14 @@ public class Peticiones
                 client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip,deflate");
                 client.DefaultRequestHeaders.Add("Connection", "keep-alive");
 
-                var response = client.GetAsync(url).Result;
+                var response = client.GetAsync(url2).Result;
                 DataDownload.Text = response.StatusCode.ToString();
                 Console.WriteLine(response.StatusCode);
                 var res = response.Content.ReadAsStringAsync().Result;
                 Console.WriteLine(res);
                 Console.WriteLine("------------Se ha acabado la peticion-------------");
+
+                
 
                 // Verificar si la solicitud fue exitosa
                 if (response.IsSuccessStatusCode)

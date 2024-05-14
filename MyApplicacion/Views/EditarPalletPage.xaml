@@ -4,59 +4,213 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="EditarPalletPage">
-    <StackLayout>
-        <HorizontalStackLayout>
-            <ImageButton
-                BackgroundColor="Transparent"
-                Clicked="Go_Back"
-                HeightRequest="30"
-                HorizontalOptions="Start"
-                Source="flecha_atras.png"
-                WidthRequest="30" />
-            <Image
-                Margin="100,0,0,0"
-                BackgroundColor="Transparent"
-                HeightRequest="50"
-                Source="logo_bruss_blanco" />
-        </HorizontalStackLayout>
-        <Frame>
-            <VerticalStackLayout>
-                <HorizontalStackLayout>
-                    <Label x:Name="refLabel" Text="Referencia: " />
-                    <Entry x:Name="refEntry" Keyboard="Numeric" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout>
-                    <Label x:Name="piezasLabel" Text="Nº piezas: " />
-                    <Entry x:Name="piezasEntry" Keyboard="Numeric" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout>
-                    <Label x:Name="cajasLabel" Text="Nº cajas: " />
-                    <Entry x:Name="cajasEntry" Keyboard="Numeric" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout>
-                    <Label x:Name="ubicaLabel" Text="Ubicacion: " />
-                    <Entry x:Name="ubicaEntry" Keyboard="Numeric" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout>
-                    <Label x:Name="producLabel" Text="Produccion: " />
-                    <CheckBox x:Name="producEntry" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout>
-                    <Label x:Name="almLabel" Text="Almacen: " />
-                    <CheckBox x:Name="almEntry" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout>
-                    <Label x:Name="recLabel" Text="rec: " />
-                    <CheckBox x:Name="recEntry" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout>
-                    <Label x:Name="inciLabel" Text="Incidencia: " />
-                    <Entry x:Name="inciEntry" Keyboard="Numeric" />
-                </HorizontalStackLayout>
+    <ScrollView>
+        <StackLayout>
+            <HorizontalStackLayout>
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Clicked="Go_Back"
+                    HeightRequest="30"
+                    HorizontalOptions="Start"
+                    Source="flecha_atras.png"
+                    WidthRequest="30" />
+                <Image
+                    Margin="100,0,0,0"
+                    BackgroundColor="Transparent"
+                    HeightRequest="50"
+                    Source="logo_bruss_blanco" />
+            </HorizontalStackLayout>
 
-                <Button Text="EDITAR" />
+            <VerticalStackLayout Margin="5,0">
+                <Frame
+                    Margin="0,3"
+                    Padding="5"
+                    BorderColor="Black"
+                    CornerRadius="20">
+                    <HorizontalStackLayout>
+                        <Label
+                            x:Name="refLabel"
+                            Margin="10,0,200,0"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="Referencia: "
+                            VerticalOptions="Center" />
+
+                        <Entry
+                            x:Name="refEntry"
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame
+                    Margin="0,3"
+                    Padding="5"
+                    BorderColor="Black"
+                    CornerRadius="20">
+                    <HorizontalStackLayout>
+                        <Label
+                            x:Name="baanLabel"
+                            Margin="10,0,250,0"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="Baan: "
+                            VerticalOptions="Center" />
+                        <Entry
+                            x:Name="baanEntry"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            VerticalOptions="CenterAndExpand" />
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame
+                    Margin="0,3"
+                    Padding="5"
+                    BorderColor="Black"
+                    CornerRadius="20">
+                    <HorizontalStackLayout>
+                        <Label
+                            x:Name="piezasLabel"
+                            Margin="10,0,210,0"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="Nº piezas: "
+                            VerticalOptions="Center" />
+                        <Entry
+                            x:Name="piezasEntry"
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame
+                    Margin="0,3"
+                    Padding="5"
+                    BorderColor="Black"
+                    CornerRadius="20">
+                    <HorizontalStackLayout>
+                        <Label
+                            x:Name="cajasLabel"
+                            Margin="10,0,223,0"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="Nº cajas: "
+                            VerticalOptions="Center" />
+                        <Entry
+                            x:Name="cajasEntry"
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame
+                    Margin="0,3"
+                    Padding="5"
+                    BorderColor="Black"
+                    CornerRadius="20">
+                    <HorizontalStackLayout>
+                        <Label
+                            x:Name="ubicaLabel"
+                            Margin="10,0,205,0"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="Ubicacion: "
+                            VerticalOptions="Center" />
+                        <Entry
+                            x:Name="ubicaEntry"
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Text"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame
+                    Margin="0,3"
+                    Padding="5"
+                    BorderColor="Black"
+                    CornerRadius="20">
+                    <HorizontalStackLayout>
+                        <Label
+                            x:Name="producLabel"
+                            Margin="10,0,200,0"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="Produccion: "
+                            VerticalOptions="Center" />
+                        <CheckBox x:Name="producEntry" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame
+                    Margin="0,3"
+                    Padding="5"
+                    BorderColor="Black"
+                    CornerRadius="20">
+                    <HorizontalStackLayout>
+                        <Label
+                            x:Name="almLabel"
+                            Margin="10,0,225,0"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="Almacen: "
+                            VerticalOptions="Center" />
+                        <CheckBox x:Name="almEntry" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame
+                    Margin="0,3"
+                    Padding="5"
+                    BorderColor="Black"
+                    CornerRadius="20">
+                    <HorizontalStackLayout>
+                        <Label
+                            x:Name="recLabel"
+                            Margin="10,0,278,0"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="rec: "
+                            VerticalOptions="Center" />
+                        <CheckBox x:Name="recEntry" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Frame>
+                <Frame
+                    Margin="0,3,0,5"
+                    Padding="5"
+                    BorderColor="Black"
+                    CornerRadius="20">
+                    <HorizontalStackLayout>
+                        <Label
+                            x:Name="inciLabel"
+                            Margin="10,0,205,0"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            Text="Incidencia: "
+                            VerticalOptions="Center" />
+                        <Entry
+                            x:Name="inciEntry"
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Frame>
             </VerticalStackLayout>
-        </Frame>
-    </StackLayout>
+            <Button
+                BackgroundColor="LightGray"
+                BorderColor="Black"
+                Clicked="editBtn_Clicked"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="EDITAR"
+                TextColor="Black" />
+
+        </StackLayout>
+    </ScrollView>
 
 </ContentPage>

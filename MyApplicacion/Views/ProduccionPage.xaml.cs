@@ -1,12 +1,16 @@
 
 using CommunityToolkit.Mvvm.Messaging;
 using Plugin.Maui.Audio;
+using System.Text.RegularExpressions;
 
 namespace MyApplicacion.Views;
 
 public partial class ProduccionPage : ContentPage
 {
-    
+    string cantidad;
+    string baan;
+    string referencia;
+    string scaneo;
     public ProduccionPage()
     {
         InitializeComponent();
@@ -17,7 +21,26 @@ public partial class ProduccionPage : ContentPage
     {
         if (message != null)
         {
+            Console.WriteLine(message);
+            scaneo = message;
             ScanResultLabel.Text = message;
+            string pattern = @"Q(\d+).*?2K([^/]+)\/(\d{5})";
+            Match match = Regex.Match(scaneo, pattern);
+            if(match.Success)
+            {
+                cantidad = match.Groups[1].Value;
+                baan = match.Groups[2].Value;
+                referencia = match.Groups[3].Value;
+
+                // Imprimir los resultados
+                Console.WriteLine("Cantidad: " + cantidad);
+                Console.WriteLine("Baan: " + baan);
+                Console.WriteLine("Referencia: " + referencia);
+            }
+            else
+            {
+                Console.WriteLine("No se encontraron coincidencias.");
+            }
         }
     }
 

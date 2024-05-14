@@ -26,13 +26,14 @@ public partial class IncidenciasPage : ContentPage
     private async void Go_Back(object sender, EventArgs e)
     {
         // Acciones a realizar al pulsar este boton
-        string referencia = await App.PalletRepo.getReferencia(id);
-        if (referencia != null)
-        {
-            await Shell.Current.Navigation.PushAsync(new RecepcionPage(referencia));
-        }
+        //string referencia = await App.PalletRepo.getReferencia(id);
+        //if (referencia != null)
+        //{
+        //    await Shell.Current.Navigation.PushAsync(new RecepcionPage());
+        //}
+        await Shell.Current.GoToAsync("///Views.RecepcionPage");
 
-        
+
         System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón Back");
 
     }

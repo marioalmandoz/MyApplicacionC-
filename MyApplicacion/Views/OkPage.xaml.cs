@@ -52,7 +52,7 @@ public partial class OkPage : ContentPage
                     //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
 
                     string total = (int.Parse(numeroCajas) * 3).ToString();
-                    await App.PalletRepo.AddNewPallet("564", numeroCajas, total);
+                    await App.PalletRepo.AddNewPalletPro("1","121", numeroCajas, total);
 
 
                     //De momento llevamos a la clase ProduccionPage

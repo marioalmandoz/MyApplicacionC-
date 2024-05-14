@@ -20,14 +20,14 @@ public partial class AlmacenPage : ContentPage
     private async void Go_Recepcion(object sender, EventArgs e)
     {
         //WeakReferenceMessenger.Default.Send("1");
-        await Shell.Current.Navigation.PushAsync(new RecepcionPage("1"));
-        //await Shell.Current.GoToAsync("///Views.RecepcionPage");
+       // await Shell.Current.Navigation.PushAsync(new RecepcionPage("1"));
+        await Shell.Current.GoToAsync("///Views.RecepcionPage");
     }
     private async void Go_ubicacion(object sender, EventArgs e)
     {
         //WeakReferenceMessenger.Default.Send("2");
-        await Shell.Current.Navigation.PushAsync(new UbicacionPage("2"));
-        //await Shell.Current.GoToAsync("///Views.UbicacionPage");
+        //await Shell.Current.Navigation.PushAsync(new UbicacionPage("2"));
+        await Shell.Current.GoToAsync("///Views.UbicacionPage");
     }
     private async void Go_Pedido(object sender, EventArgs e)
     {

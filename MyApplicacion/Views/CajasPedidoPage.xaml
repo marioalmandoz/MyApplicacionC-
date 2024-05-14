@@ -4,51 +4,53 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="PEDIDO-CAJAS">
-    <StackLayout Padding="10" VerticalOptions="StartAndExpand">
-        <HorizontalStackLayout>
-            <ImageButton
-                BackgroundColor="Transparent"
-                Clicked="Go_Back"
-                HeightRequest="30"
-                HorizontalOptions="Start"
-                Source="flecha_atras.png"
-                WidthRequest="30" />
-            <Image
-                Margin="100,0,0,0"
-                BackgroundColor="Transparent"
-                HeightRequest="50"
-                Source="logo_bruss_blanco" />
-        </HorizontalStackLayout>
-        <Frame
-            Margin="10"
-            BorderColor="Black"
-            CornerRadius="10">
-            <VerticalStackLayout>
-                <Label
-                    Margin="5,20,0,10"
-                    FontAttributes="Bold"
-                    FontSize="Large"
-                    HorizontalOptions="Center"
-                    Text="¡INTRODUCE EL NUMERO TOTAL DE PIEZAS A RETIRAR!" />
+    <ScrollView>
+        <StackLayout Padding="10" VerticalOptions="StartAndExpand">
+            <HorizontalStackLayout>
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Clicked="Go_Back"
+                    HeightRequest="30"
+                    HorizontalOptions="Start"
+                    Source="flecha_atras.png"
+                    WidthRequest="30" />
+                <Image
+                    Margin="100,0,0,0"
+                    BackgroundColor="Transparent"
+                    HeightRequest="50"
+                    Source="logo_bruss_blanco" />
+            </HorizontalStackLayout>
+            <Frame
+                Margin="10"
+                BorderColor="Black"
+                CornerRadius="10">
+                <VerticalStackLayout>
+                    <Label
+                        Margin="5,20,0,10"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalOptions="Center"
+                        Text="¡INTRODUCE EL NUMERO TOTAL DE PIEZAS A RETIRAR!" />
 
-                <Entry
-                    x:Name="numeroPiezasEntry"
-                    FontSize="30"
-                    HorizontalOptions="Center"
-                    Keyboard="Numeric"
-                    Placeholder="Número de piezas..." />
+                    <Entry
+                        x:Name="numeroPiezasEntry"
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Keyboard="Numeric"
+                        Placeholder="Número de piezas..." />
 
-                <Button
-                    Margin="0,40,0,10"
-                    BackgroundColor="LightGray"
-                    Clicked="Validar_Clicked"
-                    CornerRadius="25"
-                    FontAttributes="Bold"
-                    FontSize="30"
-                    HorizontalOptions="Center"
-                    Text="Validar"
-                    TextColor="Black" />
-            </VerticalStackLayout>
-        </Frame>
-    </StackLayout>
+                    <Button
+                        Margin="0,40,0,10"
+                        BackgroundColor="LightGray"
+                        Clicked="Validar_Clicked"
+                        CornerRadius="25"
+                        FontAttributes="Bold"
+                        FontSize="30"
+                        HorizontalOptions="Center"
+                        Text="Validar"
+                        TextColor="Black" />
+                </VerticalStackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

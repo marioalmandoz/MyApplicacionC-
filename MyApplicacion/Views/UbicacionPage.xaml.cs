@@ -5,13 +5,24 @@ namespace MyApplicacion.Views;
 public partial class UbicacionPage : ContentPage
 {
     string referencia;
-    public UbicacionPage(string pReferencia)
+    string scaneo;
+    public UbicacionPage()
     {
         InitializeComponent();
-        referencia = pReferencia;
+        WeakReferenceMessenger.Default.Register<String>(this, OnDataReceived);
         mostrarPallets();
     }
-    
+
+    private void OnDataReceived(object recipient, string message)
+    {
+        if (message != null)
+        {
+            DataDownload.Text = "";
+            Console.WriteLine(message);
+            scaneo = message;
+            DataDownload.Text = message;
+        }
+    }
     private async void mostrarPallets()
     {
         List<Pallet> pallet = await App.PalletRepo.MostrarAlmacenados(referencia);

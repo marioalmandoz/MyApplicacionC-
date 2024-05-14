@@ -9,18 +9,6 @@
         <VerticalStackLayout>
 
             <HorizontalStackLayout>
-
-                <!--<Button
-x:Name="BtnBack"
-Margin="5,0,0,20"
-BackgroundColor="LightGray"
-Clicked="Go_Back"
-FontAttributes="Bold"
-FontSize="20"
-HorizontalOptions="Start"
-Text="Volver"
-TextColor="Black"
-VerticalOptions="StartAndExpand" />-->
                 <ImageButton
                     BackgroundColor="Transparent"
                     Clicked="Go_Back"
@@ -29,7 +17,7 @@ VerticalOptions="StartAndExpand" />-->
                     Source="flecha_atras.png"
                     WidthRequest="30" />
                 <Image
-                    Margin="100,0,0,0"
+                    Margin="70,0,0,0"
                     BackgroundColor="Transparent"
                     HeightRequest="50"
                     Source="logo_bruss_blanco" />

@@ -1,5 +1,7 @@
 ﻿
+
 using SQLite;
+
 
 namespace MyApplicacion.Database
 {
@@ -11,7 +13,9 @@ namespace MyApplicacion.Database
         //Resto de atributos
         public DateTime fecha_hora { get; set; }
         public string referencia { get; set; }
-        public string cant { get; set; }
+        public string baan {  get; set; }
+        public string nPiezas { get; set; }
+        public string nCajas { get; set; }
         public string ubicacion { get; set; }
         public bool almacen { get; set; }
         public bool produccion { get; set; }
