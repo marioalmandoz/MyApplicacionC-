@@ -1,18 +1,21 @@
 using CommunityToolkit.Mvvm.Messaging;
 using MyApplicacion.Database;
+using System.Text.RegularExpressions;
 
 namespace MyApplicacion.Views;
 
 public partial class ReferenciasPedidoPage : ContentPage
 {
+    string ubicacion;
     string referencia;
-    DateTime fecha;
+    string scaneo;
+    
     public ReferenciasPedidoPage(string referencia)
     {
         InitializeComponent();
         this.referencia = referencia;
         mostrarPallets();
-       // WeakReferenceMessenger.Default.Register<String>(this, getReferencia);
+        WeakReferenceMessenger.Default.Register<String>(this, OnDataReceived);
         
         
     }
@@ -22,12 +25,26 @@ public partial class ReferenciasPedidoPage : ContentPage
         List<Pallet> pallet = await App.PalletRepo.MostrarAlmacenados(referencia);
         palletList.ItemsSource = pallet;
     }
-    private void getReferencia(object recipient, string message) 
+    private void OnDataReceived(object recipient, string message)
     {
         if (message != null)
         {
-            referencia = message;
-            mostrarPallets();
+            Console.WriteLine(message);
+            scaneo = message;
+            string pattern = @"([a-zA-Z]\d)";
+            Match match = Regex.Match(scaneo, pattern);
+            if (match.Success)
+            {
+                
+                ubicacion = match.Groups[1].Value;
+                Console.WriteLine("Datos: " + ubicacion);
+                ScanResultLabel.Text = "Datos: " + ubicacion;
+            }
+            else
+            {
+                Console.WriteLine("No se encontraron coincidencias Referencia.");
+            }
+
         }
     }
 
@@ -58,8 +75,6 @@ public partial class ReferenciasPedidoPage : ContentPage
                 await App.PalletRepo.EliminarPalletPorId(item.Id);
                 string statusMessage = App.PalletRepo.StatusMessage;
                 Console.WriteLine(statusMessage);
-                
-                WeakReferenceMessenger.Default.Send(item.referencia);
             }
 
             //De momento llevamos a la clase ProduccionPage

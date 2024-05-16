@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using MyApplicacion.Abstractions;
-using MyApplicacion.Services;
-using MyApplicacion.ViewModels;
+
+
 /* Cambio no fusionado mediante combinación del proyecto 'MyApplicacion (net8.0-android)'
 Antes:
 using CommunityToolkit.Maui;
@@ -33,8 +33,7 @@ namespace MyApplicacion
             builder.Logging.AddDebug();
 #endif
             //Esto es para el contenedor de variables generales
-            builder.Services.AddSingleton<ITextProvider, TextProviderService>();
-            builder.Services.AddTransient<SecondViewModel>();
+           
             builder.Services.AddTransient<Views.OkPage>();
 
             string dbPath = FileAccessHelper.GetLocalFilePath("app.db3");

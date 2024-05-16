@@ -1,15 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.Content.PM;
 using Android.OS;
-using Android.Util;
-using CommunityToolkit.Mvvm.Messaging;
-using Java.Lang;
-using System.Diagnostics.Metrics;
-using System.Security.AccessControl;
-using System.Xml.Linq;
 using ProduccionAlmacen.Platforms.Android;
-using Com.Google.Android.Exoplayer2.Metadata.Scte35;
 
 namespace MyApplicacion;
 //WITH CONFIGCHANGES! //[Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]

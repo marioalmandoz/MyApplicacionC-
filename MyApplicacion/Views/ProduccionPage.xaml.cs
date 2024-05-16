@@ -1,5 +1,6 @@
 
 using CommunityToolkit.Mvvm.Messaging;
+using MyApplicacion.Database;
 using Plugin.Maui.Audio;
 using System.Text.RegularExpressions;
 
@@ -24,24 +25,31 @@ public partial class ProduccionPage : ContentPage
             Console.WriteLine(message);
             scaneo = message;
             ScanResultLabel.Text = message;
-            string pattern = @"Q(\d+).*?2K([^/]+)\/(\d{5})";
+            string pattern = @"Q(\d+).+2K([0-9]{5}).+\/\s([0-9]{5})";
             Match match = Regex.Match(scaneo, pattern);
-            if(match.Success)
+            if (match.Success)
             {
                 cantidad = match.Groups[1].Value;
                 baan = match.Groups[2].Value;
                 referencia = match.Groups[3].Value;
 
-                // Imprimir los resultados
-                Console.WriteLine("Cantidad: " + cantidad);
-                Console.WriteLine("Baan: " + baan);
-                Console.WriteLine("Referencia: " + referencia);
+                Console.WriteLine("Datos: " + cantidad+" "+baan+" "+referencia);
+                ScanResultLabel.Text = "Datos: " + cantidad + " " + baan + " " + referencia;
+                registrarPallet();
             }
             else
             {
-                Console.WriteLine("No se encontraron coincidencias.");
+                Console.WriteLine("No se encontraron coincidencias Referencia.");
             }
         }
+    }
+    private async void registrarPallet()
+    {
+        Pallet pallet = new Pallet();
+        pallet.baan = baan;
+        pallet.referencia = referencia;
+        pallet.nPiezas = cantidad;
+        await Shell.Current.Navigation.PushAsync(new OkPage(pallet));
     }
 
     private async void Go_Back(object sender, EventArgs e)

@@ -1,16 +1,18 @@
 using CommunityToolkit.Mvvm.Messaging;
 using MyApplicacion.Database;
+using System.Text.RegularExpressions;
 namespace MyApplicacion.Views;
 
 public partial class UbicacionPage : ContentPage
 {
     string referencia;
     string scaneo;
+    string ubicacion;
     public UbicacionPage()
     {
         InitializeComponent();
         WeakReferenceMessenger.Default.Register<String>(this, OnDataReceived);
-        mostrarPallets();
+        
     }
 
     private void OnDataReceived(object recipient, string message)
@@ -21,6 +23,32 @@ public partial class UbicacionPage : ContentPage
             Console.WriteLine(message);
             scaneo = message;
             DataDownload.Text = message;
+            string pattern = @"Q(\d+).+2K([0-9]{5}).+\/\s([0-9]{5})";
+            
+            Match match = Regex.Match(scaneo, pattern);
+            if (match.Success)
+            {
+                
+                referencia = match.Groups[3].Value;
+
+                Console.WriteLine("Datos: " + referencia);
+                DataDownload.Text = "Datos: " + referencia;
+                mostrarPallets();
+
+            }
+            else
+            {
+                Console.WriteLine("No se encontraron coincidencias Referencia.");
+            }
+            string pattern2 = @"^.+([a-zA-Z]\d)$";
+            Match match1 = Regex.Match(scaneo, pattern2);
+            if (match1.Success)
+            {
+                ubicacion = match1.Groups[1].Value;
+                Console.WriteLine("Ubicacion: " + ubicacion);
+                DataDownload.Text = "Ubicacion: " + ubicacion;
+              
+            }
         }
     }
     private async void mostrarPallets()
@@ -52,10 +80,17 @@ public partial class UbicacionPage : ContentPage
 
             if (referencia != null)
             {
-                string ubicacion = "k2";
-                await App.PalletRepo.AddUbicacion(item.Id,ubicacion);
-                string statusMessage = App.PalletRepo.StatusMessage;
-                Console.WriteLine(statusMessage);
+                if (ubicacion == null)
+                {
+                    await DisplayAlert("Error", $"ESCANEE LA UBICACION", "Ok");
+                }
+                else
+                {
+                    await App.PalletRepo.AddUbicacion(item.Id, ubicacion);
+                    string statusMessage = App.PalletRepo.StatusMessage;
+                    Console.WriteLine(statusMessage);
+                }
+                
 
                
             }
@@ -72,7 +107,7 @@ public partial class UbicacionPage : ContentPage
 
     private async void descargarDatos(object sender, EventArgs e)
     {
-        Peticiones.DownloadDate(DataDownload);
+        Peticionesprueba.DownloadAndPrintJson<Pallet>();
     }
     
 

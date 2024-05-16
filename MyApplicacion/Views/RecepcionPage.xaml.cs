@@ -1,17 +1,20 @@
 using CommunityToolkit.Mvvm.Messaging;
 using MyApplicacion.Database;
+using System.Text.RegularExpressions;
 
 namespace MyApplicacion.Views;
 
 public partial class RecepcionPage : ContentPage
 {
 
+    string baan;
     string referencia;
+    string scaneo;
     public RecepcionPage()
     {
         InitializeComponent();
         WeakReferenceMessenger.Default.Register<String>(this, OnDataReceived);
-        mostrarPallets();
+        
         
     }
 
@@ -26,7 +29,22 @@ public partial class RecepcionPage : ContentPage
         if (message != null)
         {
             Console.WriteLine(message);
-            ScanResultLabel.Text = message;
+            scaneo = message;
+            string pattern = @"2K([0-9]{5}).+\/\s([0-9]{5})";
+            Match match = Regex.Match(scaneo, pattern);
+            if (match.Success)
+            {
+                baan = match.Groups[1].Value;
+                referencia = match.Groups[2].Value;
+                Console.WriteLine("Datos: " + baan + " " + referencia);
+                ScanResultLabel.Text = "Datos: "+ baan + " " + referencia;
+                mostrarPallets();
+            }
+            else
+            {
+                Console.WriteLine("No se encontraron coincidencias Referencia.");
+            }
+
         }
     }
     private async void Go_Back(object sender, EventArgs e)

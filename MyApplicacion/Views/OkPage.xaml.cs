@@ -1,27 +1,21 @@
 using CommunityToolkit.Mvvm.Messaging;
-using MyApplicacion.ViewModels;
+using MyApplicacion.Database;
 using System.Text.RegularExpressions;
 
 
 namespace MyApplicacion.Views;
 public partial class OkPage : ContentPage
 {
-    string referenciaPallet;
-    public OkPage(SecondViewModel viewModel)
+    Pallet palletRecivido;
+    public OkPage(Pallet pPallet)
     {
         
         InitializeComponent();
-        BindingContext = viewModel;
-        WeakReferenceMessenger.Default.Register<String>(this, getReferencia);
+        palletRecivido = pPallet;
+        refLabel.Text = palletRecivido.referencia;
+        cantLabel.Text = palletRecivido.nPiezas;
     }
-    private void getReferencia(object receiver,  string message)
-    {
-        if(message != null) {
-           referenciaPallet = message;
-           refLabel.Text = referenciaPallet;
-           cantLabel.Text = "255";
-        }
-    }
+    
     private async void Go_Back(object sender, EventArgs e)
     {
         // Acciones a realizar al pulsar este boton
@@ -51,8 +45,8 @@ public partial class OkPage : ContentPage
                     // TODO: Aquí habrá un método que insertará los datos en la base de datos
                     //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
 
-                    string total = (int.Parse(numeroCajas) * 3).ToString();
-                    await App.PalletRepo.AddNewPalletPro("1","121", numeroCajas, total);
+                    string total = (int.Parse(numeroCajas) * int.Parse(palletRecivido.nPiezas)).ToString();
+                    await App.PalletRepo.AddNewPalletPro(palletRecivido.referencia,palletRecivido.baan, numeroCajas, total);
 
 
                     //De momento llevamos a la clase ProduccionPage

@@ -3,25 +3,27 @@ using MyApplicacion.Database;
 using SQLite;
 using System.Security.Cryptography;
 using System.Text;
-
+using Newtonsoft.Json;
 
 
 namespace MyApplicacion
 {
+    //https://www.youtube.com/watch?v=rRswCYwR2QU&list=PLgqdACsQ8US38h5My8dSNBbnZ_flAgIDs&index=1 Este es el videotutorial que me tengo que ver... 
     public class PalletRepository(string path)
     {
         string _dbPath = path;
         private static int totalPallets = 1; // variable estatica para almacenar la cantidad total de pallets
         public string StatusMessage { get; set; }
         private SQLiteAsyncConnection conn;
+
+
+
         private async Task Init()
         {
             if (conn is not null)
                 return;
             conn = new(_dbPath);
             await conn.CreateTableAsync<MyApplicacion.Database.Pallet>();
-            
-
         }
         public void IncrementarTotalPallets()
         {
@@ -32,87 +34,107 @@ namespace MyApplicacion
             return totalPallets;
         }
 
+
         public async Task AddNewPallet(string pReferencia, string pUbicacion, String pCant)
         {
             //Numero de pallets en la case de datos
-              
-                Console.WriteLine(totalPallets);
-                try
+
+            Console.WriteLine(totalPallets);
+
+            try
+            {
+                await Init();
+                DateTime dateTime = DateTime.Now;
+                bool sal = false;
+                while (!sal)
                 {
-                    DateTime dateTime = DateTime.Now;
-                    bool sal = false;
-                    while(!sal)
+                    var pallete = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.Id == totalPallets);
+                    if (pallete != null)
                     {
-                        var pallete = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.Id == totalPallets);
-                        if (pallete!=null) 
-                        {
-                            IncrementarTotalPallets();
-                        }
-                        else
-                        {
-                            sal = true;
-                        }
+                        IncrementarTotalPallets();
                     }
-
-                    if (string.IsNullOrEmpty(pReferencia))
-                        throw new Exception("Valid reference required");
-                    if (string.IsNullOrEmpty(pUbicacion))
-                        throw new Exception("Valid reference required");
-
-                    MyApplicacion.Database.Pallet pallet = new() {Id=totalPallets, fecha_hora = dateTime, referencia = pReferencia, ubicacion = pUbicacion, produccion = true, nPiezas= pCant };
-                    await conn.InsertAsync(pallet);
-
-                    StatusMessage = string.Format("{0} record(S) added (Name: {1})", pReferencia, pUbicacion);
-                    Console.WriteLine(pallet.Id);
-                    IncrementarTotalPallets();
+                    else
+                    {
+                        sal = true;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    IncrementarTotalPallets();
-                    
-                }
-            
+
+                if (string.IsNullOrEmpty(pReferencia))
+                    throw new Exception("Valid reference required");
+                if (string.IsNullOrEmpty(pUbicacion))
+                    throw new Exception("Valid reference required");
+
+                MyApplicacion.Database.Pallet pallet = new() { Id = totalPallets, fecha_hora = dateTime, referencia = pReferencia, ubicacion = pUbicacion, produccion = true, nPiezas = pCant };
+                await conn.InsertAsync(pallet);
+
+                StatusMessage = string.Format("{0} record(S) added (Name: {1})", pReferencia, pUbicacion);
+                Console.WriteLine(pallet.Id);
+                IncrementarTotalPallets();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
+
+
+
         }
-        public async Task AddNewPalletPro(string pReferencia,string pBaan, string pCajas, String pCant)
+        public async Task AddNewPalletPro(string pReferencia, string pBaan, string pCajas, String pCant)
         {
             //Numero de pallets en la case de datos
-            
-                Console.WriteLine(totalPallets);
+
+            Console.WriteLine(totalPallets);
 
 
-                try
-                {
-                    await Init();
-                    bool sal = false;
-                    while (!sal)
-                    {
-                        var pallete = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.Id == totalPallets);
-                        if (pallete != null)
-                        {
-                            IncrementarTotalPallets();
-                        }
-                        else
-                        {
-                            sal = true;
-                        }
-                    }
+            try
+            {
+                await Init();
+                //    bool sal = false;
+                //    while (!sal)
+                //    {
+                //        var pallete = await conn.Table<Pallet>().FirstOrDefaultAsync(p => p.Id == totalPallets);
+                //        if (pallete != null)
+                //        {
+                //            IncrementarTotalPallets();
+                //        }
+                //        else
+                //        {
+                //            sal = true;
+                //        }
+                //    }
+
+                //DateTime dateTime = DateTime.Now;
+                //    if (string.IsNullOrEmpty(pReferencia))
+                //        throw new Exception("Valid reference required");
+                //    if (string.IsNullOrEmpty(pCajas))
+                //        throw new Exception("Valid reference required");
+                var nextPalletId = await GetNextPalletId();
 
                 DateTime dateTime = DateTime.Now;
-                    if (string.IsNullOrEmpty(pReferencia))
-                        throw new Exception("Valid reference required");
-                    if (string.IsNullOrEmpty(pCajas))
-                        throw new Exception("Valid reference required");
-
-                    MyApplicacion.Database.Pallet pallet = new() {Id=totalPallets ,fecha_hora = dateTime, referencia = pReferencia, baan=pBaan, nPiezas = pCant, nCajas = pCajas, produccion = true  };
-                    await conn.InsertAsync(pallet);
-
-                    StatusMessage = string.Format("{0} record(S) added (Name: {1})", pReferencia, pCajas);
-                    IncrementarTotalPallets();
-                }
-                catch (Exception ex)
+                if (string.IsNullOrEmpty(pReferencia) || string.IsNullOrEmpty(pCajas))
                 {
-
+                    throw new Exception("Valid reference and boxes required");
                 }
+
+                MyApplicacion.Database.Pallet pallet = new Pallet { Id = totalPallets, fecha_hora = dateTime, referencia = pReferencia, baan = pBaan, nPiezas = pCant, nCajas = pCajas, produccion = true };
+                await conn.InsertAsync(pallet);
+
+                StatusMessage = string.Format("{0} record(S) added (Name: {1})", pReferencia, pCajas);
+                IncrementarTotalPallets();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("no se añadio");
+            }
+        }
+        private async Task<int> GetNextPalletId()
+        {
+            // Realizar una consulta asincrónica para obtener el último ID de pallet
+            var lastPallet = await conn.Table<MyApplicacion.Database.Pallet>().OrderByDescending(p => p.Id).FirstOrDefaultAsync();
+
+            // Incrementar el ID del pallet en 1
+            return (lastPallet != null) ? lastPallet.Id + 1 : 1; // Si no hay pallets existentes, comenzar desde 1
         }
 
         public async Task tickAlmacen(int pId)
@@ -180,7 +202,7 @@ namespace MyApplicacion
             }
         }
 
-        
+
         public async Task AddUbicacion(int pId, string pUbicacion)
         {
             // Realizar una consulta para verificar si existe algún pallet con la referencia dada
@@ -189,7 +211,7 @@ namespace MyApplicacion
             if (palletExistente != null)
             {
                 // Si se encuentra un pallet con la referencia dada, mostrar un mensaje indicando que existe
-                
+
 
                 palletExistente.ubicacion = pUbicacion;
                 await conn.UpdateAsync(palletExistente);
@@ -250,12 +272,12 @@ namespace MyApplicacion
                 Console.WriteLine(pId);
                 var palletAEliminar = await conn.FindAsync<Pallet>(p => p.Id == pId);
 
-                if (palletAEliminar!=null)
+                if (palletAEliminar != null)
                 {
                     // Si se encontró un pallet con el ID dado, eliminarlo
                     await conn.DeleteAsync(palletAEliminar);
                     StatusMessage = $"Pallet eliminado correctamente";
-                    
+
                 }
                 else
                 {
@@ -430,29 +452,29 @@ namespace MyApplicacion
             {
 
             }
-            
+
         }
         public async Task<List<MyApplicacion.Database.Pallet>> MostrarProducciones(string pReferencia)
         {
             try
             {
-               
-                    // Si la referencia existe, inicializar la conexión con la base de datos
-                    await Init();
 
-                    // Realizar una consulta para obtener todos los pallets con la referencia dada
-                    var pallets = await conn.Table<Pallet>()
-                         .Where(p => p.referencia == pReferencia && !p.almacen)
-                         .ToListAsync();
-                    if(pallets!=null)
-                    {
-                        return pallets;
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                    
+                // Si la referencia existe, inicializar la conexión con la base de datos
+                await Init();
+
+                // Realizar una consulta para obtener todos los pallets con la referencia dada
+                var pallets = await conn.Table<Pallet>()
+                     .Where(p => p.referencia == pReferencia && !p.almacen)
+                     .ToListAsync();
+                if (pallets != null)
+                {
+                    return pallets;
+                }
+                else
+                {
+                    return null;
+                }
+
             }
             catch (Exception ex)
             {
