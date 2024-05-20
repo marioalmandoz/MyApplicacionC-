@@ -1,7 +1,3 @@
-
-using CommunityToolkit.Mvvm.Messaging;
-using System.Text.RegularExpressions;
-
 namespace MyApplicacion.Views;
 
 public partial class CajasPedidoPage : ContentPage
@@ -11,30 +7,18 @@ public partial class CajasPedidoPage : ContentPage
 	{
 		InitializeComponent();
         id = pId;
-       // WeakReferenceMessenger.Default.Register<String>(this, getId);
-    }
-    private void getId(object recipient, string message)
-    {
-        if(message != null)
-        {
-            int noId =int.Parse(message);
-            if(noId > 0)
-            {
-                id = noId;
-            }
-        }
     }
     private async void Validar_Clicked(object sender, EventArgs e)
     {
         // Aquí puedes acceder al valor introducido en el Entry
         try
         {
-            string numeroPiezas = numeroPiezasEntry.Text;
+            int numeroPiezas = int.Parse(numeroPiezasEntry.Text);
 
             numeroPiezasEntry.Text = "";
-            Regex regex = new Regex(@"\d");
+            
 
-            if (regex.IsMatch(numeroPiezas))
+            if (numeroPiezas>0)
             {
                 // Aquí puedes realizar la validación y cualquier otra lógica necesaria
                 // Mostrar una alerta para confirmar si el usuario está seguro
@@ -44,10 +28,10 @@ public partial class CajasPedidoPage : ContentPage
                 if (respuesta)
                 {
                     
-
-
-                    await App.PalletRepo.RetirarPiezas(numeroPiezas,id);
-                    Console.WriteLine(App.PalletRepo.StatusMessage);
+                    App.dataAccess.RetirarPiezas(numeroPiezas,id);
+                    //---------------------------------------------
+                  //  await App.PalletRepo.RetirarPiezas(numeroPiezas,id);
+                    //Console.WriteLine(App.PalletRepo.StatusMessage);
 
                     //De momento llevamos a la clase ProduccionPage
 
@@ -64,7 +48,7 @@ public partial class CajasPedidoPage : ContentPage
     private async void Go_Back(object sender, EventArgs e)
     {
         // Acciones a realizar al pulsar este boton
-        string referencia = await App.PalletRepo.getReferencia(id);
+        string referencia =  App.dataAccess.getReferencia(id);
         if (referencia != null)
         {
             await Shell.Current.Navigation.PushAsync(new ReferenciasPedidoPage(referencia));

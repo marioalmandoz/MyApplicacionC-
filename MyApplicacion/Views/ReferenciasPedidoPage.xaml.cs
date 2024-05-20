@@ -22,8 +22,11 @@ public partial class ReferenciasPedidoPage : ContentPage
 
     private async void mostrarPallets()
     {
-        List<Pallet> pallet = await App.PalletRepo.MostrarAlmacenados(referencia);
+        List<Pallet> pallet = App.dataAccess.MostrarAlmacen(referencia);
         palletList.ItemsSource = pallet;
+        //---------------------------------------------------------------
+        //List<Pallet> pallet = await App.PalletRepo.MostrarAlmacenados(referencia);
+        //palletList.ItemsSource = pallet;
     }
     private void OnDataReceived(object recipient, string message)
     {
@@ -31,7 +34,7 @@ public partial class ReferenciasPedidoPage : ContentPage
         {
             Console.WriteLine(message);
             scaneo = message;
-            string pattern = @"([a-zA-Z]\d)";
+            string pattern = @"([a-zA-Z]\d{1,2})";
             Match match = Regex.Match(scaneo, pattern);
             if (match.Success)
             {
@@ -67,27 +70,21 @@ public partial class ReferenciasPedidoPage : ContentPage
         // Verificar la respuesta del usuario
         if (respuesta)
         {
-            // TODO: Aquí habrá un método que insertará los datos en la base de datos
-            //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
-
             if (referencia != null)
             {
-                await App.PalletRepo.EliminarPalletPorId(item.Id);
-                string statusMessage = App.PalletRepo.StatusMessage;
-                Console.WriteLine(statusMessage);
+                App.dataAccess.EliminarPallet(item.Id);
+                //-----------------------------------
+                //await App.PalletRepo.EliminarPalletPorId(item.Id);
+                //string statusMessage = App.PalletRepo.StatusMessage;
+                //Console.WriteLine(statusMessage);
             }
-
-            //De momento llevamos a la clase ProduccionPage
-
             await Shell.Current.GoToAsync("///Views.PedidoPage");
 
         }
         else
         {
-            //WeakReferenceMessenger.Default.Send(item.Id.ToString());
             await Shell.Current.Navigation.PushAsync(new CajasPedidoPage(item.Id));
             //await Shell.Current.GoToAsync("///Views.CajasPedidoPage");
-
         }
     }
 }

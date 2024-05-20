@@ -11,9 +11,11 @@ public partial class DatabaseShow : ContentPage
 
     public async void MostrarPallets()
     {
-        List<Pallet> pallet = await App.PalletRepo.GetAll();
-        
+        List<Pallet> pallet = App.dataAccess.MostrarDatos();
         palletList.ItemsSource = pallet;
+        //-------------------------------------------
+        //List<Pallet> pallet = await App.PalletRepo.GetAll();
+        //palletList.ItemsSource = pallet;
     }
     private async void Go_Back(object sender, EventArgs e)
     {

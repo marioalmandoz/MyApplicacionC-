@@ -40,21 +40,25 @@ public partial class UbicacionPage : ContentPage
             {
                 Console.WriteLine("No se encontraron coincidencias Referencia.");
             }
-            string pattern2 = @"^.+([a-zA-Z]\d)$";
+            string pattern2 = @"^.+([a-zA-Z]\d{1,2})$";
             Match match1 = Regex.Match(scaneo, pattern2);
             if (match1.Success)
             {
                 ubicacion = match1.Groups[1].Value;
                 Console.WriteLine("Ubicacion: " + ubicacion);
                 DataDownload.Text = "Ubicacion: " + ubicacion;
+                
               
             }
         }
     }
     private async void mostrarPallets()
     {
-        List<Pallet> pallet = await App.PalletRepo.MostrarAlmacenados(referencia);
+        List<Pallet> pallet = App.dataAccess.MostrarAlmacen(referencia);
         palletList.ItemsSource = pallet;
+        //--------------------------------------------------
+        //List<Pallet> pallet = await App.PalletRepo.MostrarAlmacenados(referencia);
+        //palletList.ItemsSource = pallet;
     }
     private async void Go_Back(object sender, EventArgs e)
     {
@@ -86,28 +90,21 @@ public partial class UbicacionPage : ContentPage
                 }
                 else
                 {
-                    await App.PalletRepo.AddUbicacion(item.Id, ubicacion);
-                    string statusMessage = App.PalletRepo.StatusMessage;
-                    Console.WriteLine(statusMessage);
+                    App.dataAccess.ModificarUbicacion(item.Id, ubicacion);
+                    //---------------------------------------------
+                    //await App.PalletRepo.AddUbicacion(item.Id, ubicacion);
+                    //string statusMessage = App.PalletRepo.StatusMessage;
+                    //Console.WriteLine(statusMessage);
+                    await Shell.Current.GoToAsync("///Views.AlmacenPage");
                 }
-                
-
-               
             }
-
-            
-
-            await Shell.Current.GoToAsync("///Views.AlmacenPage");
-
         }
         
     }
-
-    //TODO: Aqui Tiene que haber un boton en el que se tenga que poner una ubicacion por lo que se accedera a la Base de datos
-
     private async void descargarDatos(object sender, EventArgs e)
     {
-        Peticionesprueba.DownloadAndPrintJson<Pallet>();
+        //Peticiones.DownloadAndPrintJson<Pallet>();
+        Console.WriteLine(Peticiones.ComprobarDatos("75852", 108));
     }
     
 

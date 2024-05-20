@@ -13,7 +13,7 @@ public partial class OkPage : ContentPage
         InitializeComponent();
         palletRecivido = pPallet;
         refLabel.Text = palletRecivido.referencia;
-        cantLabel.Text = palletRecivido.nPiezas;
+        cantLabel.Text = palletRecivido.nPiezas.ToString();
     }
     
     private async void Go_Back(object sender, EventArgs e)
@@ -45,8 +45,9 @@ public partial class OkPage : ContentPage
                     // TODO: Aquí habrá un método que insertará los datos en la base de datos
                     //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
 
-                    string total = (int.Parse(numeroCajas) * int.Parse(palletRecivido.nPiezas)).ToString();
-                    await App.PalletRepo.AddNewPalletPro(palletRecivido.referencia,palletRecivido.baan, numeroCajas, total);
+                    string total = (int.Parse(numeroCajas) * palletRecivido.nPiezas).ToString();
+                    App.dataAccess.AnadirPallet(palletRecivido.referencia, palletRecivido.baan,numeroCajas, total);
+                    //await App.PalletRepo.AddNewPalletPro(palletRecivido.referencia,palletRecivido.baan, numeroCajas, total);
 
 
                     //De momento llevamos a la clase ProduccionPage

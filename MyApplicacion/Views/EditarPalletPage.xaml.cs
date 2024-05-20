@@ -11,7 +11,7 @@ public partial class EditarPalletPage : ContentPage
 		item = pItem;
         refEntry.Text = item.referencia;
         baanEntry.Text = item.baan;
-        piezasEntry.Text = item.nPiezas;
+        piezasEntry.Text = item.nPiezas.ToString();
         cajasEntry.Text = item.nCajas;
         ubicaEntry.Text = item.ubicacion;
         producEntry.IsChecked = item.produccion;
@@ -30,7 +30,7 @@ public partial class EditarPalletPage : ContentPage
     {
         item.referencia = refEntry.Text;
         item.baan = baanEntry.Text;
-        item.nPiezas = piezasEntry.Text;
+        item.nPiezas = int.Parse(piezasEntry.Text);
         item.nCajas = cajasEntry.Text;
         item.ubicacion = ubicaEntry.Text;
         item.produccion = producEntry.IsChecked;
@@ -39,6 +39,6 @@ public partial class EditarPalletPage : ContentPage
         item.incidencia = inciEntry.Text;
         Console.WriteLine(item.referencia, item.baan, item.nCajas);
 
-        await App.PalletRepo.EditarPallet(item);
+        App.dataAccess.EditarPallet(item);
     }
 }

@@ -31,8 +31,8 @@ public partial class AlmacenPage : ContentPage
     }
     private async void Go_Pedido(object sender, EventArgs e)
     {
-        //await Shell.Current.GoToAsync("///Views.PedidoPage");
-        await Shell.Current.Navigation.PushAsync(new ReferenciasPedidoPage("1"));
+        await Shell.Current.GoToAsync("///Views.PedidoPage");
+        //await Shell.Current.Navigation.PushAsync(new ReferenciasPedidoPage("1"));
     }
     private async void Db_click(object sender, EventArgs e)
     {

@@ -8,7 +8,7 @@ namespace MyApplicacion.Views;
 
 public partial class ProduccionPage : ContentPage
 {
-    string cantidad;
+    int cantidad;
     string baan;
     string referencia;
     string scaneo;
@@ -29,7 +29,7 @@ public partial class ProduccionPage : ContentPage
             Match match = Regex.Match(scaneo, pattern);
             if (match.Success)
             {
-                cantidad = match.Groups[1].Value;
+                cantidad = int.Parse(match.Groups[1].Value);
                 baan = match.Groups[2].Value;
                 referencia = match.Groups[3].Value;
 
@@ -49,16 +49,22 @@ public partial class ProduccionPage : ContentPage
         pallet.baan = baan;
         pallet.referencia = referencia;
         pallet.nPiezas = cantidad;
-        await Shell.Current.Navigation.PushAsync(new OkPage(pallet));
+        bool existe = Peticiones.ComprobarDatos(referencia, cantidad);
+        if(existe)
+        {
+            await Shell.Current.Navigation.PushAsync(new OkPage(pallet));
+        }
+        else
+        {
+            await DisplayAlert("Error", "La referencia o la cantidad no coinciden con los previsto", "OK");
+        }
+        
     }
 
     private async void Go_Back(object sender, EventArgs e)
     {
-        // Acciones que quieres realizar cuando se hace clic en el botón 1
-        // Por ejemplo, mostrar un mensaje en la consola
         await Shell.Current.GoToAsync("///MainPage");
         System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón Back");
-
     }
 
     private async void VerificarExistencia(object sender, EventArgs e)
@@ -77,15 +83,4 @@ public partial class ProduccionPage : ContentPage
         }
 
     }
-
-    // Este método es solo un ejemplo de cómo podrías usar HandleScannerData
-    private void ScanBtnClicked(object sender, EventArgs e)
-    {
-        // Supongamos que has recibido algún tipo de datos del escáner y quieres procesarlos
-        WeakReferenceMessenger.Default.Send("78654");
-
-    }
-
-
-
 }

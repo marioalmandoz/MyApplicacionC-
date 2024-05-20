@@ -25,6 +25,21 @@
             FontSize="Large"
             HorizontalOptions="Center"
             Text="¡SELECCIONA EL PALLET A UBICAR!" />
+        <Button
+            x:Name="descargar"
+            Clicked="descargarDatos"
+            HorizontalOptions="Center"
+            Text="Descargar Datos"
+            VerticalOptions="End" />
+        <Label
+            x:Name="DataDownload"
+            Margin="20"
+            BackgroundColor="LightGray"
+            FontSize="18"
+            HorizontalOptions="FillAndExpand"
+            Text=""
+            TextColor="Black"
+            VerticalOptions="FillAndExpand" />
         <Grid Margin="10" VerticalOptions="StartAndExpand">
             <!--  Encabezados de la tabla  -->
             <Grid.RowDefinitions>
@@ -62,7 +77,7 @@
                 Padding="5"
                 BackgroundColor="#A0A0A0"
                 BorderColor="#A0A0A0">
-                <Label FontAttributes="Bold" Text="       Cant" />
+                <Label FontAttributes="Bold" Text="       ubi" />
             </Frame>
 
             <!--  Datos de la tabla  -->
@@ -115,20 +130,5 @@
             </CollectionView>
 
         </Grid>
-        <Button
-            x:Name="descargar"
-            Clicked="descargarDatos"
-            HorizontalOptions="Center"
-            Text="Descargar Datos"
-            VerticalOptions="End" />
-        <Label
-            x:Name="DataDownload"
-            Margin="20"
-            BackgroundColor="LightGray"
-            FontSize="18"
-            HorizontalOptions="FillAndExpand"
-            Text=""
-            TextColor="Black"
-            VerticalOptions="FillAndExpand" />
     </VerticalStackLayout>
 </ContentPage>

@@ -41,7 +41,8 @@ public partial class IncidenciasPage : ContentPage
     private async void BtnValidar_Clicked(object sender, EventArgs e)
     {
         Console.WriteLine(id);
-        await App.PalletRepo.addIncidencia(id,ddlIncidencias.SelectedItem.ToString());
+        App.dataAccess.addIncidencias(id, ddlIncidencias.SelectedItem.ToString());
+       // await App.PalletRepo.addIncidencia(id,ddlIncidencias.SelectedItem.ToString());
         
         //Aqui se Volvera a la pagina de recepcionarPallet
         await Shell.Current.GoToAsync("///Views.AlmacenPage");

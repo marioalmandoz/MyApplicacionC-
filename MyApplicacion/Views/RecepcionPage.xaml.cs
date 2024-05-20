@@ -13,16 +13,21 @@ public partial class RecepcionPage : ContentPage
     public RecepcionPage()
     {
         InitializeComponent();
+        palletList.ItemsSource = "";
         WeakReferenceMessenger.Default.Register<String>(this, OnDataReceived);
-        
-        
+       
     }
 
 
     private async void mostrarPallets()
     {
-        List<Pallet> pallet = await App.PalletRepo.MostrarProducciones(referencia);
-        palletList.ItemsSource = pallet;
+        //List<Pallet> lista = App.dataAccess.MostrarDatos();
+        List<Pallet> lista = App.dataAccess.MostrarProducido(referencia);
+        palletList.ItemsSource = lista;
+        Console.WriteLine("Mostrando");
+        //----------------------------------------------
+        // List<Pallet> pallet = await App.PalletRepo.MostrarProducciones(referencia);
+        //palletList.ItemsSource = pallet;
     }
     private void OnDataReceived(object recipient, string message)
     {
@@ -62,10 +67,12 @@ public partial class RecepcionPage : ContentPage
         bool respuesta = await DisplayAlert("Alerta", $"¿VALIDAR EL PALLET DE FECHA: {item.fecha_hora}? ", "VALIDAR", "INCIDENCIA");
         if (respuesta)
         {
-            await App.PalletRepo.tickAlmacen(item.Id);
-            string statusMessage = App.PalletRepo.StatusMessage;
-            Console.WriteLine(statusMessage);
-
+            App.dataAccess.tickAlmacen(item.Id);
+            //-------------------------------------------------
+            //await App.PalletRepo.tickAlmacen(item.Id);
+            //string statusMessage = App.PalletRepo.StatusMessage;
+            //Console.WriteLine(statusMessage);
+            mostrarPallets();
             await Shell.Current.GoToAsync("///Views.AlmacenPage");
         }
         else

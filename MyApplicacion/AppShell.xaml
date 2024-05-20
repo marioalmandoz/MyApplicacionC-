@@ -64,9 +64,6 @@
         Title="Peticiones"
         ContentTemplate="{DataTemplate local:Database.Peticiones}"
         Route="Database.Peticiones" />
-
-
-
 </Shell>
 
 

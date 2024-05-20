@@ -32,14 +32,6 @@
                 HorizontalOptions="Center"
                 Text="Ok!"
                 TextColor="Black" />
-            <Button
-                x:Name="BtnScan"
-                Margin="20,50,20,20"
-                Clicked="ScanBtnClicked"
-                FontSize="20"
-                HorizontalOptions="FillAndExpand"
-                Text="SCAN" />
-
             <Label
                 x:Name="ScanResultLabel"
                 Margin="20"

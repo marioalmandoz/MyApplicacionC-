@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:supportsRtl="true" android:label="ProduccionAlmacen" android:hardwareAccelerated="true">
+	<application android:allowBackup="true" android:icon="@mipmap/appicon" android:supportsRtl="true" android:label="ProduccionAlmacen">
 		<receiver android:name=".Platforms.Android.DWIntentReceiver">
 			<intent-filter>
 				<action android:name="com.ndzl.DW" />
@@ -11,7 +11,5 @@
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-	<!-- Definición del receptor de transmisión -->
-	
 	<uses-sdk />
 </manifest>
