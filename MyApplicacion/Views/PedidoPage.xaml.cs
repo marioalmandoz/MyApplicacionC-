@@ -8,6 +8,7 @@ public partial class PedidoPage : ContentPage
     public PedidoPage()
     {
         InitializeComponent();
+       
     }
 
     private async void Go_Back(object sender, EventArgs e)
@@ -24,6 +25,7 @@ public partial class PedidoPage : ContentPage
         // Verificar la respuesta del usuario
         if (App.dataAccess.ComprobarReferencia(referencia))
         {
+            App.CurrentPage = "ReferenciasPedidoPage";
             await Shell.Current.Navigation.PushAsync(new ReferenciasPedidoPage(referencia));
            // await Shell.Current.GoToAsync("///Views.ReferenciasPedidoPage");
 

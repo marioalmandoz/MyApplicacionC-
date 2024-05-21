@@ -4,131 +4,139 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="UBICACIONES-PALLET">
-    <VerticalStackLayout>
-        <HorizontalStackLayout>
-            <ImageButton
-                BackgroundColor="Transparent"
-                Clicked="Go_Back"
-                HeightRequest="30"
-                HorizontalOptions="Start"
-                Source="flecha_atras.png"
-                WidthRequest="30" />
-            <Image
-                Margin="70,0,0,0"
-                BackgroundColor="Transparent"
-                HeightRequest="50"
-                Source="logo_bruss_blanco" />
-        </HorizontalStackLayout>
-        <Label
-            x:Name="Texto"
-            Margin="0,10,0,10"
-            FontSize="Large"
-            HorizontalOptions="Center"
-            Text="¡SELECCIONA EL PALLET A UBICAR!" />
-        <Button
-            x:Name="descargar"
-            Clicked="descargarDatos"
-            HorizontalOptions="Center"
-            Text="Descargar Datos"
-            VerticalOptions="End" />
-        <Label
-            x:Name="DataDownload"
-            Margin="20"
-            BackgroundColor="LightGray"
-            FontSize="18"
-            HorizontalOptions="FillAndExpand"
-            Text=""
-            TextColor="Black"
-            VerticalOptions="FillAndExpand" />
-        <Grid Margin="10" VerticalOptions="StartAndExpand">
-            <!--  Encabezados de la tabla  -->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Frame
-                Grid.Row="0"
-                Grid.Column="0"
-                Margin="4,0,0,0"
-                Padding="5"
-                BackgroundColor="#A0A0A0"
-                BorderColor="#A0A0A0">
-                <Label FontAttributes="Bold" Text="          Fecha           " />
-            </Frame>
-            <Frame
-                Grid.Row="0"
-                Grid.Column="1"
-                Margin="-10,0"
-                Padding="5"
-                BackgroundColor="#A0A0A0"
-                BorderColor="#A0A0A0"
-                CornerRadius="0">
-                <Label FontAttributes="Bold" Text="        Ref" />
-            </Frame>
-            <Frame
-                Grid.Row="0"
-                Grid.Column="2"
-                Margin="0,0,6,0"
-                Padding="5"
-                BackgroundColor="#A0A0A0"
-                BorderColor="#A0A0A0">
-                <Label FontAttributes="Bold" Text="       ubi" />
-            </Frame>
+    <ScrollView>
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Clicked="Go_Back"
+                    HeightRequest="30"
+                    HorizontalOptions="Start"
+                    Source="flecha_atras.png"
+                    WidthRequest="30" />
+                <Image
+                    Margin="70,0,0,0"
+                    BackgroundColor="Transparent"
+                    HeightRequest="50"
+                    Source="logo_bruss_blanco" />
+            </HorizontalStackLayout>
+            <Label
+                Margin="10"
+                BackgroundColor="White"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="!ESCANEA EL QR¡"
+                TextColor="Black"
+                VerticalOptions="Start" />
+            <Label
+                x:Name="ScanResultLabel"
+                Margin="10"
+                BackgroundColor="White"
+                FontSize="18"
+                HorizontalOptions="FillAndExpand"
+                Text=""
+                TextColor="Black"
+                VerticalOptions="Start" />
+            <Label
+                Margin="10"
+                BackgroundColor="White"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="PULSA LA ELECCION"
+                TextColor="Black"
+                VerticalOptions="Start" />
+            <Grid Margin="10" VerticalOptions="StartAndExpand">
+                <!--  Encabezados de la tabla  -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Frame
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="4,0,0,0"
+                    Padding="5"
+                    BackgroundColor="#A0A0A0"
+                    BorderColor="#A0A0A0">
+                    <Label FontAttributes="Bold" Text="          Fecha           " />
+                </Frame>
+                <Frame
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="-10,0"
+                    Padding="5"
+                    BackgroundColor="#A0A0A0"
+                    BorderColor="#A0A0A0"
+                    CornerRadius="0">
+                    <Label FontAttributes="Bold" Text="        Ref" />
+                </Frame>
+                <Frame
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Margin="0,0,6,0"
+                    Padding="5"
+                    BackgroundColor="#A0A0A0"
+                    BorderColor="#A0A0A0">
+                    <Label FontAttributes="Bold" Text="       ubi" />
+                </Frame>
 
-            <!--  Datos de la tabla  -->
-            <CollectionView
-                x:Name="palletList"
-                Grid.Row="1"
-                Grid.ColumnSpan="3"
-                Margin="2">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="3" BackgroundColor="white">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                <!--  Datos de la tabla  -->
+                <CollectionView
+                    x:Name="palletList"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    Margin="2">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="3" BackgroundColor="white">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                            <Button
-                                Grid.Column="0"
-                                BackgroundColor="LightGray"
-                                BorderColor="Black"
-                                Clicked="ItemButton_Clicked"
-                                CornerRadius="15"
-                                FontAttributes="Bold"
-                                Text="{Binding fecha_hora}"
-                                TextColor="Black" />
-                            <Button
-                                Grid.Column="1"
-                                Margin="-10,0"
-                                BackgroundColor="LightGray"
-                                BorderColor="Black"
-                                Clicked="ItemButton_Clicked"
-                                CornerRadius="0"
-                                FontAttributes="Bold"
-                                Text="{Binding referencia}"
-                                TextColor="Black" />
-                            <Button
-                                Grid.Column="2"
-                                BackgroundColor="LightGray"
-                                BorderColor="Black"
-                                Clicked="ItemButton_Clicked"
-                                CornerRadius="15"
-                                FontAttributes="Bold"
-                                Text="{Binding nPiezas}"
-                                TextColor="Black" />
+                                <Button
+                                    Grid.Column="0"
+                                    BackgroundColor="LightGray"
+                                    BorderColor="Black"
+                                    Clicked="ItemButton_Clicked"
+                                    CornerRadius="15"
+                                    FontAttributes="Bold"
+                                    Text="{Binding fecha_hora}"
+                                    TextColor="Black" />
+                                <Button
+                                    Grid.Column="1"
+                                    Margin="-10,0"
+                                    BackgroundColor="LightGray"
+                                    BorderColor="Black"
+                                    Clicked="ItemButton_Clicked"
+                                    CornerRadius="0"
+                                    FontAttributes="Bold"
+                                    Text="{Binding referencia}"
+                                    TextColor="Black" />
+                                <Button
+                                    Grid.Column="2"
+                                    BackgroundColor="LightGray"
+                                    BorderColor="Black"
+                                    Clicked="ItemButton_Clicked"
+                                    CornerRadius="15"
+                                    FontAttributes="Bold"
+                                    Text="{Binding ubicacion}"
+                                    TextColor="Black" />
 
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-        </Grid>
-    </VerticalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

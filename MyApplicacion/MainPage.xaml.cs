@@ -18,8 +18,9 @@ namespace MyApplicacion
             // Acciones que quieres realizar cuando se hace clic en el botón 1
             // Por ejemplo, mostrar un mensaje en la consola
             System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón 1.2");
+            App.CurrentPage = "ProduccionPage";
             await Shell.Current.GoToAsync("///Views.ProduccionPage");
-            System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón 1.3");
+            
 
         }
 

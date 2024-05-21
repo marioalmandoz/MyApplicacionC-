@@ -20,15 +20,32 @@
                 Source="logo_bruss_blanco" />
         </HorizontalStackLayout>
         <Label
+            Margin="10"
+            BackgroundColor="White"
+            FontAttributes="Bold"
+            FontSize="30"
+            HorizontalOptions="Center"
+            Text="!ESCANEA EL QR¡"
+            TextColor="Black"
+            VerticalOptions="Start" />
+        <Label
             x:Name="ScanResultLabel"
-            Margin="20"
-            BackgroundColor="LightGray"
+            Margin="10"
+            BackgroundColor="White"
             FontSize="18"
             HorizontalOptions="FillAndExpand"
             Text=""
             TextColor="Black"
             VerticalOptions="Start" />
-
+        <Label
+            Margin="10"
+            BackgroundColor="White"
+            FontAttributes="Bold"
+            FontSize="30"
+            HorizontalOptions="Center"
+            Text="PULSA LA ELECCION"
+            TextColor="Black"
+            VerticalOptions="Start" />
         <Grid Margin="10" VerticalOptions="StartAndExpand">
             <!--  Encabezados de la tabla  -->
             <Grid.RowDefinitions>

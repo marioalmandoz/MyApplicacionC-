@@ -9,6 +9,11 @@ public partial class EditarPalletPage : ContentPage
 	{
 		InitializeComponent();
 		item = pItem;
+        PasarDatos();
+       
+	}
+    private void PasarDatos()
+    {
         refEntry.Text = item.referencia;
         baanEntry.Text = item.baan;
         piezasEntry.Text = item.nPiezas.ToString();
@@ -18,8 +23,7 @@ public partial class EditarPalletPage : ContentPage
         almEntry.IsChecked = item.almacen;
         recEntry.IsChecked = item.rec;
         inciEntry.Text = item.incidencia;
-
-	}
+    }
 
     private async void Go_Back(object sender, EventArgs e)
     {
@@ -40,5 +44,6 @@ public partial class EditarPalletPage : ContentPage
         Console.WriteLine(item.referencia, item.baan, item.nCajas);
 
         App.dataAccess.EditarPallet(item);
+        PasarDatos();
     }
 }

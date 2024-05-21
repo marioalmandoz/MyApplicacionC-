@@ -15,7 +15,7 @@
                     Source="flecha_atras.png"
                     WidthRequest="30" />
                 <Image
-                    Margin="100,0,0,0"
+                    Margin="70,0,0,0"
                     BackgroundColor="Transparent"
                     HeightRequest="50"
                     Source="logo_bruss_blanco" />
@@ -30,7 +30,7 @@
                     <HorizontalStackLayout>
                         <Label
                             x:Name="refLabel"
-                            Margin="10,0,200,0"
+                            Margin="10,0,100,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Referencia: "
@@ -38,6 +38,7 @@
 
                         <Entry
                             x:Name="refEntry"
+                            FontAttributes="Bold"
                             FontSize="20"
                             HorizontalTextAlignment="Center"
                             Keyboard="Numeric"
@@ -52,7 +53,7 @@
                     <HorizontalStackLayout>
                         <Label
                             x:Name="baanLabel"
-                            Margin="10,0,250,0"
+                            Margin="10,0,150,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Baan: "
@@ -74,13 +75,14 @@
                     <HorizontalStackLayout>
                         <Label
                             x:Name="piezasLabel"
-                            Margin="10,0,210,0"
+                            Margin="10,0,120,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Nº piezas: "
                             VerticalOptions="Center" />
                         <Entry
                             x:Name="piezasEntry"
+                            FontAttributes="Bold"
                             FontSize="20"
                             HorizontalTextAlignment="Center"
                             Keyboard="Numeric"
@@ -95,13 +97,14 @@
                     <HorizontalStackLayout>
                         <Label
                             x:Name="cajasLabel"
-                            Margin="10,0,223,0"
+                            Margin="10,0,140,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Nº cajas: "
                             VerticalOptions="Center" />
                         <Entry
                             x:Name="cajasEntry"
+                            FontAttributes="Bold"
                             FontSize="20"
                             HorizontalTextAlignment="Center"
                             Keyboard="Numeric"
@@ -116,13 +119,14 @@
                     <HorizontalStackLayout>
                         <Label
                             x:Name="ubicaLabel"
-                            Margin="10,0,205,0"
+                            Margin="10,0,120,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Ubicacion: "
                             VerticalOptions="Center" />
                         <Entry
                             x:Name="ubicaEntry"
+                            FontAttributes="Bold"
                             FontSize="20"
                             HorizontalTextAlignment="Center"
                             Keyboard="Text"
@@ -137,7 +141,7 @@
                     <HorizontalStackLayout>
                         <Label
                             x:Name="producLabel"
-                            Margin="10,0,200,0"
+                            Margin="10,0,120,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Produccion: "
@@ -153,7 +157,7 @@
                     <HorizontalStackLayout>
                         <Label
                             x:Name="almLabel"
-                            Margin="10,0,225,0"
+                            Margin="10,0,140,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Almacen: "
@@ -169,7 +173,7 @@
                     <HorizontalStackLayout>
                         <Label
                             x:Name="recLabel"
-                            Margin="10,0,278,0"
+                            Margin="10,0,192,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="rec: "
@@ -185,7 +189,7 @@
                     <HorizontalStackLayout>
                         <Label
                             x:Name="inciLabel"
-                            Margin="10,0,205,0"
+                            Margin="10,0,115,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Incidencia: "

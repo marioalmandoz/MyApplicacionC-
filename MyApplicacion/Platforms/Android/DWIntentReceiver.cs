@@ -1,15 +1,8 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Util;
 using CommunityToolkit.Mvvm.Messaging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
+using MyApplicacion;
+
 
 namespace ProduccionAlmacen.Platforms.Android
 {
@@ -29,7 +22,8 @@ namespace ProduccionAlmacen.Platforms.Android
                 String bc_data = intent.Extras.GetString("com.symbol.datawedge.data_string");
                 Console.WriteLine(bc_data);
 
-                WeakReferenceMessenger.Default.Send(bc_type + " " + bc_data);
+                string pageIdentifier = App.CurrentPage;
+                WeakReferenceMessenger.Default.Send($"{pageIdentifier}|{bc_type} {bc_data}");
             }
 
 

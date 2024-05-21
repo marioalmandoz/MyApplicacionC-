@@ -14,6 +14,7 @@ public partial class ReferenciasPedidoPage : ContentPage
     {
         InitializeComponent();
         this.referencia = referencia;
+        App.CurrentPage = "ReferenciasPedidoPage";
         mostrarPallets();
         WeakReferenceMessenger.Default.Register<String>(this, OnDataReceived);
         
@@ -28,13 +29,14 @@ public partial class ReferenciasPedidoPage : ContentPage
         //List<Pallet> pallet = await App.PalletRepo.MostrarAlmacenados(referencia);
         //palletList.ItemsSource = pallet;
     }
-    private void OnDataReceived(object recipient, string message)
+    private async void OnDataReceived(object recipient, string message)
     {
-        if (message != null)
+        var parts = message.Split('|');
+        if (parts.Length > 1 && parts[0] == "ReferenciasPedidoPage")
         {
             Console.WriteLine(message);
-            scaneo = message;
-            string pattern = @"([a-zA-Z]\d{1,2})";
+            scaneo = parts[1];
+            string pattern = @"([HJI]\d{1,2})";
             Match match = Regex.Match(scaneo, pattern);
             if (match.Success)
             {
@@ -42,6 +44,16 @@ public partial class ReferenciasPedidoPage : ContentPage
                 ubicacion = match.Groups[1].Value;
                 Console.WriteLine("Datos: " + ubicacion);
                 ScanResultLabel.Text = "Datos: " + ubicacion;
+                int existe = App.dataAccess.getPalletUbica(ubicacion, referencia);
+                if(existe > 0)
+                {
+                    realizarOperacion(existe);
+                }
+                else
+                {
+                    await DisplayAlert("Error", $"No hay pallets en la ubicacion: {ubicacion}", "Ok");
+                }
+                
             }
             else
             {
@@ -84,6 +96,30 @@ public partial class ReferenciasPedidoPage : ContentPage
         else
         {
             await Shell.Current.Navigation.PushAsync(new CajasPedidoPage(item.Id));
+            //await Shell.Current.GoToAsync("///Views.CajasPedidoPage");
+        }
+    }
+    private async void realizarOperacion(int pId)
+    {
+        bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {ubicacion}?", "Sí", "No");
+
+        // Verificar la respuesta del usuario
+        if (respuesta)
+        {
+            if (referencia != null)
+            {
+                App.dataAccess.EliminarPallet(pId);
+                //-----------------------------------
+                //await App.PalletRepo.EliminarPalletPorId(item.Id);
+                //string statusMessage = App.PalletRepo.StatusMessage;
+                //Console.WriteLine(statusMessage);
+            }
+            await Shell.Current.GoToAsync("///Views.PedidoPage");
+
+        }
+        else
+        {
+            await Shell.Current.Navigation.PushAsync(new CajasPedidoPage(pId));
             //await Shell.Current.GoToAsync("///Views.CajasPedidoPage");
         }
     }

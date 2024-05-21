@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.Messaging;
 using MyApplicacion.Database;
+using Plugin.Maui.Audio;
 using System.Text.RegularExpressions;
 
 
@@ -46,7 +47,17 @@ public partial class OkPage : ContentPage
                     //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
 
                     string total = (int.Parse(numeroCajas) * palletRecivido.nPiezas).ToString();
-                    App.dataAccess.AnadirPallet(palletRecivido.referencia, palletRecivido.baan,numeroCajas, total);
+                    int row = App.dataAccess.AnadirPallet(palletRecivido.referencia, palletRecivido.baan,numeroCajas, total);
+                    if(row > 0)
+                    {
+                        AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
+                        await DisplayAlert("Confirmación", $"Se ha añadido el pallet {palletRecivido.referencia}", "Ok");
+                    }
+                    else
+                    {
+                        AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("error_sound.wav")).Play();
+                        await DisplayAlert("Error", $"No se ha podido añadir el pallet", "Ok");
+                    }
                     //await App.PalletRepo.AddNewPalletPro(palletRecivido.referencia,palletRecivido.baan, numeroCajas, total);
 
 

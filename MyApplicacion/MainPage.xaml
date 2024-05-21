@@ -9,8 +9,7 @@
             <Image
                 Margin="10,0,0,0"
                 Aspect="AspectFit"
-                HeightRequest="150"
-                SemanticProperties.Description="dot net bot in a race car number eight"
+                HeightRequest="100"
                 Source="logo_bruss_blanco.png" />
 
             <Grid VerticalOptions="EndAndExpand">

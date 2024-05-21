@@ -13,9 +13,10 @@ public partial class RecepcionPage : ContentPage
     public RecepcionPage()
     {
         InitializeComponent();
+        LimpiarDatos();
         palletList.ItemsSource = "";
-        WeakReferenceMessenger.Default.Register<String>(this, OnDataReceived);
-       
+        App.CurrentPage = "RecepcionPage";
+        WeakReferenceMessenger.Default.Register<String>(this, OnDataReceivedRecepcion); 
     }
 
 
@@ -29,14 +30,20 @@ public partial class RecepcionPage : ContentPage
         // List<Pallet> pallet = await App.PalletRepo.MostrarProducciones(referencia);
         //palletList.ItemsSource = pallet;
     }
-    private void OnDataReceived(object recipient, string message)
+    private void OnDataReceivedRecepcion(object recipient, string message)
     {
-        if (message != null)
+        var parts = message.Split('|');
+        if (parts.Length>1 && parts[0]== "RecepcionPage")
         {
             Console.WriteLine(message);
-            scaneo = message;
+            scaneo = parts[1];
             string pattern = @"2K([0-9]{5}).+\/\s([0-9]{5})";
+            string pattern1 = @"2K([0-9]{5})\/([0-9]{5})";
             Match match = Regex.Match(scaneo, pattern);
+            if (!match.Success)
+            {
+                match = Regex.Match(scaneo, pattern1);
+            }
             if (match.Success)
             {
                 baan = match.Groups[1].Value;
@@ -72,7 +79,6 @@ public partial class RecepcionPage : ContentPage
             //await App.PalletRepo.tickAlmacen(item.Id);
             //string statusMessage = App.PalletRepo.StatusMessage;
             //Console.WriteLine(statusMessage);
-            mostrarPallets();
             await Shell.Current.GoToAsync("///Views.AlmacenPage");
         }
         else
@@ -82,5 +88,10 @@ public partial class RecepcionPage : ContentPage
             await Shell.Current.Navigation.PushAsync(new IncidenciasPage(item.Id));
             //await Shell.Current.GoToAsync("///Views.IncidenciasPage");
         }
+    }
+    private void LimpiarDatos()
+    {
+        ScanResultLabel.Text = null;
+        palletList.ItemsSource = null;
     }
 }

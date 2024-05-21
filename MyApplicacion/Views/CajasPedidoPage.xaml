@@ -15,7 +15,7 @@
                     Source="flecha_atras.png"
                     WidthRequest="30" />
                 <Image
-                    Margin="100,0,0,0"
+                    Margin="65,0,0,0"
                     BackgroundColor="Transparent"
                     HeightRequest="50"
                     Source="logo_bruss_blanco" />
@@ -28,24 +28,24 @@
                     <Label
                         Margin="5,20,0,10"
                         FontAttributes="Bold"
-                        FontSize="Large"
+                        FontSize="20"
                         HorizontalOptions="Center"
                         Text="¡INTRODUCE EL NUMERO TOTAL DE PIEZAS A RETIRAR!" />
 
                     <Entry
                         x:Name="numeroPiezasEntry"
-                        FontSize="30"
+                        FontSize="20"
                         HorizontalOptions="Center"
                         Keyboard="Numeric"
                         Placeholder="Número de piezas..." />
 
                     <Button
-                        Margin="0,40,0,10"
+                        Margin="0,30,0,10"
                         BackgroundColor="LightGray"
                         Clicked="Validar_Clicked"
                         CornerRadius="25"
                         FontAttributes="Bold"
-                        FontSize="30"
+                        FontSize="20"
                         HorizontalOptions="Center"
                         Text="Validar"
                         TextColor="Black" />

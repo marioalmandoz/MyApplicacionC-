@@ -21,7 +21,7 @@
                 Source="flecha_atras.png"
                 WidthRequest="30" />
             <Image
-                Margin="100,0,0,0"
+                Margin="70,0,0,0"
                 BackgroundColor="Transparent"
                 HeightRequest="50"
                 Source="logo_bruss_blanco" />
@@ -35,12 +35,12 @@
             <!--  Botones de validación y cancelación  -->
             <StackLayout Margin="5,90" Orientation="Horizontal">
                 <Button
-                    Margin="0,10,5,0"
+                    Margin="10,10,5,0"
                     BackgroundColor="LightGray"
                     Clicked="BtnCancelar_Clicked"
                     CornerRadius="30"
                     FontAttributes="Bold"
-                    FontSize="30"
+                    FontSize="20"
                     HorizontalOptions="Center"
                     Text="CANCELAR"
                     TextColor="Black" />
@@ -50,7 +50,7 @@
                     Clicked="BtnValidar_Clicked"
                     CornerRadius="30"
                     FontAttributes="Bold"
-                    FontSize="30"
+                    FontSize="20"
                     HorizontalOptions="Center"
                     Text="VALIDAR"
                     TextColor="Black" />

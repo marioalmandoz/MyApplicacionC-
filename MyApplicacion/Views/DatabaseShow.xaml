@@ -43,7 +43,7 @@
                     Padding="5"
                     BackgroundColor="#A0A0A0"
                     BorderColor="#A0A0A0">
-                    <Label FontAttributes="Bold" Text="            Fecha          " />
+                    <Label FontAttributes="Bold" Text="                 Fecha          " />
                 </Frame>
                 <Frame
                     Grid.Row="0"
@@ -53,7 +53,7 @@
                     BackgroundColor="#A0A0A0"
                     BorderColor="#A0A0A0"
                     CornerRadius="0">
-                    <Label FontAttributes="Bold" Text="        Ref" />
+                    <Label FontAttributes="Bold" Text="            Ref" />
                 </Frame>
                 <Frame
                     Grid.Row="0"
@@ -62,7 +62,7 @@
                     Padding="5"
                     BackgroundColor="#A0A0A0"
                     BorderColor="#A0A0A0">
-                    <Label FontAttributes="Bold" Text="       Cant" />
+                    <Label FontAttributes="Bold" Text="      Cant" />
                 </Frame>
 
                 <!--  Datos de la tabla  -->

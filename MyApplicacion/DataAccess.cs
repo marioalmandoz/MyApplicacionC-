@@ -34,7 +34,7 @@ namespace MyApplicacion
                 throw new Exception(ex.Message);
             }
         }
-        public void AnadirPallet(string pReferencia, string pBaan, string pCajas, String pPiezas) 
+        public int AnadirPallet(string pReferencia, string pBaan, string pCajas, String pPiezas) 
         {
             try
             {
@@ -46,10 +46,12 @@ namespace MyApplicacion
                 if (rowsAffected > 0)
                 {
                     Console.WriteLine("Elemento agregado correctamente a la base de datos.");
+                    return rowsAffected;
                 }
                 else
                 {
                     Console.WriteLine("No se pudo agregar el elemento a la base de datos.");
+                    return -1;
                 }
             }
             catch (Exception ex)
@@ -210,20 +212,23 @@ namespace MyApplicacion
             }
         }
 
-        public void addIncidencias(int pId, string pIncidencia)
+        public int addIncidencias(int pId, string pIncidencia)
         {
             try
             {
-                string query = "UPDATE Pallet SET incidencia = ? WHERE Id = ?";
-                int rowsAffected = _database.Execute(query, pIncidencia, pId);
+                string query = "UPDATE Pallet SET incidencia = ?, almacen = ? WHERE Id = ?";
+                bool almacen = true;
+                int rowsAffected = _database.Execute(query, pIncidencia,almacen, pId);
 
                 if (rowsAffected > 0)
                 {
                     Console.WriteLine("Incidencia agregada correctamente al palet con ID: " + pId);
+                    return rowsAffected;
                 }
                 else
                 {
                     Console.WriteLine("No se pudo agregar la incidencia al palet con ID: " + pId);
+                    return -1;
                 }
             }
             catch (Exception ex)
@@ -238,6 +243,8 @@ namespace MyApplicacion
             {
                 // Consulta SQL para actualizar el campo nPiezas
                 string query = "UPDATE Pallet SET nPiezas = nPiezas - ? WHERE Id = ?";
+                // Consulta SQL para obtener el valor actual de nPiezas después de la actualización
+                string selectQuery = "SELECT nPiezas FROM Pallet WHERE Id = ?";
 
                 // Ejecutar la consulta con los parámetros proporcionados
                 int rowsAffected = _database.Execute(query, nPiezas, pId);
@@ -246,6 +253,23 @@ namespace MyApplicacion
                 if (rowsAffected > 0)
                 {
                     Console.WriteLine($"{nPiezas} piezas retiradas correctamente del palet con ID: {pId}");
+
+                    // Obtener el valor actualizado de nPiezas
+                    int updatedNPiezas = _database.ExecuteScalar<int>(selectQuery, pId);
+
+                    // Si nPiezas es 0 o menor, eliminar el pallet
+                    if (updatedNPiezas <= 0)
+                    {
+                        int rowsDeleted = EliminarPallet(pId);
+                        if (rowsDeleted > 0)
+                        {
+                            Console.WriteLine($"El pallet con ID: {pId} ha sido eliminado porque nPiezas es {updatedNPiezas}.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"No se pudo eliminar el pallet con ID: {pId}. Verifique el ID proporcionado.");
+                        }
+                    }
                 }
                 else
                 {
@@ -305,6 +329,24 @@ namespace MyApplicacion
             catch (Exception ex)
             {
                 throw new Exception($"Error al actualizar el pallet: {ex.Message}");
+            }
+        }
+        public int getPalletUbica(string pUbicacion, string pReferencia)
+        {
+            try
+            {
+                // Consulta SQL para obtener el ID del pallet basado en la ubicación y la referencia
+                string query = "SELECT Id FROM Pallet WHERE ubicacion = ? AND referencia = ?";
+
+                // Ejecutar la consulta con los parámetros proporcionados
+                int palletId = _database.ExecuteScalar<int>(query, pUbicacion, pReferencia);
+
+                // Devolver el ID del pallet encontrado
+                return palletId;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al obtener el ID del pallet: {ex.Message}");
             }
         }
     }

@@ -11,28 +11,36 @@ public partial class UbicacionPage : ContentPage
     public UbicacionPage()
     {
         InitializeComponent();
+        LimpiarDatos();
+        App.CurrentPage = "UbicacioPage";
+        
         WeakReferenceMessenger.Default.Register<String>(this, OnDataReceived);
         
     }
 
     private void OnDataReceived(object recipient, string message)
     {
-        if (message != null)
+        var parts = message.Split('|');
+        if (parts.Length > 1 && parts[0] == "UbicacioPage")
         {
-            DataDownload.Text = "";
+            ScanResultLabel.Text = "";
             Console.WriteLine(message);
-            scaneo = message;
-            DataDownload.Text = message;
-            string pattern = @"Q(\d+).+2K([0-9]{5}).+\/\s([0-9]{5})";
-            
+            scaneo = parts[1];
+            ScanResultLabel.Text = message;
+            string pattern = @".+2K([0-9]{5}).+\/\s([0-9]{5})";
+            string pattern1 = @".+2K([0-9]{5})\/([0-9]{5})";
             Match match = Regex.Match(scaneo, pattern);
+            if (!match.Success)
+            {
+                match = Regex.Match(scaneo, pattern1);
+            }
             if (match.Success)
             {
-                
-                referencia = match.Groups[3].Value;
+
+                referencia = match.Groups[2].Value;
 
                 Console.WriteLine("Datos: " + referencia);
-                DataDownload.Text = "Datos: " + referencia;
+                ScanResultLabel.Text = "Datos: " + referencia;
                 mostrarPallets();
 
             }
@@ -40,13 +48,13 @@ public partial class UbicacionPage : ContentPage
             {
                 Console.WriteLine("No se encontraron coincidencias Referencia.");
             }
-            string pattern2 = @"^.+([a-zA-Z]\d{1,2})$";
+            string pattern2 = @".+([HJI]\d{1,2})$";
             Match match1 = Regex.Match(scaneo, pattern2);
             if (match1.Success)
             {
                 ubicacion = match1.Groups[1].Value;
                 Console.WriteLine("Ubicacion: " + ubicacion);
-                DataDownload.Text = "Ubicacion: " + ubicacion;
+                ScanResultLabel.Text = "Ubicacion: " + ubicacion;
                 
               
             }
@@ -91,6 +99,7 @@ public partial class UbicacionPage : ContentPage
                 else
                 {
                     App.dataAccess.ModificarUbicacion(item.Id, ubicacion);
+                    LimpiarDatos();
                     //---------------------------------------------
                     //await App.PalletRepo.AddUbicacion(item.Id, ubicacion);
                     //string statusMessage = App.PalletRepo.StatusMessage;
@@ -101,11 +110,9 @@ public partial class UbicacionPage : ContentPage
         }
         
     }
-    private async void descargarDatos(object sender, EventArgs e)
+    private void LimpiarDatos()
     {
-        //Peticiones.DownloadAndPrintJson<Pallet>();
-        Console.WriteLine(Peticiones.ComprobarDatos("75852", 108));
+        ScanResultLabel.Text = null;
+        palletList.ItemsSource = null;
     }
-    
-
 }

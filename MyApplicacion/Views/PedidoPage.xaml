@@ -20,29 +20,39 @@
                     HeightRequest="50"
                     Source="logo_bruss_blanco" />
             </HorizontalStackLayout>
-            <Label
-                Margin="40,20,30,20"
-                FontSize="20"
-                HorizontalOptions="Center"
-                Text="¡INTRODUCE EL NUMERO DE REFERENCIA DEL PEDIDO!" />
+            <Frame
+                Margin="10"
+                BorderColor="Black"
+                CornerRadius="10">
+                <VerticalStackLayout>
 
-            <Entry
-                x:Name="referenciaEntry"
-                FontSize="20"
-                HorizontalOptions="Center"
-                Keyboard="Numeric"
-                Placeholder="Número de referencia..." />
 
-            <Button
-                Margin="0,70,0,0"
-                BackgroundColor="LightGray"
-                Clicked="Validar_Clicked"
-                CornerRadius="20"
-                FontAttributes="Bold"
-                FontSize="20"
-                HorizontalOptions="Center"
-                Text="Validar"
-                TextColor="Black" />
+                    <Label
+                        Margin="20,10,10,10"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="¡INTRODUCE LA REFERENCIA DEL PEDIDO!" />
+
+                    <Entry
+                        x:Name="referenciaEntry"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Keyboard="Numeric"
+                        Placeholder="Número de referencia..." />
+
+                    <Button
+                        Margin="0,40,0,0"
+                        BackgroundColor="LightGray"
+                        Clicked="Validar_Clicked"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="Validar"
+                        TextColor="Black" />
+                </VerticalStackLayout>
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

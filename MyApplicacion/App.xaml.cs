@@ -4,6 +4,7 @@
     {
        // public static PalletRepository PalletRepo { get; set; }
         public static DataAccess dataAccess { get; set; }
+        public static string CurrentPage { get; set; }
         public App(DataAccess pDataAccess)
         {
             InitializeComponent();

@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.Messaging;
+using Plugin.Maui.Audio;
 
 namespace MyApplicacion.Views;
 
@@ -41,9 +42,20 @@ public partial class IncidenciasPage : ContentPage
     private async void BtnValidar_Clicked(object sender, EventArgs e)
     {
         Console.WriteLine(id);
-        App.dataAccess.addIncidencias(id, ddlIncidencias.SelectedItem.ToString());
-       // await App.PalletRepo.addIncidencia(id,ddlIncidencias.SelectedItem.ToString());
-        
+        int row = App.dataAccess.addIncidencias(id, ddlIncidencias.SelectedItem.ToString());
+        if (row > 0)
+        {
+            AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
+            await DisplayAlert("Confirmación", $"Se ha Recepcionado el pallet", "Ok");
+        }
+        else
+        {
+            AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("error_sound.wav")).Play();
+            await DisplayAlert("Error", $"No se ha podido recepcionar el pallet", "Ok");
+        }
+        // await App.PalletRepo.addIncidencia(id,ddlIncidencias.SelectedItem.ToString());
+
+
         //Aqui se Volvera a la pagina de recepcionarPallet
         await Shell.Current.GoToAsync("///Views.AlmacenPage");
     }
