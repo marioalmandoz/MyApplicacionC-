@@ -13,8 +13,9 @@
                 HorizontalOptions="Start"
                 Source="flecha_atras.png"
                 WidthRequest="30" />
+            <!--  70  -->
             <Image
-                Margin="65,0,0,0"
+                Margin="90,0,0,0"
                 BackgroundColor="Transparent"
                 HeightRequest="50"
                 Source="logo_bruss_blanco" />

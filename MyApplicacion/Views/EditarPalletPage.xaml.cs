@@ -36,14 +36,21 @@ public partial class EditarPalletPage : ContentPage
         item.baan = baanEntry.Text;
         item.nPiezas = int.Parse(piezasEntry.Text);
         item.nCajas = cajasEntry.Text;
-        item.ubicacion = ubicaEntry.Text;
+        item.ubicacion = ubicaEntry.Text.ToUpper();
         item.produccion = producEntry.IsChecked;
         item.almacen = almEntry.IsChecked;
         item.rec = recEntry.IsChecked;
         item.incidencia = inciEntry.Text;
         Console.WriteLine(item.referencia, item.baan, item.nCajas);
 
-        App.dataAccess.EditarPallet(item);
-        PasarDatos();
+        int exito = App.dataAccess.EditarPallet(item);
+        if(exito > 0) {
+            PasarDatos();
+            await DisplayAlert("Confirmación", "Se ha editado correctamente", "OK");
+        }
+        else{
+            await DisplayAlert("Error", "No se ha editado debido a un error", "OK");
+        }
+       
     }
 }

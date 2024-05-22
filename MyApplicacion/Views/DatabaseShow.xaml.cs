@@ -24,9 +24,14 @@ public partial class DatabaseShow : ContentPage
         System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón Back");
 
     }
+    private async void Reload(object sender, EventArgs e)
+    {
+        MostrarPallets();
+    }
     private async void ItemButton_Clicked(object sender, EventArgs e)
     {
         // Obtener el objeto de datos asociado a la fila seleccionada
+        
         var item = (Pallet)((Button)sender).BindingContext;
 
         // Realizar alguna acción con el objeto de datos, por ejemplo:

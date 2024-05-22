@@ -48,7 +48,7 @@ public partial class UbicacionPage : ContentPage
             {
                 Console.WriteLine("No se encontraron coincidencias Referencia.");
             }
-            string pattern2 = @".+([HJI]\d{1,2})$";
+            string pattern2 = @".+([HhJjIi]\d{1,2})$";
             Match match1 = Regex.Match(scaneo, pattern2);
             if (match1.Success)
             {
@@ -72,6 +72,7 @@ public partial class UbicacionPage : ContentPage
     {
         // Acciones que quieres realizar cuando se hace clic en el botón 1
         // Por ejemplo, mostrar un mensaje en la consola
+        LimpiarDatos();
         await Shell.Current.GoToAsync("///Views.AlmacenPage");
 
         System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón Back");

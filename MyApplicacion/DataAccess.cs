@@ -281,7 +281,7 @@ namespace MyApplicacion
                 throw new Exception($"Error al retirar piezas del palet: {ex.Message}");
             }
         }
-        public void EditarPallet(Pallet item)
+        public int EditarPallet(Pallet item)
         {
             try
             {
@@ -320,10 +320,12 @@ namespace MyApplicacion
                 if (rowsAffected > 0)
                 {
                     Console.WriteLine($"Pallet con ID: {item.Id} actualizado correctamente.");
+                    return rowsAffected;
                 }
                 else
                 {
                     Console.WriteLine($"No se pudo actualizar el pallet con ID: {item.Id}. Verifique el ID proporcionado.");
+                    return -1;
                 }
             }
             catch (Exception ex)

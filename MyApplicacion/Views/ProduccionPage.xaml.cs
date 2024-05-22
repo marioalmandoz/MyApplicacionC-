@@ -62,13 +62,14 @@ public partial class ProduccionPage : ContentPage
         //bool existe = Peticiones.ComprobarDatos(referencia, cantidad);
         //if (existe)
         //{
+        //    await DisplayAlert("Confirmación", "La referencia existe y esta bien la cantidad", "OK");
         //    AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
 
         //    await Shell.Current.Navigation.PushAsync(new OkPage(pallet));
         //}
         //else
         //{
-        //    AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("error_sound.wav")).Play();
+        //   // AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("error_sound.wav")).Play();
 
         //    await DisplayAlert("Error", "La referencia o la cantidad no coinciden con los previsto", "OK");
         //}

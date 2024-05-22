@@ -36,7 +36,7 @@ public partial class ReferenciasPedidoPage : ContentPage
         {
             Console.WriteLine(message);
             scaneo = parts[1];
-            string pattern = @"([HJI]\d{1,2})";
+            string pattern = @"([HhJjIi]\d{1,2})";
             Match match = Regex.Match(scaneo, pattern);
             if (match.Success)
             {

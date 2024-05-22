@@ -14,11 +14,19 @@
                     HorizontalOptions="Start"
                     Source="flecha_atras.png"
                     WidthRequest="30" />
+                <!--  70  -->
                 <Image
-                    Margin="70,0,0,0"
+                    Margin="90,0,0,0"
                     BackgroundColor="Transparent"
                     HeightRequest="50"
                     Source="logo_bruss_blanco" />
+                <!--  40  -->
+                <ImageButton
+                    Margin="60,0,0,0"
+                    Clicked="Reload"
+                    HeightRequest="30"
+                    Source="recarga.png" />
+
             </HorizontalStackLayout>
             <Label
                 FontAttributes="Bold"
@@ -62,7 +70,7 @@
                     Padding="5"
                     BackgroundColor="#A0A0A0"
                     BorderColor="#A0A0A0">
-                    <Label FontAttributes="Bold" Text="      Cant" />
+                    <Label FontAttributes="Bold" Text="         Ubi" />
                 </Frame>
 
                 <!--  Datos de la tabla  -->
@@ -106,7 +114,7 @@
                                     Clicked="ItemButton_Clicked"
                                     CornerRadius="15"
                                     FontAttributes="Bold"
-                                    Text="{Binding nPiezas}"
+                                    Text="{Binding ubicacion}"
                                     TextColor="Black" />
 
                             </Grid>

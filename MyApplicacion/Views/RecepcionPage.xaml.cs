@@ -61,6 +61,7 @@ public partial class RecepcionPage : ContentPage
     }
     private async void Go_Back(object sender, EventArgs e)
     {
+        LimpiarDatos();
         await Shell.Current.GoToAsync("///Views.AlmacenPage");
     }
 
@@ -79,6 +80,7 @@ public partial class RecepcionPage : ContentPage
             //await App.PalletRepo.tickAlmacen(item.Id);
             //string statusMessage = App.PalletRepo.StatusMessage;
             //Console.WriteLine(statusMessage);
+            LimpiarDatos();
             await Shell.Current.GoToAsync("///Views.AlmacenPage");
         }
         else

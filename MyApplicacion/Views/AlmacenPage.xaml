@@ -14,8 +14,9 @@
                     HorizontalOptions="Start"
                     Source="flecha_atras.png"
                     WidthRequest="30" />
+                <!--  70  -->
                 <Image
-                    Margin="70,0,0,0"
+                    Margin="90,0,0,0"
                     BackgroundColor="Transparent"
                     HeightRequest="50"
                     Source="logo_bruss_blanco" />
@@ -66,7 +67,7 @@
                     TextColor="Black" />
 
             </Grid>
-
+            <!--  70  -->
             <Button
                 x:Name="BtnBd"
                 Margin="20,0,20,10"

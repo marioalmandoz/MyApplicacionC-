@@ -14,8 +14,9 @@
                     HorizontalOptions="Start"
                     Source="flecha_atras.png"
                     WidthRequest="30" />
+                <!--  70  -->
                 <Image
-                    Margin="70,0,0,0"
+                    Margin="90,0,0,0"
                     BackgroundColor="Transparent"
                     HeightRequest="50"
                     Source="logo_bruss_blanco" />
@@ -28,9 +29,10 @@
                     BorderColor="Black"
                     CornerRadius="20">
                     <HorizontalStackLayout>
+                        <!--  100  -->
                         <Label
                             x:Name="refLabel"
-                            Margin="10,0,100,0"
+                            Margin="10,0,140,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Referencia: "
@@ -51,9 +53,10 @@
                     BorderColor="Black"
                     CornerRadius="20">
                     <HorizontalStackLayout>
+                        <!--  150  -->
                         <Label
                             x:Name="baanLabel"
-                            Margin="10,0,150,0"
+                            Margin="10,0,190,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Baan: "
@@ -73,9 +76,10 @@
                     BorderColor="Black"
                     CornerRadius="20">
                     <HorizontalStackLayout>
+                        <!--  120  -->
                         <Label
                             x:Name="piezasLabel"
-                            Margin="10,0,120,0"
+                            Margin="10,0,170,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Nº piezas: "
@@ -95,9 +99,10 @@
                     BorderColor="Black"
                     CornerRadius="20">
                     <HorizontalStackLayout>
+                        <!--  140  -->
                         <Label
                             x:Name="cajasLabel"
-                            Margin="10,0,140,0"
+                            Margin="10,0,180,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Nº cajas: "
@@ -117,9 +122,10 @@
                     BorderColor="Black"
                     CornerRadius="20">
                     <HorizontalStackLayout>
+                        <!--  120  -->
                         <Label
                             x:Name="ubicaLabel"
-                            Margin="10,0,120,0"
+                            Margin="10,0,160,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Ubicacion: "
@@ -139,9 +145,10 @@
                     BorderColor="Black"
                     CornerRadius="20">
                     <HorizontalStackLayout>
+                        <!--  120  -->
                         <Label
                             x:Name="producLabel"
-                            Margin="10,0,120,0"
+                            Margin="10,0,150,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Produccion: "
@@ -155,9 +162,10 @@
                     BorderColor="Black"
                     CornerRadius="20">
                     <HorizontalStackLayout>
+                        <!--  143  -->
                         <Label
                             x:Name="almLabel"
-                            Margin="10,0,140,0"
+                            Margin="10,0,175,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Almacen: "
@@ -171,9 +179,10 @@
                     BorderColor="Black"
                     CornerRadius="20">
                     <HorizontalStackLayout>
+                        <!--  195  -->
                         <Label
                             x:Name="recLabel"
-                            Margin="10,0,192,0"
+                            Margin="10,0,225,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="rec: "
@@ -187,9 +196,10 @@
                     BorderColor="Black"
                     CornerRadius="20">
                     <HorizontalStackLayout>
+                        <!--  120  -->
                         <Label
                             x:Name="inciLabel"
-                            Margin="10,0,115,0"
+                            Margin="10,0,155,0"
                             FontAttributes="Bold"
                             FontSize="20"
                             Text="Incidencia: "
