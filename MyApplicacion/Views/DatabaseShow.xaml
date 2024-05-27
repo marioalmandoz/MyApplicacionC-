@@ -22,7 +22,7 @@
                     Source="logo_bruss_blanco" />
                 <!--  40  -->
                 <ImageButton
-                    Margin="60,0,0,0"
+                    Margin="30,0,0,0"
                     Clicked="Reload"
                     HeightRequest="30"
                     Source="recarga.png" />
@@ -61,7 +61,7 @@
                     BackgroundColor="#A0A0A0"
                     BorderColor="#A0A0A0"
                     CornerRadius="0">
-                    <Label FontAttributes="Bold" Text="            Ref" />
+                    <Label FontAttributes="Bold" Text="          baan" />
                 </Frame>
                 <Frame
                     Grid.Row="0"
@@ -70,7 +70,7 @@
                     Padding="5"
                     BackgroundColor="#A0A0A0"
                     BorderColor="#A0A0A0">
-                    <Label FontAttributes="Bold" Text="         Ubi" />
+                    <Label FontAttributes="Bold" Text="  nCajas" />
                 </Frame>
 
                 <!--  Datos de la tabla  -->
@@ -105,7 +105,7 @@
                                     Clicked="ItemButton_Clicked"
                                     CornerRadius="0"
                                     FontAttributes="Bold"
-                                    Text="{Binding referencia}"
+                                    Text="{Binding baan}"
                                     TextColor="Black" />
                                 <Button
                                     Grid.Column="2"
@@ -114,7 +114,7 @@
                                     Clicked="ItemButton_Clicked"
                                     CornerRadius="15"
                                     FontAttributes="Bold"
-                                    Text="{Binding ubicacion}"
+                                    Text="{Binding nCajas}"
                                     TextColor="Black" />
 
                             </Grid>

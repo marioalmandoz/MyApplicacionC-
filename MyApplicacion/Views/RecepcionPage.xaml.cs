@@ -86,7 +86,7 @@ public partial class RecepcionPage : ContentPage
         else
         {
             //WeakReferenceMessenger.Default.Send(item.Id.ToString());
-
+            LimpiarDatos();
             await Shell.Current.Navigation.PushAsync(new IncidenciasPage(item.Id));
             //await Shell.Current.GoToAsync("///Views.IncidenciasPage");
         }

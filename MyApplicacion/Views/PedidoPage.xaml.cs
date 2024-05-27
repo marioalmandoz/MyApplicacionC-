@@ -1,4 +1,3 @@
-using CommunityToolkit.Mvvm.Messaging;
 using Plugin.Maui.Audio;
 
 namespace MyApplicacion.Views;
@@ -23,7 +22,8 @@ public partial class PedidoPage : ContentPage
         referenciaEntry.Text = "";
 
         // Verificar la respuesta del usuario
-        if (App.dataAccess.ComprobarReferencia(referencia))
+        //if (App.dataAccess.ComprobarReferencia(referencia))
+        if (App.dataAccess.ComprobarBaan(referencia))
         {
             App.CurrentPage = "ReferenciasPedidoPage";
             await Shell.Current.Navigation.PushAsync(new ReferenciasPedidoPage(referencia));

@@ -33,7 +33,7 @@
             <!--  Agrega tu DropDownList aquí  -->
             <Picker x:Name="ddlIncidencias" />
             <!--  Botones de validación y cancelación  -->
-            <StackLayout Margin="5,90" Orientation="Horizontal">
+            <StackLayout Margin="5,40" Orientation="Horizontal">
                 <Button
                     Margin="10,10,5,0"
                     BackgroundColor="LightGray"
@@ -55,6 +55,31 @@
                     Text="VALIDAR"
                     TextColor="Black" />
             </StackLayout>
+            <Frame
+                x:Name="cajasFrame"
+                Margin="0,3"
+                Padding="5"
+                BorderColor="Black"
+                CornerRadius="20"
+                IsVisible="False">
+                <HorizontalStackLayout>
+                    <!--  140  -->
+                    <Label
+                        x:Name="cajasLabel"
+                        Margin="10,0,120,0"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="Nº cajas: "
+                        VerticalOptions="Center" />
+                    <Entry
+                        x:Name="cajasEntry"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        HorizontalTextAlignment="Center"
+                        Keyboard="Numeric"
+                        VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Frame>
         </StackLayout>
     </Grid>
 </ContentPage>

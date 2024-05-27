@@ -97,13 +97,13 @@ namespace MyApplicacion
                 throw new Exception("Error al mostrar los pallets producidos: " + ex.Message);
             }
         }
-        public List<Pallet> MostrarAlmacen(string pReferencia)
+        public List<Pallet> MostrarAlmacen(string pbaan)
         {
             try
             {
-                string query = "SELECT * FROM Pallet WHERE almacen = 1 AND referencia = ?;";
+                string query = "SELECT * FROM Pallet WHERE almacen = 1 AND baan = ?;";
                 bool almacen = true; // Queremos filtrar donde almacen es falso
-                var result = _database.Query<Pallet>(query, pReferencia);
+                var result = _database.Query<Pallet>(query, pbaan);
                 foreach (var pallet in result)
                 {
                     Console.WriteLine($"Id: {pallet.Id}, Referencia: {pallet.referencia}, almacen: {pallet.almacen}"); // Muestra cada objeto Pallet
@@ -131,6 +131,24 @@ namespace MyApplicacion
             catch (Exception ex)
             {
                 throw new Exception($"Error al obtener la referencia: {ex.Message}");
+            }
+        }
+        public bool ComprobarBaan(string pBaan)
+        {
+            try
+            {
+                // Consulta SQL para contar los pallets con la referencia proporcionada
+                string query = "SELECT COUNT(*) FROM Pallet WHERE baan = ?";
+
+                // Ejecutar la consulta y obtener el conteo
+                int count = _database.ExecuteScalar<int>(query, pBaan);
+
+                // Si el conteo es mayor que cero, significa que hay pallets con esa referencia
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al comprobar la referencia: {ex.Message}");
             }
         }
         public bool ComprobarReferencia(string pReferencia)
@@ -349,6 +367,39 @@ namespace MyApplicacion
             catch (Exception ex)
             {
                 throw new Exception($"Error al obtener el ID del pallet: {ex.Message}");
+            }
+        }
+        public int EditarCajas(string pNCajas, int pId)
+        {
+            try
+            {
+                // Validar que pNCajas sea un string no vacío
+                if (string.IsNullOrWhiteSpace(pNCajas))
+                {
+                    throw new ArgumentException("El número de cajas proporcionado no puede estar vacío.");
+                }
+
+                // Consulta SQL para actualizar el campo nCajas
+                string query = "UPDATE Pallet SET nCajas = ? WHERE Id = ?";
+
+                // Ejecutar la consulta con los parámetros proporcionados
+                int rowsAffected = _database.Execute(query, pNCajas, pId);
+
+                // Verificar si se afectaron filas y mostrar un mensaje apropiado
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine($"Número de cajas actualizado a {pNCajas} para el pallet con ID: {pId}");
+                }
+                else
+                {
+                    Console.WriteLine("No se pudo actualizar el número de cajas del pallet. Verifique el ID proporcionado.");
+                }
+
+                return rowsAffected; // Devolver el número de filas afectadas
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al actualizar el número de cajas del pallet: {ex.Message}");
             }
         }
     }

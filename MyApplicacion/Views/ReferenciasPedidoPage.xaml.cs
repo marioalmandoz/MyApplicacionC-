@@ -7,13 +7,13 @@ namespace MyApplicacion.Views;
 public partial class ReferenciasPedidoPage : ContentPage
 {
     string ubicacion;
-    string referencia;
+    string baan;
     string scaneo;
     
-    public ReferenciasPedidoPage(string referencia)
+    public ReferenciasPedidoPage(string pBaan)
     {
         InitializeComponent();
-        this.referencia = referencia;
+        this.baan = pBaan;
         App.CurrentPage = "ReferenciasPedidoPage";
         mostrarPallets();
         WeakReferenceMessenger.Default.Register<String>(this, OnDataReceived);
@@ -23,7 +23,7 @@ public partial class ReferenciasPedidoPage : ContentPage
 
     private async void mostrarPallets()
     {
-        List<Pallet> pallet = App.dataAccess.MostrarAlmacen(referencia);
+        List<Pallet> pallet = App.dataAccess.MostrarAlmacen(baan);
         palletList.ItemsSource = pallet;
         //---------------------------------------------------------------
         //List<Pallet> pallet = await App.PalletRepo.MostrarAlmacenados(referencia);
@@ -44,7 +44,7 @@ public partial class ReferenciasPedidoPage : ContentPage
                 ubicacion = match.Groups[1].Value;
                 Console.WriteLine("Datos: " + ubicacion);
                 ScanResultLabel.Text = "Datos: " + ubicacion;
-                int existe = App.dataAccess.getPalletUbica(ubicacion, referencia);
+                int existe = App.dataAccess.getPalletUbica(ubicacion, baan);
                 if(existe > 0)
                 {
                     realizarOperacion(existe);
@@ -82,7 +82,7 @@ public partial class ReferenciasPedidoPage : ContentPage
         // Verificar la respuesta del usuario
         if (respuesta)
         {
-            if (referencia != null)
+            if (baan != null)
             {
                 App.dataAccess.EliminarPallet(item.Id);
                 //-----------------------------------
@@ -106,7 +106,7 @@ public partial class ReferenciasPedidoPage : ContentPage
         // Verificar la respuesta del usuario
         if (respuesta)
         {
-            if (referencia != null)
+            if (baan != null)
             {
                 App.dataAccess.EliminarPallet(pId);
                 //-----------------------------------

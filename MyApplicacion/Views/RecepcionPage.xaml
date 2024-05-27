@@ -26,7 +26,7 @@
             FontAttributes="Bold"
             FontSize="30"
             HorizontalOptions="Center"
-            Text="!ESCANEA EL QR¡"
+            Text="ESCANEA EL QR"
             TextColor="Black"
             VerticalOptions="Start" />
         <Label
@@ -75,7 +75,7 @@
                 BackgroundColor="#A0A0A0"
                 BorderColor="#A0A0A0"
                 CornerRadius="0">
-                <Label FontAttributes="Bold" Text="        Ref" />
+                <Label FontAttributes="Bold" Text="        baan" />
             </Frame>
             <Frame
                 Grid.Row="0"
@@ -119,7 +119,7 @@
                                 Clicked="ItemButton_Clicked"
                                 CornerRadius="0"
                                 FontAttributes="Bold"
-                                Text="{Binding referencia}"
+                                Text="{Binding baan}"
                                 TextColor="Black" />
                             <Button
                                 Grid.Column="2"

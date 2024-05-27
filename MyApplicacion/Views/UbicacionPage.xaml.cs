@@ -6,6 +6,7 @@ namespace MyApplicacion.Views;
 public partial class UbicacionPage : ContentPage
 {
     string referencia;
+    string baan;
     string scaneo;
     string ubicacion;
     public UbicacionPage()
@@ -36,7 +37,7 @@ public partial class UbicacionPage : ContentPage
             }
             if (match.Success)
             {
-
+                baan = match.Groups[1].Value;
                 referencia = match.Groups[2].Value;
 
                 Console.WriteLine("Datos: " + referencia);
@@ -62,7 +63,7 @@ public partial class UbicacionPage : ContentPage
     }
     private async void mostrarPallets()
     {
-        List<Pallet> pallet = App.dataAccess.MostrarAlmacen(referencia);
+        List<Pallet> pallet = App.dataAccess.MostrarAlmacen(baan);
         palletList.ItemsSource = pallet;
         //--------------------------------------------------
         //List<Pallet> pallet = await App.PalletRepo.MostrarAlmacenados(referencia);
@@ -115,5 +116,6 @@ public partial class UbicacionPage : ContentPage
     {
         ScanResultLabel.Text = null;
         palletList.ItemsSource = null;
+        ubicacion = null;
     }
 }
