@@ -1,5 +1,7 @@
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.Messaging;
 using MyApplicacion.Database;
+using ProduccionAlmacen.Views;
 using System.Text.RegularExpressions;
 namespace MyApplicacion.Views;
 
@@ -86,17 +88,21 @@ public partial class UbicacionPage : ContentPage
         var item = (Pallet)((Button)sender).BindingContext;
 
         // Realizar alguna acción con el objeto de datos, por ejemplo:
-        bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES REUBICAR EL PALLET {item.Id}?", "Sí", "No");
+       // bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES REUBICAR EL PALLET {item.Id}?", "Sí", "No");
+        var popup = new PopUpPage("Confirmación", $"¿QUIERES REUBICAR EL PALLET {item.Id}?", 2);
+        var respuesta = await this.ShowPopupAsync(popup) as bool?;
 
         // Verificar la respuesta del usuario
-        if (respuesta)
+        if (respuesta.HasValue&&respuesta.Value)
         {
 
             if (referencia != null)
             {
                 if (ubicacion == null)
                 {
-                    await DisplayAlert("Error", $"ESCANEE LA UBICACION", "Ok");
+                    popup = new PopUpPage("Error", $"ESCANEE LA UBICACION", 1);
+                    await this.ShowPopupAsync(popup);
+                   // await DisplayAlert("Error", $"ESCANEE LA UBICACION", "Ok");
                 }
                 else
                 {

@@ -1,4 +1,6 @@
+using CommunityToolkit.Maui.Views;
 using MyApplicacion.Database;
+using ProduccionAlmacen.Views;
 namespace MyApplicacion.Views;
 
 public partial class EditarPalletPage : ContentPage
@@ -46,11 +48,15 @@ public partial class EditarPalletPage : ContentPage
         int exito = App.dataAccess.EditarPallet(item);
         if(exito > 0) {
             PasarDatos();
-            await DisplayAlert("Confirmación", "Se ha editado correctamente", "OK");
+            var popup = new PopUpPage("Confirmación", "Se ha editado correctamente", 1);
+            await this.ShowPopupAsync(popup);
+           // await DisplayAlert("Confirmación", "Se ha editado correctamente", "OK");
             await Shell.Current.GoToAsync("///Views.DatabaseShow");
         }
         else{
-            await DisplayAlert("Error", "No se ha editado debido a un error", "OK");
+            var popup = new PopUpPage("Error", "No se ha editado debido a un error", 1);
+            await this.ShowPopupAsync(popup);
+           // await DisplayAlert("Error", "No se ha editado debido a un error", "OK");
         }
        
     }

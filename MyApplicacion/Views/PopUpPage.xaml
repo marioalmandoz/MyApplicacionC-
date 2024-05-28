@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="ProduccionAlmacen.Views.PopUpPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    CanBeDismissedByTappingOutsideOfPopup="False">
+    <VerticalStackLayout BackgroundColor="White" Spacing="5">
+
+        <Label
+            x:Name="Titulo"
+            Margin="5"
+            FontAttributes="Bold"
+            FontSize="30"
+            HorizontalOptions="Start"
+            Text="Confirmación"
+            VerticalOptions="Start" />
+        <Label
+            x:Name="Texto"
+            Margin="10"
+            FontSize="25"
+            HorizontalOptions="Center"
+            Text="Esto es un PopUP"
+            VerticalOptions="Center" />
+        <HorizontalStackLayout Margin="5" HorizontalOptions="Center">
+            <Button
+                x:Name="cancelBtn"
+                Margin="10"
+                BackgroundColor="LightGray"
+                Clicked="CancelClicked"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                FontSize="15"
+                HorizontalOptions="CenterAndExpand"
+                Text="CANCELAR"
+                TextColor="Black" />
+            <Button
+                x:Name="okBtn"
+                Margin="10"
+                BackgroundColor="LightGray"
+                Clicked="OKButton_Clicked"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                FontSize="15"
+                HorizontalOptions="CenterAndExpand"
+                Text="OK"
+                TextColor="Black" />
+        </HorizontalStackLayout>
+
+
+    </VerticalStackLayout>
+</toolkit:Popup>

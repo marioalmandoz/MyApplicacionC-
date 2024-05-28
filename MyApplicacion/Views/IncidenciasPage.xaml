@@ -31,7 +31,7 @@
         <StackLayout Grid.Row="1" Padding="20">
             <Label FontSize="25" Text="Seleccione el tipo de incidencia:" />
             <!--  Agrega tu DropDownList aquí  -->
-            <Picker x:Name="ddlIncidencias" />
+            <Picker x:Name="ddlIncidencias" FontSize="20" />
             <!--  Botones de validación y cancelación  -->
             <StackLayout Margin="5,40" Orientation="Horizontal">
                 <Button

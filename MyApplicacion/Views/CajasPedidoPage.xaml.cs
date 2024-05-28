@@ -1,3 +1,6 @@
+using CommunityToolkit.Maui.Views;
+using ProduccionAlmacen.Views;
+
 namespace MyApplicacion.Views;
 
 public partial class CajasPedidoPage : ContentPage
@@ -22,10 +25,12 @@ public partial class CajasPedidoPage : ContentPage
             {
                 // Aquí puedes realizar la validación y cualquier otra lógica necesaria
                 // Mostrar una alerta para confirmar si el usuario está seguro
-                bool respuesta = await DisplayAlert("Confirmación", $"¿Estás seguro de querer retirar {numeroPiezas} piezas en total?", "Sí", "No");
+                var popup = new PopUpPage("Confirmación", $"¿Estás seguro de querer retirar {numeroPiezas} piezas en total?", 2);
+                var respuesta = await this.ShowPopupAsync(popup) as bool?;
+               // bool respuesta = await DisplayAlert("Confirmación", $"¿Estás seguro de querer retirar {numeroPiezas} piezas en total?", "Sí", "No");
 
                 // Verificar la respuesta del usuario
-                if (respuesta)
+                if (respuesta.HasValue && respuesta.Value)
                 {
                     
                     App.dataAccess.RetirarPiezas(numeroPiezas,id);
@@ -42,7 +47,9 @@ public partial class CajasPedidoPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Introduce el numero de piezas", "Ok");
+            var popup = new PopUpPage("Error", $"Introduce el numero de piezas", 1);
+            await this.ShowPopupAsync(popup);
+            //await DisplayAlert("Error", $"Introduce el numero de piezas", "Ok");
         }
     }
     private async void Go_Back(object sender, EventArgs e)

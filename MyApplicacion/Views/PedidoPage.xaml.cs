@@ -1,4 +1,6 @@
+using CommunityToolkit.Maui.Views;
 using Plugin.Maui.Audio;
+using ProduccionAlmacen.Views;
 
 namespace MyApplicacion.Views;
 
@@ -33,7 +35,9 @@ public partial class PedidoPage : ContentPage
         else
         {
             AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("error_sound.wav")).Play();
-            await DisplayAlert("ERROR", "NO HAY PALLETS DE LA REFERENCIA INTRODUCIDA, INTRODUZCA LA REFERENCIA CORRECTA", "Ok");
+            var popup = new PopUpPage("Error", "INTRODUZCA UNA REFERENCIA EXISTENTE", 1);
+            await this.ShowPopupAsync(popup);
+            //await DisplayAlert("ERROR", "INTRODUZCA UNA REFERENCIA EXISTENTE", "Ok");
         }
     }
 

@@ -1,5 +1,6 @@
-using CommunityToolkit.Mvvm.Messaging;
+using CommunityToolkit.Maui.Views;
 using Plugin.Maui.Audio;
+using ProduccionAlmacen.Views;
 
 namespace MyApplicacion.Views;
 
@@ -50,13 +51,18 @@ public partial class IncidenciasPage : ContentPage
             if (row > 0)
             {
                 AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
-                await DisplayAlert("Confirmación", $"Se ha Recepcionado el pallet", "Ok");
+                var popup = new PopUpPage("Confirmación", $"Se ha Recepcionado el pallet", 1);
+                await this.ShowPopupAsync(popup);
+                
+                //await DisplayAlert("Confirmación", $"Se ha Recepcionado el pallet", "Ok");
                 await Shell.Current.GoToAsync("///Views.AlmacenPage");
             }
             else
             {
                 AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("error_sound.wav")).Play();
-                await DisplayAlert("Error", $"No se ha podido recepcionar el pallet", "Ok");
+                var popup = new PopUpPage("Error", $"No se ha podido recepcionar el pallet", 1);
+                await this.ShowPopupAsync(popup);
+               // await DisplayAlert("Error", $"No se ha podido recepcionar el pallet", "Ok");
             }
         }else if(incidencia=="5")
         {
@@ -64,18 +70,24 @@ public partial class IncidenciasPage : ContentPage
             if(cajasEntry.Text!=null)
             {
                 App.dataAccess.EditarCajas(cajasEntry.Text.ToString(), id);
-                await DisplayAlert("Confirmación", $"Se ha Editado el pallet", "Ok");
+                var popup = new PopUpPage("Confirmación", $"Se ha Editado el pallet", 1);
+                await this.ShowPopupAsync(popup);
+                // await DisplayAlert("Confirmación", $"Se ha Editado el pallet", "Ok");
                 int row = App.dataAccess.addIncidencias(id, ddlIncidencias.SelectedItem.ToString());
                 if (row > 0)
                 {
                     AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
-                    await DisplayAlert("Confirmación", $"Se ha Recepcionado el pallet", "Ok");
+                    popup = new PopUpPage("Confirmación", $"Se ha Recepcionado el pallet", 1);
+                    await this.ShowPopupAsync(popup);
+                    //await DisplayAlert("Confirmación", $"Se ha Recepcionado el pallet", "Ok");
                     await Shell.Current.GoToAsync("///Views.AlmacenPage");
                 }
                 else
                 {
                     AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("error_sound.wav")).Play();
-                    await DisplayAlert("Error", $"No se ha podido recepcionar el pallet", "Ok");
+                    popup = new PopUpPage("Error", $"No se ha podido recepcionar el pallet", 1);
+                    await this.ShowPopupAsync(popup);
+                    //await DisplayAlert("Error", $"No se ha podido recepcionar el pallet", "Ok");
                 }
                
             }
@@ -87,11 +99,15 @@ public partial class IncidenciasPage : ContentPage
             int row = App.dataAccess.EliminarPallet(id);
             if(row > 0)
             {
-                await DisplayAlert("Confirmación", $"Se ha Eliminado el pallet", "Ok");
+                var popup = new PopUpPage("Confirmación", $"Se ha Eliminado el pallet", 1);
+                await this.ShowPopupAsync(popup);
+               // await DisplayAlert("Confirmación", $"Se ha Eliminado el pallet", "Ok");
                 await Shell.Current.GoToAsync("///Views.AlmacenPage");
             }
             else
             {
+                var popup = new PopUpPage("Error", $"No se ha podido Eliminar el pallet", 1);
+                await this.ShowPopupAsync(popup);
                 await DisplayAlert("Error", $"No se ha podido Eliminar el pallet", "Ok");
             }
         }

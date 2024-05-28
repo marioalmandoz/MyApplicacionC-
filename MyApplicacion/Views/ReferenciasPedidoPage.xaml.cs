@@ -1,5 +1,7 @@
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.Messaging;
 using MyApplicacion.Database;
+using ProduccionAlmacen.Views;
 using System.Text.RegularExpressions;
 
 namespace MyApplicacion.Views;
@@ -51,7 +53,9 @@ public partial class ReferenciasPedidoPage : ContentPage
                 }
                 else
                 {
-                    await DisplayAlert("Error", $"No hay pallets en la ubicacion: {ubicacion}", "Ok");
+                    var popup = new PopUpPage("Error", $"No hay pallets en la ubicacion: {ubicacion}", 1);
+                    await this.ShowPopupAsync(popup);
+                    //await DisplayAlert("Error", $"No hay pallets en la ubicacion: {ubicacion}", "Ok");
                 }
                 
             }
@@ -77,10 +81,12 @@ public partial class ReferenciasPedidoPage : ContentPage
         var item = (Pallet)((Button)sender).BindingContext;
 
         // Realizar alguna acción con el objeto de datos, por ejemplo:
-        bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.nPiezas} piezas?", "Sí", "No");
+        var popup = new PopUpPage("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.nPiezas} piezas?", 2);
+        var respuesta = await this.ShowPopupAsync(popup) as bool?;
+        //bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.nPiezas} piezas?", "Sí", "No");
 
         // Verificar la respuesta del usuario
-        if (respuesta)
+        if (respuesta.HasValue&&respuesta.Value)
         {
             if (baan != null)
             {
@@ -101,10 +107,12 @@ public partial class ReferenciasPedidoPage : ContentPage
     }
     private async void realizarOperacion(int pId)
     {
-        bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {ubicacion}?", "Sí", "No");
+        var popup = new PopUpPage("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {ubicacion}?", 2);
+        var respuesta = await this.ShowPopupAsync(popup) as bool?;
+        //bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {ubicacion}?", "Sí", "No");
 
         // Verificar la respuesta del usuario
-        if (respuesta)
+        if (respuesta.HasValue && respuesta.Value)
         {
             if (baan != null)
             {

@@ -1,4 +1,6 @@
+using CommunityToolkit.Maui.Views;
 using MyApplicacion.Database;
+using ProduccionAlmacen.Views;
 namespace MyApplicacion.Views;
 
 public partial class DatabaseShow : ContentPage
@@ -35,10 +37,12 @@ public partial class DatabaseShow : ContentPage
         var item = (Pallet)((Button)sender).BindingContext;
 
         // Realizar alguna acción con el objeto de datos, por ejemplo:
-        bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES EDITAR EL PALLET {item.Id}?", "Sí", "No");
+        var popup = new PopUpPage("Confirmación", $"¿QUIERES EDITAR EL PALLET {item.Id}?", 2);
+        var respuesta = await this.ShowPopupAsync(popup) as bool?;
+       // bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES EDITAR EL PALLET {item.Id}?", "Sí", "No");
 
         // Verificar la respuesta del usuario
-        if (respuesta)
+        if (respuesta.HasValue && respuesta.Value)
         {
             // TODO: Aquí habrá un método que insertará los datos en la base de datos
             await Shell.Current.Navigation.PushAsync(new EditarPalletPage(item));

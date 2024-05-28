@@ -351,15 +351,15 @@ namespace MyApplicacion
                 throw new Exception($"Error al actualizar el pallet: {ex.Message}");
             }
         }
-        public int getPalletUbica(string pUbicacion, string pReferencia)
+        public int getPalletUbica(string pUbicacion, string pBaan)
         {
             try
             {
                 // Consulta SQL para obtener el ID del pallet basado en la ubicación y la referencia
-                string query = "SELECT Id FROM Pallet WHERE ubicacion = ? AND referencia = ?";
+                string query = "SELECT Id FROM Pallet WHERE ubicacion = ? AND baan = ? LIMIT 1";
 
                 // Ejecutar la consulta con los parámetros proporcionados
-                int palletId = _database.ExecuteScalar<int>(query, pUbicacion, pReferencia);
+                int palletId = _database.ExecuteScalar<int>(query, pUbicacion, pBaan);
 
                 // Devolver el ID del pallet encontrado
                 return palletId;

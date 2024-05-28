@@ -1,6 +1,8 @@
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.Messaging;
 using MyApplicacion.Database;
 using Plugin.Maui.Audio;
+using ProduccionAlmacen.Views;
 using System.Text.RegularExpressions;
 
 
@@ -38,10 +40,14 @@ public partial class OkPage : ContentPage
             {
                 // Aquí puedes realizar la validación y cualquier otra lógica necesaria
                 // Mostrar una alerta para confirmar si el usuario está seguro
-                bool respuesta = await DisplayAlert("Confirmación", $"¿Estás seguro de querer introducir {numeroCajas} cajas?", "Sí", "No");
+                var popup = new PopUpPage("Confirmación", $"¿Estás seguro de querer introducir {numeroCajas} cajas?",2);
+                var respuesta = await this.ShowPopupAsync(popup) as bool?;
+
+               // bool respuesta = await DisplayAlert("Confirmación", $"¿Estás seguro de querer introducir {numeroCajas} cajas?", "Sí", "No");
+
 
                 // Verificar la respuesta del usuario
-                if (respuesta)
+                if (respuesta.HasValue && respuesta.Value)
                 {
                     // TODO: Aquí habrá un método que insertará los datos en la base de datos
                     //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
@@ -51,12 +57,16 @@ public partial class OkPage : ContentPage
                     if(row > 0)
                     {
                         AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
-                        await DisplayAlert("Confirmación", $"Se ha añadido el pallet {palletRecivido.referencia}", "Ok");
+                        popup = new PopUpPage("Confirmación", $"Se ha añadido el pallet {palletRecivido.referencia}", 1); 
+                        await this.ShowPopupAsync(popup);
+                        //await DisplayAlert("Confirmación", $"Se ha añadido el pallet {palletRecivido.referencia}", "Ok");
                     }
                     else
                     {
                         AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("error_sound.wav")).Play();
-                        await DisplayAlert("Error", $"No se ha podido añadir el pallet", "Ok");
+                        popup = new PopUpPage("Error", $"No se ha podido añadir el pallet", 1);
+
+                        //await DisplayAlert("Error", $"No se ha podido añadir el pallet", "Ok");
                     }
                     //await App.PalletRepo.AddNewPalletPro(palletRecivido.referencia,palletRecivido.baan, numeroCajas, total);
 
