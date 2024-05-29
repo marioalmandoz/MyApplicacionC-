@@ -27,7 +27,7 @@
                 FontAttributes="Bold"
                 FontSize="30"
                 HorizontalOptions="Center"
-                Text="!ESCANEA EL QR¡"
+                Text="ESCANEA EL QR"
                 TextColor="Black"
                 VerticalOptions="Start" />
             <Label

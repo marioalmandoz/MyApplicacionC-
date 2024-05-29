@@ -11,6 +11,10 @@ public partial class PopUpPage : Popup
 		if(nButtons == 1) {
 			cancelBtn.IsVisible = false;
 		}
+		if(pTitulo == "Question")
+		{
+			cancelBtn.Text = "Por piezas";
+		}
 	}
 
 	private void OKButton_Clicked(object sender, EventArgs e)

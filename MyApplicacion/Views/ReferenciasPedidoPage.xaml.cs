@@ -38,7 +38,7 @@ public partial class ReferenciasPedidoPage : ContentPage
         {
             Console.WriteLine(message);
             scaneo = parts[1];
-            string pattern = @"([HhJjIi]\d{1,2})";
+            string pattern = @"([HhJjIiABCD]\d{1,2}|SUELO|BASQUEPACK)";
             Match match = Regex.Match(scaneo, pattern);
             if (match.Success)
             {
@@ -81,7 +81,7 @@ public partial class ReferenciasPedidoPage : ContentPage
         var item = (Pallet)((Button)sender).BindingContext;
 
         // Realizar alguna acción con el objeto de datos, por ejemplo:
-        var popup = new PopUpPage("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.nPiezas} piezas?", 2);
+        var popup = new PopUpPage("Question", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.nPiezas} piezas?", 2);
         var respuesta = await this.ShowPopupAsync(popup) as bool?;
         //bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.nPiezas} piezas?", "Sí", "No");
 
@@ -99,7 +99,7 @@ public partial class ReferenciasPedidoPage : ContentPage
             await Shell.Current.GoToAsync("///Views.PedidoPage");
 
         }
-        else
+        else if(respuesta.HasValue&&!respuesta.Value)
         {
             await Shell.Current.Navigation.PushAsync(new CajasPedidoPage(item.Id));
             //await Shell.Current.GoToAsync("///Views.CajasPedidoPage");
@@ -107,7 +107,7 @@ public partial class ReferenciasPedidoPage : ContentPage
     }
     private async void realizarOperacion(int pId)
     {
-        var popup = new PopUpPage("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {ubicacion}?", 2);
+        var popup = new PopUpPage("Question", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {ubicacion}?", 2);
         var respuesta = await this.ShowPopupAsync(popup) as bool?;
         //bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {ubicacion}?", "Sí", "No");
 

@@ -51,7 +51,7 @@ public partial class UbicacionPage : ContentPage
             {
                 Console.WriteLine("No se encontraron coincidencias Referencia.");
             }
-            string pattern2 = @".+([HhJjIi]\d{1,2})$";
+            string pattern2 = @".+([HhJjIiABCD]\d{1,2}|SUELO|BASQUEPACK)$";
             Match match1 = Regex.Match(scaneo, pattern2);
             if (match1.Success)
             {
