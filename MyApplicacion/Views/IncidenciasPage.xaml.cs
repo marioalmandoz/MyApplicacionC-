@@ -7,17 +7,19 @@ namespace MyApplicacion.Views;
 public partial class IncidenciasPage : ContentPage
 {
     int id;
-    public IncidenciasPage(int pId)
+    int cantidad;
+    public IncidenciasPage(int pId, int pCantidad)
     {
         InitializeComponent();
         CargarElementos();
         id = pId;
+        cantidad = pCantidad;
        // WeakReferenceMessenger.Default.Register<String>(this, getElemento);
     }
 
     private void CargarElementos()
     {
-        List<string> elementos = new List<string> { "PALLETS Y CAJAS ROTAS","REF EN PALLET QUE NO CORRESPONDE", "REF MEZCLADA EN MISMO PALLET", "PALLET INCOMPLETOS", "PALLET CON MAS KLT´S O CAJAS QUE EN LA INSTRUCCION DE TRABAJO","CANTIDAD INCORRECTA", "VARIOS" };
+        List<string> elementos = new List<string> { "PALLETS Y CAJAS ROTAS","REF EN PALLET QUE NO CORRESPONDE", "REF MEZCLADA EN MISMO PALLET", "PALLET CON MAS KLT´S O CAJAS QUE EN LA INSTRUCCION DE TRABAJO", "PALLET INCOMPLETOS", "CANTIDAD INCORRECTA", "VARIOS" };
         foreach (var elemento in elementos)
         {
             ddlIncidencias.Items.Add(elemento);
@@ -45,7 +47,7 @@ public partial class IncidenciasPage : ContentPage
         Console.WriteLine(id);
         string incidencia = ddlIncidencias.SelectedIndex.ToString();
         Console.WriteLine(incidencia);
-        if(incidencia=="3"|| incidencia=="6")
+        if(incidencia=="4"|| incidencia=="6")
         {
             int row = App.dataAccess.addIncidencias(id, ddlIncidencias.SelectedItem.ToString());
             if (row > 0)
@@ -69,7 +71,8 @@ public partial class IncidenciasPage : ContentPage
             cajasFrame.IsVisible = true;
             if(cajasEntry.Text!=null)
             {
-                App.dataAccess.EditarCajas(cajasEntry.Text.ToString(), id);
+                string total = (int.Parse(cajasEntry.Text) * cantidad).ToString();
+                App.dataAccess.EditarCajas(cajasEntry.Text.ToString(), id,total);
                 var popup = new PopUpPage("Confirmación", $"Se ha Editado el pallet", 1);
                 await this.ShowPopupAsync(popup);
                 // await DisplayAlert("Confirmación", $"Se ha Editado el pallet", "Ok");

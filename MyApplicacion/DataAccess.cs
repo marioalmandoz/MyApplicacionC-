@@ -34,14 +34,14 @@ namespace MyApplicacion
                 throw new Exception(ex.Message);
             }
         }
-        public int AnadirPallet(string pReferencia, string pBaan, string pCajas, String pPiezas) 
+        public int AnadirPallet(string pReferencia, string pBaan, string pCajas, String pPiezas, int nPiezasCaja) 
         {
             try
             {
-                string query = "INSERT INTO Pallet (referencia, baan, nCajas, nPiezas, fecha_hora, produccion) VALUES (?, ?, ?, ?, ?, ?)";
+                string query = "INSERT INTO Pallet (referencia, baan, nCajas, nPiezas, nPiezasCaja, fecha_hora, produccion) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 DateTime now = DateTime.Now;
                 bool produccion = true;
-                int rowsAffected = _database.Execute(query, pReferencia, pBaan, pCajas, pPiezas, now, produccion);
+                int rowsAffected = _database.Execute(query, pReferencia, pBaan, pCajas, pPiezas, nPiezasCaja, now, produccion);
 
                 if (rowsAffected > 0)
                 {
@@ -255,48 +255,67 @@ namespace MyApplicacion
             }
         
         }
-        public void RetirarPiezas(int nPiezas, int pId)
+        public int RetirarCajas(string pNCajas, int pId)
         {
             try
             {
-                // Consulta SQL para actualizar el campo nPiezas
-                string query = "UPDATE Pallet SET nPiezas = nPiezas - ? WHERE Id = ?";
-                // Consulta SQL para obtener el valor actual de nPiezas después de la actualización
-                string selectQuery = "SELECT nPiezas FROM Pallet WHERE Id = ?";
+                // Validar que pNCajas sea un string no vacío
+                if (string.IsNullOrWhiteSpace(pNCajas))
+                {
+                    throw new ArgumentException("El número de cajas proporcionado no puede estar vacío.");
+                }
+
+                // Convertir el número de cajas proporcionado a un entero
+                int newNCajas = int.Parse(pNCajas);
+
+                // Consulta SQL para obtener los valores actuales de nCajas y nPiezasCaja para el pallet con el pId proporcionado
+                string selectQuery = "SELECT nCajas, nPiezasCaja FROM Pallet WHERE Id = ?";
+                var palletData = _database.Query<Pallet>(selectQuery, pId).FirstOrDefault();
+
+                if (palletData == null)
+                {
+                    throw new Exception("No se encontró el pallet con el ID proporcionado.");
+                }
+
+                int currentNCajas = int.Parse(palletData.nCajas);
+                int nPiezasCaja = palletData.nPiezasCaja;
+
+                if (nPiezasCaja <= 0)
+                {
+                    throw new Exception("El valor de nPiezasCaja debe ser mayor que 0.");
+                }
+
+                // Calcular el nuevo valor de nCajas restando las cajas nuevas de las actuales
+                int updatedNCajas = currentNCajas - newNCajas;
+                if (updatedNCajas < 0)
+                {
+                    updatedNCajas = 0;  // Asegurarse de que el número de cajas no sea negativo
+                }
+
+                // Calcular el nuevo valor de nPiezas basado en el número actualizado de cajas
+                int updatedNPiezas = updatedNCajas * nPiezasCaja;
+
+                // Consulta SQL para actualizar el campo nCajas y nPiezas
+                string updateQuery = "UPDATE Pallet SET nCajas = ?, nPiezas = ? WHERE Id = ?";
 
                 // Ejecutar la consulta con los parámetros proporcionados
-                int rowsAffected = _database.Execute(query, nPiezas, pId);
+                int rowsAffected = _database.Execute(updateQuery, updatedNCajas, updatedNPiezas, pId);
 
                 // Verificar si se afectaron filas y mostrar un mensaje apropiado
                 if (rowsAffected > 0)
                 {
-                    Console.WriteLine($"{nPiezas} piezas retiradas correctamente del palet con ID: {pId}");
-
-                    // Obtener el valor actualizado de nPiezas
-                    int updatedNPiezas = _database.ExecuteScalar<int>(selectQuery, pId);
-
-                    // Si nPiezas es 0 o menor, eliminar el pallet
-                    if (updatedNPiezas <= 0)
-                    {
-                        int rowsDeleted = EliminarPallet(pId);
-                        if (rowsDeleted > 0)
-                        {
-                            Console.WriteLine($"El pallet con ID: {pId} ha sido eliminado porque nPiezas es {updatedNPiezas}.");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"No se pudo eliminar el pallet con ID: {pId}. Verifique el ID proporcionado.");
-                        }
-                    }
+                    Console.WriteLine($"Número de cajas actualizado a {updatedNCajas} y número de piezas actualizado a {updatedNPiezas} para el pallet con ID: {pId}");
                 }
                 else
                 {
-                    Console.WriteLine("No se pudo retirar piezas del palet. Verifique el ID proporcionado.");
+                    Console.WriteLine("No se pudo actualizar el número de cajas del pallet. Verifique el ID proporcionado.");
                 }
+
+                return rowsAffected; // Devolver el número de filas afectadas
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error al retirar piezas del palet: {ex.Message}");
+                throw new Exception($"Error al actualizar el número de cajas del pallet: {ex.Message}");
             }
         }
         public int EditarPallet(Pallet item)
@@ -369,7 +388,7 @@ namespace MyApplicacion
                 throw new Exception($"Error al obtener el ID del pallet: {ex.Message}");
             }
         }
-        public int EditarCajas(string pNCajas, int pId)
+        public int EditarCajas(string pNCajas, int pId, string pCantidad)
         {
             try
             {
@@ -380,10 +399,10 @@ namespace MyApplicacion
                 }
 
                 // Consulta SQL para actualizar el campo nCajas
-                string query = "UPDATE Pallet SET nCajas = ? WHERE Id = ?";
+                string query = "UPDATE Pallet SET nCajas = ?, nPiezas = ? WHERE Id = ?";
 
                 // Ejecutar la consulta con los parámetros proporcionados
-                int rowsAffected = _database.Execute(query, pNCajas, pId);
+                int rowsAffected = _database.Execute(query, pNCajas,pCantidad, pId);
 
                 // Verificar si se afectaron filas y mostrar un mensaje apropiado
                 if (rowsAffected > 0)

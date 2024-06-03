@@ -13,7 +13,7 @@ public partial class PopUpPage : Popup
 		}
 		if(pTitulo == "Question")
 		{
-			cancelBtn.Text = "Por piezas";
+			cancelBtn.Text = "Por cajas";
 		}
 	}
 

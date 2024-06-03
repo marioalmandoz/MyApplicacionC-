@@ -12,6 +12,7 @@ namespace MyApplicacion.Database
         public DateTime fecha_hora { get; set; }
         public string referencia { get; set; }
         public string baan { get; set; }
+        public int nPiezasCaja { get; set; }
         public int nPiezas { get; set; }
         public string nCajas { get; set; }
         public string ubicacion { get; set; }

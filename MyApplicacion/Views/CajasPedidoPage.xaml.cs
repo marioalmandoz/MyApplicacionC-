@@ -16,16 +16,16 @@ public partial class CajasPedidoPage : ContentPage
         // Aquí puedes acceder al valor introducido en el Entry
         try
         {
-            int numeroPiezas = int.Parse(numeroPiezasEntry.Text);
+            int numeroCajas = int.Parse(numeroPiezasEntry.Text);
 
             numeroPiezasEntry.Text = "";
             
 
-            if (numeroPiezas>0)
+            if (numeroCajas>0)
             {
                 // Aquí puedes realizar la validación y cualquier otra lógica necesaria
                 // Mostrar una alerta para confirmar si el usuario está seguro
-                var popup = new PopUpPage("Confirmación", $"¿Estás seguro de querer retirar {numeroPiezas} piezas en total?", 2);
+                var popup = new PopUpPage("Confirmación", $"¿Estás seguro de querer retirar {numeroCajas} cajas en total?", 2);
                 var respuesta = await this.ShowPopupAsync(popup) as bool?;
                // bool respuesta = await DisplayAlert("Confirmación", $"¿Estás seguro de querer retirar {numeroPiezas} piezas en total?", "Sí", "No");
 
@@ -33,7 +33,7 @@ public partial class CajasPedidoPage : ContentPage
                 if (respuesta.HasValue && respuesta.Value)
                 {
                     
-                    App.dataAccess.RetirarPiezas(numeroPiezas,id);
+                    App.dataAccess.RetirarCajas(numeroCajas.ToString(),id);
                     //---------------------------------------------
                   //  await App.PalletRepo.RetirarPiezas(numeroPiezas,id);
                     //Console.WriteLine(App.PalletRepo.StatusMessage);

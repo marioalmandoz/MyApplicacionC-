@@ -6,7 +6,7 @@ namespace MyApplicacion.Views;
 
 public partial class RecepcionPage : ContentPage
 {
-
+    int cantidad;
     string baan;
     string referencia;
     string scaneo;
@@ -37,8 +37,8 @@ public partial class RecepcionPage : ContentPage
         {
             Console.WriteLine(message);
             scaneo = parts[1];
-            string pattern = @"2K([0-9]{5}).+\/\s([0-9]{5})";
-            string pattern1 = @"2K([0-9]{5})\/([0-9]{5})";
+            string pattern = @"Q(\d+).+2K([0-9]{5}).+\/\s([0-9]{5})";
+            string pattern1 = @"Q(\d+).+2K([0-9]{5})\/([0-9]{5})";
             Match match = Regex.Match(scaneo, pattern);
             if (!match.Success)
             {
@@ -46,8 +46,9 @@ public partial class RecepcionPage : ContentPage
             }
             if (match.Success)
             {
-                baan = match.Groups[1].Value;
-                referencia = match.Groups[2].Value;
+                cantidad = int.Parse(match.Groups[1].Value);
+                baan = match.Groups[2].Value;
+                referencia = match.Groups[3].Value;
                 Console.WriteLine("Datos: " + baan + " " + referencia);
                 ScanResultLabel.Text = "Datos: "+ baan + " " + referencia;
                 mostrarPallets();
@@ -87,7 +88,7 @@ public partial class RecepcionPage : ContentPage
         {
             //WeakReferenceMessenger.Default.Send(item.Id.ToString());
             LimpiarDatos();
-            await Shell.Current.Navigation.PushAsync(new IncidenciasPage(item.Id));
+            await Shell.Current.Navigation.PushAsync(new IncidenciasPage(item.Id,cantidad));
             //await Shell.Current.GoToAsync("///Views.IncidenciasPage");
         }
     }

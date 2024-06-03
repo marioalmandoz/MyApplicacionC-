@@ -31,14 +31,14 @@
                         FontAttributes="Bold"
                         FontSize="20"
                         HorizontalOptions="Center"
-                        Text="¡INTRODUCE EL NUMERO TOTAL DE PIEZAS A RETIRAR!" />
+                        Text="¡INTRODUCE EL NUMERO TOTAL DE CAJAS A RETIRAR!" />
 
                     <Entry
                         x:Name="numeroPiezasEntry"
                         FontSize="20"
                         HorizontalOptions="Center"
                         Keyboard="Numeric"
-                        Placeholder="Número de piezas..." />
+                        Placeholder="Número de cajas..." />
 
                     <Button
                         Margin="0,30,0,10"

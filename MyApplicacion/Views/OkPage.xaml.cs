@@ -53,7 +53,7 @@ public partial class OkPage : ContentPage
                     //App.PalletRepo.AddNewPallet(datosNecesariosParaCrearLaInstancia)
 
                     string total = (int.Parse(numeroCajas) * palletRecivido.nPiezas).ToString();
-                    int row = App.dataAccess.AnadirPallet(palletRecivido.referencia, palletRecivido.baan,numeroCajas, total);
+                    int row = App.dataAccess.AnadirPallet(palletRecivido.referencia, palletRecivido.baan,numeroCajas, total, palletRecivido.nPiezas);
                     if(row > 0)
                     {
                         AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();

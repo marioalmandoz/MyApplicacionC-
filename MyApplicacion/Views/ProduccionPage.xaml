@@ -24,15 +24,6 @@
                     Source="logo_bruss_blanco" />
             </HorizontalStackLayout>
 
-            <Button
-                x:Name="BtnOk"
-                BackgroundColor="LightGray"
-                BorderColor="Black"
-                BorderWidth="1"
-                Clicked="VerificarExistencia"
-                HorizontalOptions="Center"
-                Text="Ok!"
-                TextColor="Black" />
             <Label
                 x:Name="ScanResultLabel"
                 Margin="20"
