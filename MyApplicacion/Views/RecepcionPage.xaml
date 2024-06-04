@@ -35,7 +35,7 @@
             BackgroundColor="White"
             FontSize="18"
             HorizontalOptions="FillAndExpand"
-            Text=""
+            Text="Datos: 48115 77351 "
             TextColor="Black"
             VerticalOptions="Start" />
         <Label

@@ -23,7 +23,15 @@
                     HeightRequest="50"
                     Source="logo_bruss_blanco" />
             </HorizontalStackLayout>
-
+            <Label
+                Margin="10"
+                BackgroundColor="White"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="ESCANEA EL QR"
+                TextColor="Black"
+                VerticalOptions="Start" />
             <Label
                 x:Name="ScanResultLabel"
                 Margin="20"

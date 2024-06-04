@@ -38,7 +38,7 @@ public partial class AlmacenPage : ContentPage
     }
     private async void Db_click(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///Views.DatabaseShow");
+        await Shell.Current.GoToAsync("///Views.DatabasePage");
     }
 
 }

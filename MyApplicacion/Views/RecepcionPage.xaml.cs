@@ -1,5 +1,7 @@
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.Messaging;
 using MyApplicacion.Database;
+using ProduccionAlmacen.Views;
 using System.Text.RegularExpressions;
 
 namespace MyApplicacion.Views;
@@ -72,9 +74,12 @@ public partial class RecepcionPage : ContentPage
         var item = (Pallet)((Button)sender).BindingContext;
 
         // Realizar alguna acción con el objeto de datos, por ejemplo:
+        var popup = new PopUpPage("Incidencia", $"¿QUIERES RECEPCIONAR EL PALLET?", 2);
+        var respuesta = await this.ShowPopupAsync(popup) as bool?;
+        //bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.nPiezas} piezas?", "Sí", "No");
 
-        bool respuesta = await DisplayAlert("Alerta", $"¿VALIDAR EL PALLET DE FECHA: {item.fecha_hora}? ", "VALIDAR", "INCIDENCIA");
-        if (respuesta)
+        // Verificar la respuesta del usuario
+        if (respuesta.HasValue && respuesta.Value)
         {
             App.dataAccess.tickAlmacen(item.Id);
             //-------------------------------------------------

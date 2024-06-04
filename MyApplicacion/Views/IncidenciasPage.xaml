@@ -45,7 +45,7 @@
                     Text="CANCELAR"
                     TextColor="Black" />
                 <Button
-                    Margin="5,10,10,0"
+                    Margin="55,10,10,0"
                     BackgroundColor="LightGray"
                     Clicked="BtnValidar_Clicked"
                     CornerRadius="30"

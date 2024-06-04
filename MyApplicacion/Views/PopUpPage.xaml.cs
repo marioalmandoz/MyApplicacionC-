@@ -11,9 +11,12 @@ public partial class PopUpPage : Popup
 		if(nButtons == 1) {
 			cancelBtn.IsVisible = false;
 		}
-		if(pTitulo == "Question")
+		if(pTitulo == "Cuestión")
 		{
 			cancelBtn.Text = "Por cajas";
+		}else if (pTitulo == "Incidencia")
+		{
+			cancelBtn.Text = "Incidencias";
 		}
 	}
 
