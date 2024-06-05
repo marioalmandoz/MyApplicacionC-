@@ -120,6 +120,9 @@
 	  <MauiXaml Update="Views\DatabasePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\DatabaseProduccion.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\DatabaseShow.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

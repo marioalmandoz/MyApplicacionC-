@@ -81,7 +81,7 @@ public partial class ReferenciasPedidoPage : ContentPage
         var item = (Pallet)((Button)sender).BindingContext;
 
         // Realizar alguna acción con el objeto de datos, por ejemplo:
-        var popup = new PopUpPage("cuestiÓn", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.nPiezas} piezas?", 2);
+        var popup = new PopUpPage("Cuestión", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.nPiezas} piezas?", 2);
         var respuesta = await this.ShowPopupAsync(popup) as bool?;
         //bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES RETIRAR EL PALLET ENTERO DE {item.nPiezas} piezas?", "Sí", "No");
 

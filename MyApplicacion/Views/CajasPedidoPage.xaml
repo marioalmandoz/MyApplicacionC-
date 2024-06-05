@@ -48,7 +48,7 @@
                         FontAttributes="Bold"
                         FontSize="20"
                         HorizontalOptions="Center"
-                        Text="Validar"
+                        Text="VALIDAR"
                         TextColor="Black" />
                 </VerticalStackLayout>
             </Frame>

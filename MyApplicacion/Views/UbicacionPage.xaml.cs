@@ -65,6 +65,7 @@ public partial class UbicacionPage : ContentPage
     }
     private async void mostrarPallets()
     {
+        //List<Pallet> lista = App.dataAccess.MostrarDatos();
         List<Pallet> pallet = App.dataAccess.MostrarAlmacen(baan);
         palletList.ItemsSource = pallet;
         //--------------------------------------------------
@@ -89,7 +90,7 @@ public partial class UbicacionPage : ContentPage
 
         // Realizar alguna acción con el objeto de datos, por ejemplo:
        // bool respuesta = await DisplayAlert("Confirmación", $"¿QUIERES REUBICAR EL PALLET {item.Id}?", "Sí", "No");
-        var popup = new PopUpPage("Confirmación", $"¿QUIERES REUBICAR EL PALLET {item.Id}?", 2);
+        var popup = new PopUpPage("Confirmación", $"¿QUIERES REUBICAR EL PALLET {item.baan} en la ubicacion {ubicacion}?", 2);
         var respuesta = await this.ShowPopupAsync(popup) as bool?;
 
         // Verificar la respuesta del usuario

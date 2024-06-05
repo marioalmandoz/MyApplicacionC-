@@ -47,7 +47,7 @@ public partial class CajasPedidoPage : ContentPage
         }
         catch (Exception ex)
         {
-            var popup = new PopUpPage("Error", $"Introduce el numero de piezas", 1);
+            var popup = new PopUpPage("Error", $"Introduce el numero correcto de cajas", 1);
             await this.ShowPopupAsync(popup);
             //await DisplayAlert("Error", $"Introduce el numero de piezas", "Ok");
         }

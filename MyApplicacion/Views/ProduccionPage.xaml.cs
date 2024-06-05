@@ -98,4 +98,8 @@ public partial class ProduccionPage : ContentPage
         }
 
     }
+    private async void Db_click(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("///Views.DatabaseProduccion");
+    }
 }

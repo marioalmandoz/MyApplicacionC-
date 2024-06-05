@@ -41,6 +41,21 @@
                 Text=""
                 TextColor="Black"
                 VerticalOptions="FillAndExpand" />
+
+            <Button
+                x:Name="BtnBd"
+                Margin="20,30,20,10"
+                BackgroundColor="LightGray"
+                Clicked="Db_click"
+                CornerRadius="30"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalOptions="FillAndExpand"
+                Text="DATABASE"
+                TextColor="Black"
+                VerticalOptions="End" />
         </VerticalStackLayout>
+
+
     </ScrollView>
 </ContentPage>

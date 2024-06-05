@@ -13,7 +13,7 @@ public partial class PopUpPage : Popup
 		}
 		if(pTitulo == "Cuestión")
 		{
-			cancelBtn.Text = "Por cajas";
+			cancelBtn.Text = "POR CAJAS";
 		}else if (pTitulo == "Incidencia")
 		{
 			cancelBtn.Text = "Incidencias";
