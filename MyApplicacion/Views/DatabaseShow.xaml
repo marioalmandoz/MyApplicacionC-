@@ -22,7 +22,7 @@
                     Source="logo_bruss_blanco" />
                 <!--  40  -->
                 <ImageButton
-                    Margin="80,0,0,0"
+                    Margin="60,0,0,0"
                     Clicked="Reload"
                     HeightRequest="30"
                     Source="recarga.png" />

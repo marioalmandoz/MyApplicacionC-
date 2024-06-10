@@ -29,8 +29,8 @@ public partial class EditarPalletPage : ContentPage
 
     private async void Go_Back(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///Views.DatabaseShow");
-        System.Diagnostics.Debug.WriteLine("¡Se hizo clic en el botón Back");
+        await Navigation.PopAsync();
+        
     }
     private async void editBtn_Clicked(object sender, EventArgs e)
     {

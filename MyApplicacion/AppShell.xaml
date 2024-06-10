@@ -68,6 +68,11 @@
         Title="DatabaseProduccion"
         ContentTemplate="{DataTemplate local:Views.DatabaseProduccion}"
         Route="Views.DatabaseProduccion" />
+    <ShellContent
+        Title="DatabaseProduccion"
+        ContentTemplate="{DataTemplate local:Views.DatabaseAlmacen}"
+        Route="Views.DatabaseAlmacen" />
+
 
 </Shell>
 

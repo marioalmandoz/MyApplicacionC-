@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="MyApplicacion.Views.DatabaseProduccion"
+    x:Class="MyApplicacion.Views.DatabaseAlmacen"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="DatabaseProduccion">
+    Title="DatabaseAlmacen">
     <ScrollView>
         <StackLayout>
             <HorizontalStackLayout>
@@ -104,6 +104,7 @@
                                     Grid.Column="0"
                                     BackgroundColor="LightGray"
                                     BorderColor="Black"
+                                    Clicked="ItemButton_Clicked"
                                     CornerRadius="15"
                                     FontAttributes="Bold"
                                     Text="{Binding fecha_hora}"
@@ -113,6 +114,7 @@
                                     Margin="-13,0"
                                     BackgroundColor="LightGray"
                                     BorderColor="Black"
+                                    Clicked="ItemButton_Clicked"
                                     CornerRadius="0"
                                     FontAttributes="Bold"
                                     Text="{Binding baan}"
@@ -122,6 +124,7 @@
                                     Margin="-10,0,-25,0"
                                     BackgroundColor="LightGray"
                                     BorderColor="Black"
+                                    Clicked="ItemButton_Clicked"
                                     CornerRadius="15"
                                     FontAttributes="Bold"
                                     Text="{Binding nCajas}"
@@ -130,6 +133,7 @@
                                     Grid.Column="3"
                                     BackgroundColor="LightGray"
                                     BorderColor="Black"
+                                    Clicked="ItemButton_Clicked"
                                     CornerRadius="15"
                                     FontAttributes="Bold"
                                     Text="{Binding ubicacion}"

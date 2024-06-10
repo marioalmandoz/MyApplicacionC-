@@ -116,6 +116,25 @@ namespace MyApplicacion
                 throw new Exception("Error al mostrar los pallets producidos: " + ex.Message);
             }
         }
+        public List<Pallet> MostrarAlma()
+        {
+            try
+            {
+                string query = "SELECT * FROM Pallet WHERE almacen = 1;";
+                bool almacen = true; // Queremos filtrar donde almacen es falso
+                var result = _database.Query<Pallet>(query);
+                foreach (var pallet in result)
+                {
+                    Console.WriteLine($"Id: {pallet.Id}, Referencia: {pallet.referencia}, almacen: {pallet.almacen}"); // Muestra cada objeto Pallet
+                }
+
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al mostrar los pallets Almacen: " + ex.Message);
+            }
+        }
         public List<Pallet> MostrarAlmacen(string pbaan)
         {
             try
