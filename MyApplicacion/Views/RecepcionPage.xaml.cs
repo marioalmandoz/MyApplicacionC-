@@ -82,10 +82,7 @@ public partial class RecepcionPage : ContentPage
         if (respuesta.HasValue && respuesta.Value)
         {
             App.dataAccess.tickAlmacen(item.Id);
-            //-------------------------------------------------
-            //await App.PalletRepo.tickAlmacen(item.Id);
-            //string statusMessage = App.PalletRepo.StatusMessage;
-            //Console.WriteLine(statusMessage);
+            
             LimpiarDatos();
             await Shell.Current.GoToAsync("///Views.AlmacenPage");
         }

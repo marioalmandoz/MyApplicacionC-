@@ -145,5 +145,30 @@ namespace MyApplicacion.Database
                 return isQuantity;
             }
         }
+
+        //Metodo para enviar datos 
+        public static bool EnviarDatos(string material, string sourceLocation, string destLocation, int quantity)
+        {
+            using (var client = new WebClient())
+            {
+                var url = "http://datacapturews.dur300.bruss-group.com/api/MaterialMovements";
+
+                var postData = $"Material={material}&SourceLocation={sourceLocation}&DestLocation={destLocation}&Quantity={quantity}";
+
+                try
+                {
+                    client.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+                    var response = client.UploadString(url, "POST", postData);
+                    Console.WriteLine("Datos enviados correctamente.");
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al enviar la solicitud: {ex.Message}");
+                    return false;
+                }
+            }
+        }
+
     }
 }

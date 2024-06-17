@@ -15,30 +15,6 @@ public class MainActivity : MauiAppCompatActivity
     {
         base.OnPostCreate(savedInstanceState);
         RegisterReceivers();
-
-        //WeakReferenceMessenger.Default.Register<string>(this, (r, li) =>
-        //{
-        //    MainThread.BeginInvokeOnMainThread(() => {
-        //        Intent i = new Intent();
-        //        i.SetAction("com.symbol.datawedge.materials");
-        //    });
-        //});
-        ////showing saved states 
-        //try
-        //{
-        //    string savedDatetime = savedInstanceState.GetString("time");
-        //    Console.WriteLine("Estado guardado: " + savedInstanceState);
-
-        //    if (savedDatetime is not null)
-        //        WeakReferenceMessenger.Default.Send("Saved DateTime=" + savedDatetime);
-
-        //}
-        //catch (System.Exception ex)
-        //{
-        //    WeakReferenceMessenger.Default.Send("No previously saved instance available");
-        //}
-
-       // myBroadcastReceiver = new DWIntentReceiver();
         Console.WriteLine("Aqui");
     }
 
