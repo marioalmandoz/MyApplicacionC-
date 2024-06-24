@@ -54,6 +54,9 @@ public partial class IncidenciasPage : ContentPage
             {
                 AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
                 var popup = new PopUpPage("Confirmación", $"Se ha Recepcionado el pallet", 1);
+                //Aqui hay que hacer la subida de datos
+                //Peticiones.SubirBaan(item.baan, item.nPiezas.ToString()); 
+                //añadir codigo para gestionar la respuesta
                 await this.ShowPopupAsync(popup);
                 
                 //await DisplayAlert("Confirmación", $"Se ha Recepcionado el pallet", "Ok");
@@ -82,7 +85,9 @@ public partial class IncidenciasPage : ContentPage
                     AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
                     popup = new PopUpPage("Confirmación", $"Se ha Recepcionado el pallet", 1);
                     await this.ShowPopupAsync(popup);
-                    //await DisplayAlert("Confirmación", $"Se ha Recepcionado el pallet", "Ok");
+                    //Aqui hay que hacer la subida de datos
+                    //Peticiones.SubirBaan(item.baan, item.nPiezas.ToString());
+                    //añadir codigo para gestionar la respuesta
                     await Shell.Current.GoToAsync("///Views.AlmacenPage");
                 }
                 else

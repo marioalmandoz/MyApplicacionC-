@@ -109,10 +109,9 @@ public partial class UbicacionPage : ContentPage
                 {
                     App.dataAccess.ModificarUbicacion(item.Id, ubicacion);
                     LimpiarDatos();
-                    //---------------------------------------------
-                    //await App.PalletRepo.AddUbicacion(item.Id, ubicacion);
-                    //string statusMessage = App.PalletRepo.StatusMessage;
-                    //Console.WriteLine(statusMessage);
+                    //--------------------------------------------- 
+                    //Realizar la subida de datos
+                    //Peticiones.EnviarDatos(referencia, item.ubicacion, ubicacion, item.nPiezas);
                     await Shell.Current.GoToAsync("///Views.AlmacenPage");
                 }
             }

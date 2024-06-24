@@ -82,6 +82,8 @@ public partial class RecepcionPage : ContentPage
         if (respuesta.HasValue && respuesta.Value)
         {
             App.dataAccess.tickAlmacen(item.Id);
+            //Aqui hay que hacer la subida de datos
+            //Peticiones.SubirBaan(item.baan, item.nPiezas.ToString());
             
             LimpiarDatos();
             await Shell.Current.GoToAsync("///Views.AlmacenPage");

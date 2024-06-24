@@ -48,9 +48,5 @@ public partial class DatabaseAlmacen : ContentPage
             // TODO: Aquí habrá un método que insertará los datos en la base de datos
             await Shell.Current.Navigation.PushAsync(new EditarPalletPage(item));
         }
-        else
-        {
-
-        }
     }
 }

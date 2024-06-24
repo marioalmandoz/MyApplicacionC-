@@ -91,10 +91,8 @@ public partial class ReferenciasPedidoPage : ContentPage
             if (baan != null)
             {
                 App.dataAccess.EliminarPallet(item.Id);
-                //-----------------------------------
-                //await App.PalletRepo.EliminarPalletPorId(item.Id);
-                //string statusMessage = App.PalletRepo.StatusMessage;
-                //Console.WriteLine(statusMessage);
+                //Realizar la subida de datos
+                //Peticiones.EnviarDatos(referencia, item.ubicacion, "Salida", item.nPiezas);
             }
             await Shell.Current.GoToAsync("///Views.PedidoPage");
 

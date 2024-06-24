@@ -27,18 +27,13 @@ public partial class CajasPedidoPage : ContentPage
                 // Mostrar una alerta para confirmar si el usuario está seguro
                 var popup = new PopUpPage("Confirmación", $"¿Estás seguro de querer retirar {numeroCajas} cajas en total?", 2);
                 var respuesta = await this.ShowPopupAsync(popup) as bool?;
-               // bool respuesta = await DisplayAlert("Confirmación", $"¿Estás seguro de querer retirar {numeroPiezas} piezas en total?", "Sí", "No");
-
+              
                 // Verificar la respuesta del usuario
                 if (respuesta.HasValue && respuesta.Value)
                 {
                     
                     App.dataAccess.RetirarCajas(numeroCajas.ToString(),id);
-                    //---------------------------------------------
-                  //  await App.PalletRepo.RetirarPiezas(numeroPiezas,id);
-                    //Console.WriteLine(App.PalletRepo.StatusMessage);
-
-                    //De momento llevamos a la clase ProduccionPage
+                  
 
                     await Shell.Current.GoToAsync("///Views.PedidoPage");
 
