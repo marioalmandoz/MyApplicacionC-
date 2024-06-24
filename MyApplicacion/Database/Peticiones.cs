@@ -170,14 +170,14 @@ namespace MyApplicacion.Database
             }
         }
 
-        public static bool SubirBaan(string pBaan, string pCantidad)
+        public static async Task<bool> SubirBaanAsync(string pRef, string pCantidad)
         {
+            // Construir la URL de la API
             using (var client = new WebClient())
             {
-                //Habra que modificar este link
-                var url = "http://datacapturews.dur300.bruss-group.com/api/MaterialMovements";
+                var url = "http://datacapturews.dur300.bruss-group.com/api/ExportToERP";
 
-                var postData = $"Material={pBaan}&Quantity={pCantidad}";
+                var postData = $"Material={pRef}&Quantity={pCantidad}";
 
                 try
                 {

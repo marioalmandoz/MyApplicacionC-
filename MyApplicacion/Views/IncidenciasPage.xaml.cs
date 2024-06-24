@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Views;
+using MyApplicacion.Database;
 using Plugin.Maui.Audio;
 using ProduccionAlmacen.Views;
 
@@ -55,8 +56,7 @@ public partial class IncidenciasPage : ContentPage
                 AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
                 var popup = new PopUpPage("Confirmación", $"Se ha Recepcionado el pallet", 1);
                 //Aqui hay que hacer la subida de datos
-                //Peticiones.SubirBaan(item.baan, item.nPiezas.ToString()); 
-                //añadir codigo para gestionar la respuesta
+                Peticiones.SubirBaanAsync(App.dataAccess.getReferencia(id), App.dataAccess.GetNPiezas(id).ToString());
                 await this.ShowPopupAsync(popup);
                 
                 //await DisplayAlert("Confirmación", $"Se ha Recepcionado el pallet", "Ok");
@@ -86,8 +86,8 @@ public partial class IncidenciasPage : ContentPage
                     popup = new PopUpPage("Confirmación", $"Se ha Recepcionado el pallet", 1);
                     await this.ShowPopupAsync(popup);
                     //Aqui hay que hacer la subida de datos
-                    //Peticiones.SubirBaan(item.baan, item.nPiezas.ToString());
-                    //añadir codigo para gestionar la respuesta
+
+                    Peticiones.SubirBaanAsync(App.dataAccess.getReferencia(id), total);
                     await Shell.Current.GoToAsync("///Views.AlmacenPage");
                 }
                 else

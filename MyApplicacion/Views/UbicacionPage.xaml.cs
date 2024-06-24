@@ -111,7 +111,7 @@ public partial class UbicacionPage : ContentPage
                     LimpiarDatos();
                     //--------------------------------------------- 
                     //Realizar la subida de datos
-                    //Peticiones.EnviarDatos(referencia, item.ubicacion, ubicacion, item.nPiezas);
+                    Peticiones.EnviarDatos(referencia, item.ubicacion, ubicacion, item.nPiezas);
                     await Shell.Current.GoToAsync("///Views.AlmacenPage");
                 }
             }

@@ -159,7 +159,7 @@ namespace MyApplicacion
             try
             {
                 // Consulta SQL para obtener la referencia del pallet con el Id proporcionado
-                string query = "SELECT referencia FROM Pallet WHERE Id = ?";
+                string query = "SELECT baan FROM Pallet WHERE Id = ?";
 
                 // Ejecutar la consulta y obtener la referencia
                 string referencia = _database.ExecuteScalar<string>(query, pId);
@@ -169,6 +169,20 @@ namespace MyApplicacion
             catch (Exception ex)
             {
                 throw new Exception($"Error al obtener la referencia: {ex.Message}");
+            }
+        }
+
+        public int GetNPiezas(int id)
+        {
+            try
+            {
+                var query = "SELECT nPiezas FROM Pallet WHERE Id = ?";
+                var nPiezas = _database.ExecuteScalar<int>(query, id); // Ejecutar la consulta para obtener nPiezas
+                return nPiezas; // Devuelve el número de piezas obtenidas
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error al obtener el número de piezas del pallet con ID: {id}. {ex.Message}");
             }
         }
         public bool ComprobarBaan(string pBaan)
