@@ -163,7 +163,7 @@ namespace MyApplicacion
 
                 // Ejecutar la consulta y obtener la referencia
                 string referencia = _database.ExecuteScalar<string>(query, pId);
-
+                Console.WriteLine(referencia);
                 return referencia;
             }
             catch (Exception ex)

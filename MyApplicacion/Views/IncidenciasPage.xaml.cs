@@ -54,13 +54,34 @@ public partial class IncidenciasPage : ContentPage
             if (row > 0)
             {
                 AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
-                var popup = new PopUpPage("Confirmación", $"Se ha Recepcionado el pallet", 1);
-                //Aqui hay que hacer la subida de datos
-                Peticiones.SubirBaanAsync(App.dataAccess.getReferencia(id), App.dataAccess.GetNPiezas(id).ToString());
-                await this.ShowPopupAsync(popup);
-                
-                //await DisplayAlert("Confirmación", $"Se ha Recepcionado el pallet", "Ok");
-                await Shell.Current.GoToAsync("///Views.AlmacenPage");
+                try
+                {
+                    // Mostrar el popup de confirmación antes de hacer la subida de datos
+                    var popup = new PopUpPage("Confirmación", $"Se ha Recepcionado el pallet", 1);
+
+                    // Obtener la referencia y nPiezas
+                    var referencia = App.dataAccess.getReferencia(id);
+                    var nPiezas = App.dataAccess.GetNPiezas(id).ToString();
+
+                    // Aquí hay que hacer la subida de datos
+                    var resultado = await Peticiones.SubirBaanAsync(referencia, nPiezas);
+
+                    if (resultado)
+                    {
+                        await this.ShowPopupAsync(popup);
+
+                        // Navegar a la página de almacén
+                        await Shell.Current.GoToAsync("///Views.AlmacenPage");
+                    }
+                    else
+                    {
+                        Console.WriteLine("La subida de datos falló.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error durante la operación: {ex.Message}");
+                }
             }
             else
             {
@@ -82,13 +103,28 @@ public partial class IncidenciasPage : ContentPage
                 int row = App.dataAccess.addIncidencias(id, ddlIncidencias.SelectedItem.ToString());
                 if (row > 0)
                 {
-                    AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
-                    popup = new PopUpPage("Confirmación", $"Se ha Recepcionado el pallet", 1);
-                    await this.ShowPopupAsync(popup);
-                    //Aqui hay que hacer la subida de datos
+                    try
+                    {
 
-                    Peticiones.SubirBaanAsync(App.dataAccess.getReferencia(id), total);
-                    await Shell.Current.GoToAsync("///Views.AlmacenPage");
+
+                        AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("aprobacion_sound.wav")).Play();
+                        popup = new PopUpPage("Confirmación", $"Se ha Recepcionado el pallet", 1);
+                        await this.ShowPopupAsync(popup);
+                        //Aqui hay que hacer la subida de datos
+
+                        var resultado = await Peticiones.SubirBaanAsync(App.dataAccess.getReferencia(id), total);
+                        if (resultado)
+                        {
+                            await Shell.Current.GoToAsync("///Views.AlmacenPage");
+                        }
+                        else
+                        {
+                            Console.WriteLine("La subida de datos falló");
+                        }
+                    }catch(Exception ex)
+                    {
+                        Console.WriteLine($"Error durante la operación: {ex.Message}");
+                    }
                 }
                 else
                 {

@@ -81,12 +81,29 @@ public partial class RecepcionPage : ContentPage
         // Verificar la respuesta del usuario
         if (respuesta.HasValue && respuesta.Value)
         {
-            App.dataAccess.tickAlmacen(item.Id);
-            //Aqui hay que hacer la subida de datos
-            Peticiones.SubirBaanAsync(item.baan, item.nPiezas.ToString());
-            
-            LimpiarDatos();
-            await Shell.Current.GoToAsync("///Views.AlmacenPage");
+            try
+            {
+                App.dataAccess.tickAlmacen(item.Id);
+
+                // Aquí hay que hacer la subida de datos
+                Console.WriteLine(item.baan);
+
+                bool resultado = await Peticiones.SubirBaanAsync(item.baan, item.nPiezas.ToString());
+
+                if (resultado)
+                {
+                    LimpiarDatos();
+                    await Shell.Current.GoToAsync("///Views.AlmacenPage");
+                }
+                else
+                {
+                    Console.WriteLine("La subida de datos falló.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al subir los datos: {ex.Message}");
+            }
         }
         else
         {
